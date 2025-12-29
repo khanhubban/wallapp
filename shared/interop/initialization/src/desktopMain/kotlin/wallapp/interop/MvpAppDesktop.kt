@@ -27,8 +27,9 @@ fun MvpAppDesktop(
     )
     val interopModules = InteropModulesDesktop
 
-    require(FactoryDesktop.remoteEndpointMode == RemoteEndpointMode.FirebaseAdmin) {
-        "RemoteEndpointMode must be FirebaseAdmin for MvpAppDesktop"
+    require(FactoryDesktop.remoteEndpointMode == RemoteEndpointMode.Bundled
+            || FactoryDesktop.remoteEndpointMode == RemoteEndpointMode.FirebaseAdmin) {
+        "RemoteEndpointMode must be FirebaseAdmin or Bundled for MvpAppDesktop"
     }
 
     val appScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)

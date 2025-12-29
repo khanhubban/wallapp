@@ -84,6 +84,7 @@ include(
     ":shared:data:remoteendpoint",
     ":shared:data:remotepaywall",
     ":shared:data:resources",
+    ":shared:data:resources-oss",
     ":shared:data:search",
     ":shared:data:search-api",
     ":shared:data:search-model",

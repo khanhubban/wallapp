@@ -34,6 +34,7 @@ import wallapp.data.DataRepository
 import wallapp.data.DataRepositoryDefault
 import wallapp.deeplink.DeepLinkManager
 import wallapp.deeplink.DeepLinkManagerNoOp
+import wallapp.download.FirebaseStorageDownloaderBundled
 import wallapp.device.DeviceId
 import wallapp.device.DeviceIdMock
 import wallapp.device.DeviceSpec
@@ -75,6 +76,7 @@ import wallapp.network.NetworkState
 import wallapp.network.NetworkStatePreset
 import wallapp.network.NetworkUserManager
 import wallapp.network.NetworkUserManagerAdmin
+import wallapp.network.NetworkUserManagerPreset
 import wallapp.pixel.alert.AlertManager
 import wallapp.pixel.alert.AlertManagerComposable
 import wallapp.privacymessaging.PrivacyMessagingManager
@@ -229,6 +231,7 @@ object FactoryDesktop : FactoryCommon() {
 
     override fun firebaseAuthManager(scope: Scope): FirebaseAuthManager {
         return when (remoteEndpointMode) {
+            RemoteEndpointMode.Bundled -> FirebaseAuthManagerPreset()
             RemoteEndpointMode.Firebase -> TODO("Add support for RemoteEndpointMode.Firebase")
             RemoteEndpointMode.FirebaseAdmin -> FirebaseAuthManagerPreset()
         }
@@ -236,6 +239,10 @@ object FactoryDesktop : FactoryCommon() {
 
     override fun firebaseStorageDownloader(scope: Scope): FirebaseStorageDownloader {
         return when (remoteEndpointMode) {
+            RemoteEndpointMode.Bundled -> {
+                FirebaseStorageDownloaderBundled
+            }
+
             RemoteEndpointMode.FirebaseAdmin -> {
                 FirebaseStorageDownloaderAdmin(googleStorageRepositoryAdmin(scope), scope.get())
             }
@@ -247,8 +254,9 @@ object FactoryDesktop : FactoryCommon() {
     }
 
     private fun googleStorageRepositoryAdmin(scope: Scope): GoogleStorageRepository {
-        require(remoteEndpointMode == RemoteEndpointMode.FirebaseAdmin) {
-            "googleStorageRepositoryAdmin is only available in FirebaseAdmin mode"
+        require(remoteEndpointMode == RemoteEndpointMode.FirebaseAdmin
+                || remoteEndpointMode == RemoteEndpointMode.Bundled) {
+            "googleStorageRepositoryAdmin is only available in FirebaseAdmin or Bundled mode"
         }
         return GoogleStorageRepositoryLocal()
     }
@@ -300,6 +308,7 @@ object FactoryDesktop : FactoryCommon() {
 
     override fun networkUserManager(scope: Scope): NetworkUserManager {
         return when (remoteEndpointMode) {
+            RemoteEndpointMode.Bundled -> NetworkUserManagerPreset()
             RemoteEndpointMode.Firebase -> TODO("Add support for RemoteEndpointMode.Firebase")
             RemoteEndpointMode.FirebaseAdmin -> NetworkUserManagerAdmin()
         }
@@ -371,6 +380,7 @@ object FactoryDesktop : FactoryCommon() {
 
     override fun userProfileRepository(scope: Scope): UserProfileRepository {
         return when (remoteEndpointMode) {
+            RemoteEndpointMode.Bundled -> UserProfileRepositoryPreset()
             RemoteEndpointMode.Firebase -> TODO("Add support for RemoteEndpointMode.Firebase")
             RemoteEndpointMode.FirebaseAdmin -> UserProfileRepositoryPreset()
         }

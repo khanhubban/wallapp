@@ -48,6 +48,7 @@ import wallapp.appvisibility.AppVisibilityWallpaperProcess
 import wallapp.auth.firebase.FirebaseAuthManager
 import wallapp.auth.firebase.FirebaseAuthManagerFirebase
 import wallapp.auth.firebase.FirebaseAuthManagerNoOp
+import wallapp.auth.firebase.FirebaseAuthManagerPreset
 import wallapp.auth.google.GoogleAuthManager
 import wallapp.auth.google.GoogleAuthManagerAndroid
 import wallapp.billing.BillingManager
@@ -71,6 +72,7 @@ import wallapp.data.DataRepositoryDefault
 import wallapp.data.favorite.AccountDataRepositoryFirebaseMobile
 import wallapp.deeplink.DeepLinkManager
 import wallapp.deeplink.DeepLinkManagerDefault
+import wallapp.download.FirebaseStorageDownloaderBundled
 import wallapp.device.DeviceId
 import wallapp.device.DeviceIdMock
 import wallapp.device.DeviceIdSystem
@@ -124,6 +126,7 @@ import wallapp.network.NetworkState
 import wallapp.network.NetworkStateAndroid
 import wallapp.network.NetworkUserManager
 import wallapp.network.NetworkUserManagerFirebase
+import wallapp.network.NetworkUserManagerPreset
 import wallapp.pixel.alert.AlertManager
 import wallapp.pixel.alert.AlertManagerComposable
 import wallapp.pixel.typeface.TypefaceRepository
@@ -185,6 +188,7 @@ import wallapp.system.window.WindowFrameManagerAndroid
 import wallapp.system.window.WindowFrameManagerNoOp
 import wallapp.userprofile.UserProfileRepository
 import wallapp.userprofile.UserProfileRepositoryFirebase
+import wallapp.userprofile.UserProfileRepositoryPreset
 import wallapp.viewmodel.ViewModelFactory
 import wallapp.viewmodel.ViewModelFactoryDefault
 import wallapp.viewmodel.ViewModelFactoryPlatform
@@ -619,6 +623,7 @@ object FactoryAndroid : FactoryCommon() {
 
     override fun networkUserManager(scope: Scope): NetworkUserManager {
         return when (remoteEndpointMode) {
+            RemoteEndpointMode.Bundled -> NetworkUserManagerPreset()
             RemoteEndpointMode.Firebase -> scope.get<NetworkUserManagerFirebase>()
             RemoteEndpointMode.FirebaseAdmin -> error("FirebaseAdmin not supported on Android")
         }
@@ -769,6 +774,7 @@ object FactoryAndroid : FactoryCommon() {
 
     override fun userProfileRepository(scope: Scope): UserProfileRepository {
         return when (remoteEndpointMode) {
+            RemoteEndpointMode.Bundled -> UserProfileRepositoryPreset()
             RemoteEndpointMode.Firebase -> scope.get<UserProfileRepositoryFirebase>()
             RemoteEndpointMode.FirebaseAdmin -> error("FirebaseAdmin not supported on Android")
         }
@@ -799,6 +805,7 @@ object FactoryAndroid : FactoryCommon() {
 
     override fun firebaseAuthManager(scope: Scope): FirebaseAuthManager {
         return when (remoteEndpointMode) {
+            RemoteEndpointMode.Bundled -> FirebaseAuthManagerPreset()
             RemoteEndpointMode.Firebase -> {
                 if (scope.isDefaultProcess && runMode.isApp) {
                     FirebaseAuthManagerFirebase(scope.get(), scope.get(NamedScope.CoroutineScopeMain), scope.get())
@@ -814,6 +821,7 @@ object FactoryAndroid : FactoryCommon() {
 
     override fun firebaseStorageDownloader(scope: Scope): FirebaseStorageDownloader {
         return when (remoteEndpointMode) {
+            RemoteEndpointMode.Bundled -> FirebaseStorageDownloaderBundled
             RemoteEndpointMode.Firebase -> scope.get<FirebaseStorageDownloaderAndroid>()
             RemoteEndpointMode.FirebaseAdmin -> scope.get<FirebaseStorageDownloaderAndroid>()
         }

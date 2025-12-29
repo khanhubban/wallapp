@@ -59,6 +59,7 @@ kotlin {
                 implementation(project(":shared:data:remoteendpoint"))
                 implementation(project(":shared:data:remotepaywall"))
                 implementation(project(":shared:data:resources"))
+                implementation(project(":shared:data:resources-oss"))
                 implementation(project(":shared:data:search"))
                 implementation(project(":shared:data:search-api"))
                 implementation(project(":shared:data:search-network"))

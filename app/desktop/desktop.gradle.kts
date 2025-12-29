@@ -39,6 +39,7 @@ dependencies {
     implementation(project(":shared:data:mediamap-network"))
     implementation(project(":shared:data:remoteendpoint"))
     implementation(project(":shared:data:resources"))
+    implementation(project(":shared:data:resources-oss"))
     implementation(project(":shared:di:di-base"))
     implementation(project(":shared:di:di-app"))
     implementation(project(":shared:domain:content-state"))

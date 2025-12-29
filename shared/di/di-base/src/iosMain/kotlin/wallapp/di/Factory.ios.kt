@@ -27,6 +27,8 @@ import wallapp.appvisibility.AppVisibility
 import wallapp.appvisibility.AppVisibilityIos
 import wallapp.auth.firebase.FirebaseAuthManager
 import wallapp.auth.firebase.FirebaseAuthManagerFirebase
+import wallapp.auth.firebase.FirebaseAuthManagerNoOp
+import wallapp.auth.firebase.FirebaseAuthManagerPreset
 import wallapp.auth.google.GoogleAuthCoordinatorForIos
 import wallapp.auth.google.GoogleAuthManager
 import wallapp.auth.google.GoogleAuthManagerIos
@@ -49,6 +51,7 @@ import wallapp.data.content.ContentCacheConfigDefault
 import wallapp.data.favorite.AccountDataRepositoryFirebaseMobile
 import wallapp.deeplink.DeepLinkManager
 import wallapp.deeplink.DeepLinkManagerDefault
+import wallapp.download.FirebaseStorageDownloaderBundled
 import wallapp.device.DeviceId
 import wallapp.device.DeviceIdMock
 import wallapp.device.DeviceSpec
@@ -90,6 +93,7 @@ import wallapp.network.NetworkState
 import wallapp.network.NetworkStateIos
 import wallapp.network.NetworkUserManager
 import wallapp.network.NetworkUserManagerFirebase
+import wallapp.network.NetworkUserManagerPreset
 import wallapp.pixel.alert.AlertManager
 import wallapp.pixel.alert.AlertManagerIos
 import wallapp.pixel.view.UIKitFactory
@@ -103,6 +107,9 @@ import wallapp.process.bus.ProcessBusMain
 import wallapp.process.bus.ProcessBusMock
 import wallapp.profileimage.ProfileImageManager
 import wallapp.profileimage.ProfileImageManagerIos
+import wallapp.userprofile.UserProfileRepository
+import wallapp.userprofile.UserProfileRepositoryFirebase
+import wallapp.userprofile.UserProfileRepositoryPreset
 import wallapp.remoteconfig.ConfigValueRepository
 import wallapp.remoteconfig.ConfigValueRepositoryFirebase
 import wallapp.remoteconfig.RemoteConfig
@@ -130,8 +137,6 @@ import wallapp.system.wallpaper.SystemWallpaperManagerNoOp
 import wallapp.system.window.WindowFrameManager
 import wallapp.system.window.WindowFrameManagerIos
 import wallapp.system.window.WindowFrameManagerNoOp
-import wallapp.userprofile.UserProfileRepository
-import wallapp.userprofile.UserProfileRepositoryFirebase
 import wallapp.viewmodel.ViewModelFactory
 import wallapp.viewmodel.ViewModelFactoryCached
 import wallapp.viewmodel.ViewModelFactoryDefault
@@ -306,6 +311,7 @@ object FactoryIos : FactoryCommon() {
 
     override fun firebaseStorageDownloader(scope: Scope): FirebaseStorageDownloader {
         return when (remoteEndpointMode) {
+            RemoteEndpointMode.Bundled -> FirebaseStorageDownloaderBundled
             RemoteEndpointMode.Firebase -> FirebaseStorageDownloaderIos(InteropFactory().createFirebaseStorageDownloadCoordinator())
             RemoteEndpointMode.FirebaseAdmin -> error("FirebaseAdmin not supported on iOS")
         }
@@ -369,6 +375,7 @@ object FactoryIos : FactoryCommon() {
 
     override fun networkUserManager(scope: Scope): NetworkUserManager {
         return when (remoteEndpointMode) {
+            RemoteEndpointMode.Bundled -> NetworkUserManagerPreset()
             RemoteEndpointMode.Firebase -> scope.get<NetworkUserManagerFirebase>()
             RemoteEndpointMode.FirebaseAdmin -> error("FirebaseAdmin not supported on iOS")
         }
@@ -510,6 +517,7 @@ object FactoryIos : FactoryCommon() {
 
     override fun firebaseAuthManager(scope: Scope): FirebaseAuthManager {
         return when (remoteEndpointMode) {
+            RemoteEndpointMode.Bundled -> FirebaseAuthManagerPreset()
             RemoteEndpointMode.Firebase -> FirebaseAuthManagerFirebase(scope.get(), scope.get(NamedScope.CoroutineScopeMain), scope.get())
             RemoteEndpointMode.FirebaseAdmin -> error("FirebaseAdmin not supported on iOS")
         }
@@ -541,6 +549,7 @@ object FactoryIos : FactoryCommon() {
 
     override fun userProfileRepository(scope: Scope): UserProfileRepository {
         return when (remoteEndpointMode) {
+            RemoteEndpointMode.Bundled -> UserProfileRepositoryPreset()
             RemoteEndpointMode.Firebase -> scope.get<UserProfileRepositoryFirebase>()
             RemoteEndpointMode.FirebaseAdmin -> error("FirebaseAdmin not supported on iOS")
         }

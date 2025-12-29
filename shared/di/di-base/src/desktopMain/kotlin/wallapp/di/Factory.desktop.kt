@@ -123,7 +123,7 @@ actual val Factory: FactoryCommon = FactoryDesktop
 
 object FactoryDesktop : FactoryCommon() {
 
-    override var remoteEndpointMode: RemoteEndpointMode = RemoteEndpointMode.FirebaseAdmin
+    override var remoteEndpointMode: RemoteEndpointMode = RemoteEndpointMode.Bundled
 
     override fun platformModuleInitializers(scope: Scope): List<ModuleInitializer> {
         return emptyList()

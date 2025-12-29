@@ -155,7 +155,7 @@ actual val Factory: FactoryCommon = FactoryIos
 
 object FactoryIos : FactoryCommon() {
 
-    override var remoteEndpointMode: RemoteEndpointMode = RemoteEndpointMode.Firebase
+    override var remoteEndpointMode: RemoteEndpointMode = RemoteEndpointMode.Bundled
 
     override fun platformModuleInitializers(scope: Scope): List<ModuleInitializer> {
         return listOf()

@@ -206,7 +206,7 @@ actual val Factory: FactoryCommon = FactoryAndroid
 
 object FactoryAndroid : FactoryCommon() {
 
-    override var remoteEndpointMode: RemoteEndpointMode = RemoteEndpointMode.Firebase
+    override var remoteEndpointMode: RemoteEndpointMode = RemoteEndpointMode.Bundled
     var useMemorySettings = false
     var useCoil = false
 

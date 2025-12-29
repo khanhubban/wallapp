@@ -1,0 +1,10 @@
+<com.google.android.gms.ads.nativead.NativeAdView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView style="@style/AdAttribution"/>
+
+    <ImageView style="@style/AdCloseButton" />
+
+</com.google.android.gms.ads.nativead.NativeAdView>

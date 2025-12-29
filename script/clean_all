@@ -1,0 +1,19 @@
+#!/bin/bash
+#set -x #echo on
+
+# Note: this script assumes this script is housed in /bin
+#SCRIPT_DIR=$(dirname "$0")
+#cd $SCRIPT_DIR
+#cd ..
+#APP_ROOT=$(pwd)
+#echo "App root: $APP_ROOT"
+
+echo "Cleaning Gradle project..."
+./gradlew clean
+
+echo "Deleting Library/Developer/Xcode/DerivedData..."
+rm -rf "~/Library/Developer/Xcode/DerivedData"/*
+
+echo ""
+echo "Cleaned all Gradle modules and deleted Library/Developer/Xcode/DerivedData."
+echo ""

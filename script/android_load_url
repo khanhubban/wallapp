@@ -1,0 +1,19 @@
+#!/bin/bash
+#set -x #echo on
+
+if [ -z "$1" ]
+  then
+    echo "No URL slug provided. Using default: \"w/v4n\""
+    set -- "w/v4n"
+fi
+
+#https://developer.android.com/training/app-links/verify-site-associations#review-results
+#adb shell pm verify-app-links --re-verify com.example.wallpapers.playstore.debug
+#adb shell pm get-app-links com.example.wallpapers.playstore.debug
+
+ENDPOINT="https://example.com/$1"
+echo "Using endpoint: $ENDPOINT"
+echo "Opening item $1..."
+adb shell am start -a android.intent.action.VIEW -c android.intent.category.BROWSABLE -d $ENDPOINT
+echo -en '\a'
+

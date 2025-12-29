@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AdCloseSmall">
+        <item name="android:id">@id/ad_close</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">right</item>
+        <item name="android:src">@drawable/ic_ad_close</item>
+        <item name="android:width">15dp</item>
+        <item name="android:height">15dp</item>
+    </style>
+
+    <style name="AdTitle.AdMob">
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="AdIcon">
+        <item name="android:layout_width">64dp</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:adjustViewBounds">true</item>
+    </style>
+
+    <style name="AdTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline6</item>
+        <item name="android:textColor">@color/settings_highlight</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="android:fontFamily">@font/app_font</item>
+        <item name="android:paddingEnd">@dimen/margin_normal</item>
+    </style>
+
+    <style name="AdTitle.Shortest">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_weight">1</item>
+        <item name="autoSizeMaxTextSize">16dp</item>
+        <item name="autoSizeMinTextSize">13dp</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="android:maxLines">4</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="AdTitle.Short">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:minHeight">32dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="autoSizeMaxTextSize">16dp</item>
+        <item name="autoSizeMinTextSize">13dp</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="android:maxLines">2</item>
+    </style>
+
+    <style name="SettingsItemButtonText">
+        <item name="android:textColor">@color/settings_summary</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="AdActionButton" parent="Widget.MaterialComponents.Button">
+        <item name="colorButtonNormal">@color/accent</item>
+        <item name="cornerRadius">@dimen/margin_small</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">52dp</item>
+        <item name="android:fontFamily">@font/app_font</item>
+        <item name="android:minWidth">84dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">0dp</item>
+    </style>
+
+    <style name="AdActionButton.Short">
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="AdActionButton.FullWidth">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="AdBody">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body1</item>
+        <item name="android:textColor">@color/settings_summary</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:fontFamily">@font/app_font</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+
+    <style name="AdBody.Short">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:minHeight">32dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="autoSizeMaxTextSize">13dp</item>
+        <item name="autoSizeMinTextSize">10dp</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="android:maxLines">3</item>
+    </style>
+
+    <style name="AdImage">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">140dp</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
+    <style name="AdMedia">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">140dp</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
+    <style name="AdAttribution">
+        <item name="android:id">@id/ad_attribution</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">15dp</item>
+        <item name="android:layout_gravity">left|top</item>
+        <item name="android:textColor">@color/ad_info_text_color</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:gravity">bottom|center_horizontal</item>
+        <item name="android:text">@string/ad_attribution</item>
+        <item name="android:background">@color/ad_info_background_color</item>
+        <item name="android:width">16dp</item>
+        <item name="android:height">15dp</item>
+    </style>
+
+    <style name="AdCloseButton">
+        <item name="android:id">@id/ad_close</item>
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:layout_gravity">end|top</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:src">@drawable/ic_ad_close_dark</item>
+        <item name="tint">?android:attr/textColorSecondary</item>
+        <item name="android:layout_marginEnd">2dp</item>
+        <item name="android:layout_marginTop">2dp</item>
+    </style>
+
+</resources>

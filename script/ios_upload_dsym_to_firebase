@@ -1,0 +1,33 @@
+#!/bin/bash
+# Uncomment the next line to enable debug output
+# set -x
+
+# Check if exactly one argument is passed
+if [ "$#" -ne 1 ]; then
+    echo "Error: pass the path to the xcarchive file as an argument"
+    exit 1
+fi
+
+SCRIPT_DIR=$(dirname "$0")
+cd $SCRIPT_DIR
+cd ..
+APP_ROOT=$(pwd)
+IOS_APP_ROOT="$APP_ROOT/app/ios"
+PODS_ROOT="$IOS_APP_ROOT/Pods"
+GOOGLE_SERVICE_PLIST="$IOS_APP_ROOT/wallApp/Firebase/GoogleService-Info.plist"
+DSYM_PATH="$1/dSYMs"
+
+echo $GOOGLE_SERVICE_PLIST
+echo $DSYM_PATH
+
+echo "Commencing upload of dSYM to Firebase..."
+
+#COMMAND=$PODS_ROOT/FirebaseCrashlytics/upload-symbols -gsp $GOOGLE_SERVICE_PLIST -p ios $DSYM_PATH
+#echo "Running command: $COMMAND"
+#eval $COMMAND
+
+COMMAND="$PODS_ROOT/FirebaseCrashlytics/upload-symbols -gsp \"$GOOGLE_SERVICE_PLIST\" -p ios \"$DSYM_PATH\""
+echo "Running command: $COMMAND"
+eval "$COMMAND"
+
+echo -en '\a'

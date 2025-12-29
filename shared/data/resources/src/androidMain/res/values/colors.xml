@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#ffdb3919</color>
+
+    <color name="ad_info_text_color">#ff1bb7d2</color>
+    <color name="ad_info_background_color">#ffeaeaea</color>
+    <color name="ad_shimmer_highlight_color">#85ADEE</color>
+    <color name="ad_shimmer_base_color">#FFB9CDEC</color>
+
+    <color name="focused_background">#80c6c5c5</color>
+
+    <color name="translucent_chrome_dark_background">#70000000</color>
+    <color name="translucent_chrome_screen_background">#44000000</color>
+    <color name="translucent_chrome_screen_background_dark">#90000000</color>
+</resources>

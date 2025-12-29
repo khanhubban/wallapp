@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ad_background_stroke_width">2dp</dimen>
+    <dimen name="ad_background_corner_radius">6dp</dimen>
+    <dimen name="ad_call_to_action_stroke_width">2dp</dimen>
+    <dimen name="ad_call_to_action_outline_bg_vertical_padding">6dp</dimen>
+    <dimen name="ad_call_to_action_outline_bg_corner_radius">6dp</dimen>
+    <dimen name="ad_call_to_action_default_bg_vertical_padding">6dp</dimen>
+    <dimen name="ad_call_to_action_default_bg_corner_radius">6dp</dimen>
+    <dimen name="ad_call_to_action_default_bg_pressed_elevation">4dp</dimen>
+</resources>

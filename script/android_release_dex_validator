@@ -1,0 +1,73 @@
+#!/bin/bash
+#set -x #echo on
+
+FORBIDDEN_STRINGS='billing|tamper|license|licensing|vending'
+IGNORED_STRINGS='billingclient|com/revenuecat|com/google/android/gms/internal|com.revenuecat.purchases'
+
+RETURN_CODE=0
+SCRIPT_DIR=$(dirname "$0")
+
+APK_PATH_AND_FILENAME=$SCRIPT_DIR/../../_app_export/wallapp/installable/wallapp-playstore-release.apk
+DEXDUMP=$SCRIPT_DIR/dexdump
+DEXDUMP_OUTPUT_PATH=$SCRIPT_DIR/../export/dexdump
+DEXDUMP_OUTPUT_FILENAME=$DEXDUMP_OUTPUT_PATH/dexdump.txt
+MATCHES_OUTPUT_FILENAME=$DEXDUMP_OUTPUT_PATH/matches_$(date +"%Y-%m-%d_%H-%M-%S").txt
+IGNORED_OUTPUT_FILENAME=$DEXDUMP_OUTPUT_PATH/matches_$(date +"%Y-%m-%d_%H-%M-%S")-ignored.txt
+
+QUERY="grep -i -E $FORBIDDEN_STRINGS $DEXDUMP_OUTPUT_FILENAME"
+
+echo "Outputting results of $APK_PATH_AND_FILENAME to $DEXDUMP_OUTPUT_FILENAME..."
+
+if [ ! -f $APK_PATH_AND_FILENAME ]; then
+    echo "Error: File $APK_PATH_AND_FILENAME not found!"
+    #Beep Beep
+    echo -en "\007" "\007"
+    exit $RETURN_CODE
+fi
+
+rm $DEXDUMP_OUTPUT_FILENAME
+mkdir $DEXDUMP_OUTPUT_PATH
+$DEXDUMP -d -f -t dexdump.tmp $APK_PATH_AND_FILENAME > $DEXDUMP_OUTPUT_FILENAME
+
+if [ ! -s $DEXDUMP_OUTPUT_FILENAME ]
+then
+    echo "Error: Failed to perform dexdump. Exiting with return code $RETURN_CODE..."
+    #Beep Beep
+    echo -en "\007" "\007"
+    exit $RETURN_CODE
+fi
+
+echo "Searching $DEXDUMP_OUTPUT_FILENAME for forbidden strings:"
+echo "    \"$FORBIDDEN_STRINGS\""
+echo "Ignoring strings:"
+echo "    \"$IGNORED_STRINGS\""
+
+MATCH_RESULT_WITH_WHITESPACE=$($QUERY | wc -l)
+MATCH_RESULT="$(echo -e "${MATCH_RESULT_WITH_WHITESPACE}" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+
+if (( $MATCH_RESULT > 0 )); then
+    MATCHES=$($QUERY)
+
+    # Filter out ignored strings
+    FILTERED_MATCHES=$(echo "$MATCHES" | grep -i -E "$IGNORED_STRINGS")
+    IGNORED_MATCHES=$(echo "$MATCHES" | grep -i -v -E "$IGNORED_STRINGS")
+
+    # Output matches and ignored matches
+    echo "$FILTERED_MATCHES" > "$MATCHES_OUTPUT_FILENAME"
+    echo "$IGNORED_MATCHES" > "$IGNORED_OUTPUT_FILENAME"
+
+    echo "$FILTERED_MATCHES"
+    echo "Release APK contains $MATCH_RESULT forbidden string matches!"
+
+    #Beep Beep
+    echo -en "\007" "\007"
+    open "$MATCHES_OUTPUT_FILENAME"
+#    open "$IGNORED_OUTPUT_FILENAME"
+
+    RETURN_CODE=0
+else
+    echo "Release APK is correctly obfuscated."
+    RETURN_CODE=0
+fi
+
+exit $RETURN_CODE

@@ -1,0 +1,259 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // match /{document=**} {
+    //   allow read, write: if true;
+    // }
+    match /users/{userId} {
+      // all fields in document (update as we add more fields)
+      // [
+      //   userId, (fixed)
+      //   epochCreated, (fixed)
+      //   epochLastUpdated,
+      //   epochLastSeen,
+      //   isAnonymous,
+      //   loginType,
+      //   accountDeleted, (nullable)
+      //   email, (nullable)
+      //   favoriteIds, (nullable)
+      //   dataVersion, (nullable)
+      //   currentWallpaperIds, (nullable)
+      //   followingIds, (nullable)
+      //   purchaseRecords, (nullable)
+      //   deviceInfo, (nullable)
+      //   currency, (nullable)
+      //   newsletter, (nullable)
+      //   flags, (nullable)
+      //   wallpaperDownloadEvents, (nullable)
+      //   receiveNotifications, (nullable)
+      // ]
+
+      function currentUser() {
+        return request.auth.uid == userId;
+      }
+      function userIdValid() {
+        return request.resource.data.userId == userId;
+      }
+      function epochCreatedValid() {
+        return request.resource.data.epochCreated is number;
+      }
+      function epochLastUpdatedValid() {
+        return request.resource.data.epochLastUpdated is number;
+      }
+      function epochLastSeenValid() {
+        return request.resource.data.epochLastSeen is number;
+      }
+      function isAnonymousValid() {
+        return request.resource.data.isAnonymous is bool;
+      }
+      function favoriteIdsValid() {
+        return request.resource.data.favoriteIds == null || 
+          request.resource.data.favoriteIds is list;
+      }
+      function currentWallpaperIdsValid() {
+        return request.resource.data.currentWallpaperIds == null || 
+          request.resource.data.currentWallpaperIds is map;
+      }
+      function dataVersionValid() {
+        return request.resource.data.dataVersion == null ||
+          request.resource.data.dataVersion is number;
+      }
+      function followingIdsValid() {
+        return request.resource.data.followingIds == null ||
+          request.resource.data.followingIds is list;
+      }
+      function purchaseRecordsValid() {
+        return request.resource.data.purchaseRecords == null ||
+          request.resource.data.purchaseRecords is list;
+      }
+      function deviceInfoValid() {
+        return request.resource.data.deviceInfo == null ||
+            request.resource.data.deviceInfo is string;
+      }
+      function currencyValid() {
+        return request.resource.data.currency == null ||
+            request.resource.data.currency is string;
+      }
+      function newsletterValid() {
+        return request.resource.data.newsletter == null ||
+            request.resource.data.newsletter is bool;
+      }
+      function flagsValid() {
+        return request.resource.data.flags == null ||
+            request.resource.data.flags is list;
+      }
+      function wallpaperDownloadEventsValid() {
+        return request.resource.data.wallpaperDownloadEvents == null ||
+            request.resource.data.wallpaperDownloadEvents is list;
+      }
+      function receiveNotificationsValid() {
+        return request.resource.data.receiveNotifications == null ||
+            request.resource.data.receiveNotifications is bool;
+      }
+      function accountDeletedValid() {
+        return request.resource.data.accountDeleted == null ||
+            request.resource.data.accountDeleted is bool;
+      }
+      function loginTypeValid() {
+        return request.resource.data.loginType is string &&
+          request.resource.data["loginType"] in [
+            "firebase/anonymous",
+            "firebase/google",
+            "firebase/apple",
+            "none"
+          ];
+      }
+      function emailValid() {
+        return request.resource.data.email == null || (request.resource.data.email is string &&
+          request.resource.data.email.matches("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$"));
+      }
+
+      function createDataIsValid() {
+        let requiredFields = [
+          'userId', 
+          'epochCreated', 
+          'epochLastUpdated',
+          'epochLastSeen', 
+          'isAnonymous', 
+          'loginType'
+        ];
+        let optionalFields = [
+          'email',
+          'favoriteIds',
+          'currentWallpaperIds',
+          'dataVersion',
+          'followingIds',
+          'purchaseRecords',
+          'deviceInfo',
+          'currency',
+          'newsletter',
+          'flags',
+          'wallpaperDownloadEvents',
+          'receiveNotifications',
+          'accountDeleted'
+        ];
+        let allowedFields = requiredFields.concat(optionalFields);
+        let incomingFields = request.resource.data.keys();
+        return incomingFields.hasOnly(allowedFields) &&
+          incomingFields.hasAll(requiredFields) &&
+          userIdValid() &&
+          epochCreatedValid() &&
+          epochLastUpdatedValid() &&
+          epochLastSeenValid() &&
+          isAnonymousValid() &&
+          loginTypeValid() &&
+          nonMandatoryFieldsAreValid();
+      }
+      function nonMandatoryFieldsAreValid() {
+        let incomingFields = request.resource.data.keys();
+        return (!incomingFields.hasAny(['email']) || emailValid()) &&
+          (!incomingFields.hasAny(['favoriteIds']) || favoriteIdsValid()) &&
+          (!incomingFields.hasAny(['currentWallpaperIds']) || currentWallpaperIdsValid()) &&
+          (!incomingFields.hasAny(['dataVersion']) || dataVersionValid()) &&
+          (!incomingFields.hasAny(['followingIds']) || followingIdsValid()) &&
+          (!incomingFields.hasAny(['purchaseRecords']) || purchaseRecordsValid()) &&
+          (!incomingFields.hasAny(['deviceInfo']) || deviceInfoValid()) &&
+          (!incomingFields.hasAny(['currency']) || currencyValid()) &&
+          (!incomingFields.hasAny(['newsletter']) || newsletterValid()) &&
+          (!incomingFields.hasAny(['flags']) || flagsValid()) &&
+          (!incomingFields.hasAny(['wallpaperDownloadEvents']) || wallpaperDownloadEventsValid()) && 
+          (!incomingFields.hasAny(['receiveNotifications']) || receiveNotificationsValid()) &&
+          (!incomingFields.hasAny(['accountDeleted']) || accountDeletedValid());
+      }
+
+      function updateDataIsValid() {
+        let fixedFields = ['userId', 'epochCreated'];
+        let allowedFields = fixedFields.concat([
+          'epochLastUpdated',
+            'epochLastSeen',
+            'isAnonymous',
+            'loginType',
+            'email',
+            'favoriteIds',
+            'currentWallpaperIds',
+            'dataVersion',
+            'followingIds',
+            'purchaseRecords',
+            'deviceInfo',
+            'currency',
+            'newsletter',
+            'flags',
+            'wallpaperDownloadEvents',
+            'receiveNotifications',
+            'accountDeleted'
+        ]);
+        let incomingFields = request.resource.data.keys();
+        // Check if all incoming fields are the ones that are allowed and nothing else
+        return incomingFields.hasOnly(allowedFields) &&
+          // Check if other fields are not being updated
+          fixedFieldsAreNotBeingUpdated() &&
+          requiredFieldsArePresentAndValid() &&
+          // Check if fields are valid
+          updatedFieldsAreValid(incomingFields) &&
+          isAnonymousUpdateValid(incomingFields) &&
+          loginTypeUpdateValid(incomingFields);
+      }
+      function requiredFieldsArePresentAndValid() {
+        let requiredFields = [
+          'userId', 
+          'epochCreated', 
+          'epochLastUpdated',
+          'epochLastSeen', 
+          'isAnonymous', 
+          'loginType'
+        ];
+        return request.resource.data.keys().hasAll(requiredFields) &&
+          userIdValid() &&
+          epochCreatedValid() &&
+          epochLastUpdatedValid() &&
+          epochLastSeenValid() &&
+          isAnonymousValid() &&
+          loginTypeValid();
+      }
+      
+      function fixedFieldsAreNotBeingUpdated() {
+        return request.resource.data.userId == resource.data.userId &&
+          request.resource.data.epochCreated == resource.data.epochCreated;
+      }
+
+      function updatedFieldsAreValid(incomingFields) {
+        return (!incomingFields.hasAny(['epochLastUpdated']) || epochLastUpdatedValid()) &&
+          (!incomingFields.hasAny(['epochLastSeen']) || epochLastSeenValid()) &&
+          (!incomingFields.hasAny(['isAnonymous']) || isAnonymousValid()) &&
+          (!incomingFields.hasAny(['loginType']) || loginTypeValid()) &&
+          (!incomingFields.hasAny(['email']) || emailValid()) &&
+          (!incomingFields.hasAny(['favoriteIds']) || favoriteIdsValid()) &&
+          (!incomingFields.hasAny(['currentWallpaperIds']) || currentWallpaperIdsValid()) &&
+          (!incomingFields.hasAny(['dataVersion']) || dataVersionValid()) &&
+          (!incomingFields.hasAny(['followingIds']) || followingIdsValid()) &&
+          (!incomingFields.hasAny(['purchaseRecords']) || purchaseRecordsValid()) &&
+          (!incomingFields.hasAny(['deviceInfo']) || deviceInfoValid()) &&
+          (!incomingFields.hasAny(['currency']) || currencyValid()) &&
+          (!incomingFields.hasAny(['newsletter']) || newsletterValid()) &&
+          (!incomingFields.hasAny(['flags']) || flagsValid()) &&
+          (!incomingFields.hasAny(['wallpaperDownloadEvents']) || wallpaperDownloadEventsValid()) &&
+          (!incomingFields.hasAny(['receiveNotifications']) || receiveNotificationsValid()) &&
+          (!incomingFields.hasAny(['accountDeleted']) || accountDeletedValid());
+      }
+      // Anonymous users can't become non-anonymous
+      function isAnonymousUpdateValid(incomingFields) {
+        return (!incomingFields.hasAny(['isAnonymous']) || resource.data.isAnonymous == request.resource.data.isAnonymous ||
+            (resource.data.isAnonymous == true && request.resource.data.isAnonymous == false));
+      }
+      // Login type can't be changed from non-anonymous to anonymous
+      function loginTypeUpdateValid(incomingFields) {
+        return (!incomingFields.hasAny(['loginType']) || resource.data.loginType == request.resource.data.loginType ||
+            (request.resource.data.loginType == "none") ||
+            (resource.data.loginType == "firebase/anonymous" && request.resource.data.loginType == "firebase/google") ||
+            (resource.data.loginType == "firebase/anonymous" && request.resource.data.loginType == "firebase/apple"));
+      }
+
+      allow read: if currentUser();
+      allow create: if currentUser() &&
+        createDataIsValid();
+      allow update: if currentUser() &&
+        updateDataIsValid();
+    }
+  }
+}

@@ -1,0 +1,4 @@
+"CFBundleDisplayName" = "WallAppD";
+"NSPhotoLibraryAddUsageDescription" = "Allows app to save images to Photos so you can set them as your wallpaper";
+"NSPhotoLibraryUsageDescription" = "Allows app to save images to Photos so you can set them as your wallpaper";
+"NSUserTrackingUsageDescription" = "This identifier will be used to deliver personalized ads to you.";

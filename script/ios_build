@@ -1,0 +1,77 @@
+#!/bin/bash
+#set -x #echo on
+
+start_time=$(date +%s) # Capture start time
+
+# Note: this script assumes this script is housed in /bin
+SCRIPT_DIR=$(dirname "$0")
+cd $SCRIPT_DIR
+cd ..
+APP_ROOT=$(pwd)
+#echo "App root: $APP_ROOT"
+
+# Default build configuration
+TARGET_PREFIX="Dev -"
+BUILD_CONFIG="Debug"
+
+# Function to set target prefix
+set_target_prefix() {
+    local target=$(echo "$1" | tr '[:upper:]' '[:lower:]') # Convert input to lowercase
+    case "$target" in
+        wallApp)
+            TARGET_PREFIX="WallApp -"
+            ;;
+        dev)
+            TARGET_PREFIX="Dev -"
+            ;;
+        *)
+            echo "Invalid target: $1. Defaulting to Dev -"
+            TARGET_PREFIX="Dev -"
+            ;;
+    esac
+}
+
+# Function to validate and set build configuration
+set_build_config() {
+    local config=$(echo "$1" | tr '[:upper:]' '[:lower:]') # Convert input to lowercase
+    case "$config" in
+        -d | d)
+            BUILD_CONFIG="Debug"
+            ;;
+        -r | r)
+            BUILD_CONFIG="Release"
+            ;;
+        *)
+            echo "Invalid configuration: $1. Defaulting to Debug."
+            BUILD_CONFIG="Debug"
+            ;;
+    esac
+}
+
+if [ "$1" != "" ]; then
+    set_target_prefix "$1"
+    shift # Remove the first argument and shift the remaining arguments
+fi
+
+if [ "$1" != "" ]; then
+    set_build_config "$1"
+#else
+#    echo "No build configuration argument passed, using \"$BUILD_CONFIG\""
+fi
+
+echo ""
+echo "*** Build target: \"$TARGET_PREFIX $BUILD_CONFIG\""
+echo ""
+
+#echo "pod install --project-directory=./app/ios"
+#pod install --project-directory=./app/ios
+
+echo "xcodebuild -workspace ./app/ios/wallApp.xcworkspace -scheme \"$TARGET_PREFIX $BUILD_CONFIG\" -configuration $BUILD_CONFIG -sdk iphonesimulator build"
+xcodebuild -workspace ./app/ios/wallApp.xcworkspace -scheme "$TARGET_PREFIX $BUILD_CONFIG" -configuration $BUILD_CONFIG -sdk iphonesimulator build
+
+end_time=$(date +%s) # Capture end time
+elapsed=$(( end_time - start_time ))
+echo "Elapsed time: $(($elapsed / 60)) minutes and $(($elapsed % 60)) seconds"
+
+# Exit with the xcodebuild exit code
+exit $?

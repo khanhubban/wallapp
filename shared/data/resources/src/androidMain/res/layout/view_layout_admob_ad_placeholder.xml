@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        style="@style/AdCloseButton"
+        android:layout_marginEnd="0dp"
+        android:layout_marginTop="0dp"
+        />
+
+    <wallapp.ads.widget.shimmer.ShimmerFrameLayout
+        android:id="@id/ad_shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ad_height_tall">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/margin_normal"
+            android:paddingLeft="@dimen/margin_normal"
+            android:paddingRight="@dimen/margin_normal"
+            >
+
+            <View
+                android:id="@+id/ad_icon"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:foreground="@android:color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/ad_title_first_line"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="12dp"
+                android:foreground="@android:color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ad_icon"
+                app:layout_constraintTop_toTopOf="@+id/ad_icon" />
+
+            <View
+                android:id="@+id/ad_title_second_line"
+                android:layout_width="140dp"
+                android:layout_height="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/margin_normal"
+                android:layout_marginBottom="12dp"
+                android:foreground="@android:color/black"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/ad_icon"
+                app:layout_constraintBottom_toBottomOf="@+id/ad_icon" />
+
+            <View
+                android:id="@+id/ad_summary_first_line"
+                android:layout_width="0dp"
+                android:layout_height="12dp"
+                android:layout_marginTop="16dp"
+                android:foreground="@android:color/black"
+                app:layout_constraintEnd_toEndOf="@+id/ad_title_first_line"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/ad_icon"
+                app:layout_constraintTop_toBottomOf="@+id/ad_icon" />
+
+            <View
+                android:id="@+id/ad_summary_second_line"
+                android:layout_width="0dp"
+                android:layout_height="12dp"
+                android:layout_marginTop="8dp"
+                android:foreground="@android:color/black"
+                app:layout_constraintEnd_toEndOf="@+id/ad_title_first_line"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/ad_icon"
+                app:layout_constraintTop_toBottomOf="@+id/ad_summary_first_line" />
+
+            <View
+                android:id="@+id/ad_image"
+                android:layout_width="240dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:foreground="@android:color/black"
+                app:layout_constraintBottom_toTopOf="@+id/ad_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ad_summary_second_line" />
+
+            <View
+                android:id="@+id/ad_button"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="12dp"
+                android:foreground="@android:color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/ad_title_first_line"
+                app:layout_constraintStart_toStartOf="@+id/ad_icon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </wallapp.ads.widget.shimmer.ShimmerFrameLayout>
+</FrameLayout>

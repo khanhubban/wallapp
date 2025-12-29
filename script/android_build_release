@@ -1,0 +1,194 @@
+#!/bin/bash
+#set -x #echo on
+
+# Note: this script assumes this script is housed in /bin
+SCRIPT_DIR=$(dirname "$0")
+cd $SCRIPT_DIR
+cd ..
+APP_ROOT=$(pwd)
+echo "App root: $APP_ROOT"
+
+FLAVOR="$1"
+if [[ $# -eq 0 ]] ; then
+    echo 'No flavor name passed. Using "wallApp"'
+    FLAVOR="wallApp"
+fi
+
+if [ "$2" = "instantApp" ]; then
+    INSTANT_APP="true"
+    echo 'Building instant app'
+else
+    INSTANT_APP="false"
+    echo 'Building default app'
+fi
+
+APP_BUILD_CACHE="build-cache"
+APPLICATION_NAME="app/android"
+FLAVOR_TITLE="$FLAVOR"
+FLAVOR_LOWER="$(echo "$FLAVOR" | tr '[:upper:]' '[:lower:]')"
+OUT_APK_NAME="android-$FLAVOR-release.apk"
+OUT_BUNDLE_NAME="android-$FLAVOR-release.aab"
+
+if [ "$INSTANT_APP" = "true" ]; then
+    DEST_APK_NAME="$FLAVOR_LOWER-instantapp-playstore-release.apk"
+    DEST_BUNDLE_NAME="$FLAVOR_LOWER-instantapp-playstore-release.aab"
+    EXPORT_SUFFIX="$FLAVOR/instantapp"
+else
+    DEST_APK_NAME="$FLAVOR_LOWER-playstore-release.apk"
+    DEST_BUNDLE_NAME="$FLAVOR_LOWER-playstore-release.aab"
+    EXPORT_SUFFIX="$FLAVOR/installable"
+fi
+
+BUILD_TYPE='assemble'
+BUILD_TYPE_ALT='bundle'
+CONFIG='Release'
+FLAVOR_CONFIG="$FLAVOR$CONFIG"
+#used by build.gradle:
+#BUILD_PLUGIN='dexguard'
+
+#echo "$FLAVOR_TITLE" | tr '[:upper:]' '[:lower:]'
+#echo $FLAVOR_LOWER $FLAVOR_TITLE $OUT_APK_NAME $DEST_APK_NAME $EXPORT_SUFFIX
+#exit
+
+VALIDATOR_SCRIPT=$SCRIPT_DIR"/release_dex_validator"
+
+export GRADLE_OPTS="-Xmx4096m -Dorg.gradle.parallel=false -Dorg.gradle.configureondemand=false"
+
+BUILD_DIR=$APP_ROOT"/"$APPLICATION_NAME"/build"
+EXPORT_DIR=$APP_ROOT"/../_app_export/"$EXPORT_SUFFIX
+EXPORT_MAPPING_DIR=$EXPORT_DIR"/mapping"
+echo "EXPORT_DIR=$EXPORT_DIR"
+
+RELEASE_NOTES_DIR=$APP_ROOT"/metadata/$FLAVOR/en-US/changelogs"
+
+APK_SUFFIX="/outputs/apk/$FLAVOR/$CONFIG"
+RELEASE_APKS_DIR=$BUILD_DIR$APK_SUFFIX
+
+BUNDLE_SUFFIX="/outputs/bundle/$FLAVOR_TITLE$CONFIG"
+BUNDLE_DIR=$BUILD_DIR$BUNDLE_SUFFIX
+
+BUILD_COMMAND="app:android:"$BUILD_TYPE$FLAVOR_TITLE$CONFIG
+BUILD_COMMAND_BUNDLE="app:android:"$BUILD_TYPE_ALT$FLAVOR_TITLE$CONFIG
+
+#echo "RELEASE_APKS_DIR: $RELEASE_APKS_DIR"
+
+echo "Building $FLAVOR_TITLE via \"$BUILD_COMMAND\"."
+#echo "Changing dir to $APP_ROOT..."
+
+cd 
+cd "$APP_ROOT"
+
+#echo "Ensuring Release build uses Gradle version $GRADLE_VERSION..."
+#$APP_ROOT/gradlew wrapper --gradle-version $GRADLE_VERSION --distribution-type all
+#echo "Gradle wrapper set to $GRADLE_VERSION."
+#echo ""
+
+echo "Begin clean..."
+$APP_ROOT/gradlew clean
+echo "gradle clean complete"
+
+#rm -rf $APP_BUILD_CACHE
+#echo "remove $APP_BUILD_CACHE"
+
+echo ""
+echo "Building..."
+
+echo $GRADLE_OPTS
+
+#$APP_ROOT/gradlew $DEXGUARD_BUILD_COMMAND -PbuildMode=$BUILD_PLUGIN -PlegacyAndroidPlugin --stacktrace
+
+echo "$APP_ROOT/gradlew --no-configuration-cache $BUILD_COMMAND -PisInstantApp=$INSTANT_APP --stacktrace"
+$APP_ROOT/gradlew --no-configuration-cache $BUILD_COMMAND -PisInstantApp=$INSTANT_APP --stacktrace
+
+echo "$APP_ROOT/gradlew --no-configuration-cache $BUILD_COMMAND_BUNDLE -PisInstantApp=$INSTANT_APP --stacktrace"
+$APP_ROOT/gradlew --no-configuration-cache $BUILD_COMMAND_BUNDLE -PisInstantApp=$INSTANT_APP --stacktrace
+
+echo "Finished building $FLAVOR_TITLE."
+echo ""
+
+rm -rf $EXPORT_DIR
+mkdir -p $EXPORT_DIR
+
+echo "Copying files from $BUILD_DIR to $EXPORT_DIR"
+
+echo "Copying release APKs from $RELEASE_APKS_DIR..."
+cp -R $RELEASE_APKS_DIR"/"$OUT_APK_NAME $EXPORT_DIR/$DEST_APK_NAME
+
+# try copy from both places, depending on DexGuard version
+echo "Copying proguard info from $BUILD_DIR/outputs/mapping..."
+cp -R $BUILD_DIR"/outputs/mapping/$FLAVOR_CONFIG" $EXPORT_MAPPING_DIR
+echo "Copying proguard info from $BUILD_DIR/outputs/proguard..."
+cp -R $BUILD_DIR"/outputs/proguard" $EXPORT_DIR
+
+echo "Copying release bundle from $BUNDLE_DIR..."
+cp -R $BUNDLE_DIR"/"$OUT_BUNDLE_NAME $EXPORT_DIR/$DEST_BUNDLE_NAME
+
+echo "Files in $EXPORT_DIR:"
+
+ls -R $EXPORT_DIR | awk '
+/:$/&&f{s=$0;f=0}
+/:$/&&!f{sub(/:$/,"");s=$0;f=1;next}
+NF&&f{ print s"/"$0 }'
+
+echo ""
+echo "$FLAVOR_TITLE build complete."
+
+OUT_APK_NAME_AND_PATH=$RELEASE_APKS_DIR"/"$OUT_APK_NAME
+
+APPLICATION_ID=$(aapt dump badging $OUT_APK_NAME_AND_PATH | grep "package: name" | sed -e "s/.*package: name='//" -e "s/' .*//")
+VERSION_NAME=$(aapt dump badging $OUT_APK_NAME_AND_PATH | grep "versionName" | sed -e "s/.*versionName='//" -e "s/' .*//")
+VERSION_CODE=$(aapt dump badging $OUT_APK_NAME_AND_PATH | grep "versionCode" | sed -e "s/.*versionCode='//" -e "s/' .*//")
+echo ""
+echo "applicationId:$APPLICATION_ID"
+echo "versionCode:$VERSION_CODE, versionName:$VERSION_NAME"
+
+cd $EXPORT_DIR
+
+BUILD_ID="$APPLICATION_ID-v$VERSION_NAME-$VERSION_CODE"
+# Write a file containing data extracted from the resulting artifact for manual verification purposes.
+echo $BUILD_ID > "$BUILD_ID.txt"
+
+# For reasons unknown, this always fails with a "the archive <name> is empty.” error attempting to
+# open the resulting zip. Work around this by using the Python script instead.
+#zip -rv $EXPORT_DIR"/mapping-$BUILD_ID.zip" $EXPORT_MAPPING_DIR
+python3 "$APP_ROOT/bin/"zip_script.py "$EXPORT_DIR" "$EXPORT_MAPPING_DIR" "$BUILD_ID"
+
+
+BUILD_RELEASE_NOTES_FILE=$RELEASE_NOTES_DIR/$VERSION_CODE".txt"
+if [ ! -f "$BUILD_RELEASE_NOTES_FILE" ]; then
+  echo "TODO" > "$BUILD_RELEASE_NOTES_FILE"
+fi
+
+#Run the following first time to configure Sublime Text 2 in the terminal:
+#ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
+#subl $BUILD_RELEASE_NOTES_FILE
+
+#echo ""
+#echo "Running apktool on resulting apk..."
+
+#apktool d $OUT_APK_NAME_AND_PATH ./apktool_out
+
+#echo ""
+#echo "apktool complete. Please verify output manually."
+
+echo ""
+if adb get-state 1>/dev/null 2>&1
+  then
+    echo "Installing $OUT_APK_NAME_AND_PATH to device..."
+    adb install -r $OUT_APK_NAME_AND_PATH
+  else
+    echo "No devices found to install to. Moving on..."
+fi
+
+cd $APP_ROOT
+#echo ""
+#echo "Validating APK..."
+#$VALIDATOR_SCRIPT
+
+echo ""
+date
+echo "*** Be sure to bump the version number in app.gradle as necessary"
+echo ""
+
+echo -en '\a'
+

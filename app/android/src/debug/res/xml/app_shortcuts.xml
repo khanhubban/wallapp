@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts>
+<!--    <shortcut-->
+<!--        android:shortcutId="shortcut_folder_just_added"-->
+<!--        android:enabled="true"-->
+<!--        android:shortcutShortLabel="@string/just_added"-->
+<!--        android:shortcutLongLabel="@string/just_added">-->
+<!--        <intent-->
+<!--            android:action="android.intent.action.VIEW"-->
+<!--            android:targetPackage="com.example.wallapp"-->
+<!--            android:targetClass="wallapp.activity.MainActivity">-->
+<!--            <extra-->
+<!--                android:name="shortcut_id"-->
+<!--                android:value="shortcut_folder_just_added" />-->
+<!--        </intent>-->
+<!--    </shortcut>-->
+</shortcuts>

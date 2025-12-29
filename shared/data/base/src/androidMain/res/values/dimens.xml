@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_smallest">4dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+    <dimen name="margin_medium">24dp</dimen>
+    <dimen name="margin_extra_large">48dp</dimen>
+
+    <dimen name="label_radio_button_corner_radius">4dp</dimen>
+    <dimen name="label_radio_button_stroke_width">1dp</dimen>
+    <dimen name="toolbar_elevation">8dp</dimen>
+    <dimen name="promo_item_image_height">210dp</dimen>
+    <dimen name="keyline_default_material">72dp</dimen>
+    <dimen name="toolbar_title_view_height">28dp</dimen>
+    <dimen name="bottom_sheet_header_single_line_height">56dp</dimen>
+    <dimen name="upgrade_to_plus_button_group_height">60dp</dimen>
+    <dimen name="scrollbar_width">4dp</dimen>
+    <dimen name="text_margin_start">72dp</dimen>
+    <dimen name="bottomsheet_default_sheet_width">0dp</dimen>
+    <dimen name="favorite_icon_bounds">40dp</dimen>
+</resources>

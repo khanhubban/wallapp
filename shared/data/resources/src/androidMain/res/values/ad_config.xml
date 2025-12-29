@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="ad_crossfade_duration">@android:integer/config_mediumAnimTime</integer>
+</resources>

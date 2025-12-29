@@ -1,0 +1,28 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/ad_height_shortest"
+    android:orientation="horizontal"
+    android:paddingStart="20dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp">
+
+    <ImageView
+        android:id="@id/ad_app_icon"
+        style="@style/AdIcon"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/ad_headline"
+        style="@style/AdTitle.Shortest"
+        android:paddingStart="@dimen/margin_small"
+        tools:text="Test Ad: QuickBooks Self-Employed: Tax Tracker &amp; Invoicing"/>
+
+    <Button
+        android:id="@id/ad_call_to_action"
+        style="@style/AdActionButton"
+        android:layout_gravity="center_vertical"
+        tools:text="Install"/>
+
+</LinearLayout>

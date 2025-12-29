@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="system_bar_shadow_overflow">16dp</dimen>
+</resources>

@@ -1,0 +1,63 @@
+import wallapp.tooling.extensions.configureAllSourceSets
+import wallapp.tooling.extensions.desktop
+import wallapp.tooling.extensions.iOS
+
+plugins {
+    id("wallapp.kotlin.multiplatform")
+    id("wallapp.compose")
+}
+apply(from = "${rootProject.projectDir}/moduleflavors.gradle")
+
+kotlin {
+    androidTarget()
+    desktop()
+    iOS()
+
+    sourceSets {
+        configureAllSourceSets()
+
+        commonMain {
+            dependencies {
+                implementation(project(":shared:core:common"))
+                implementation(project(":shared:core:pixel"))
+                implementation(project(":shared:core:resource"))
+                implementation(project(":shared:core:setting"))
+                implementation(project(":shared:core:unit"))
+                implementation(project(":shared:data:resources"))
+                api(project(":shared:presentation:compose-toolbox"))
+                api(project(":shared:presentation:image-ui"))
+                api(project(":shared:presentation:theme-ui"))
+
+                implementation(compose.animationGraphics)
+                implementation(compose.foundation)
+                implementation(compose.material)
+                implementation(compose.material3)
+                implementation(compose.runtime)
+                implementation(compose.ui)
+                implementation(libs.precompose.core)
+            }
+        }
+
+        val androidDebug by creating {
+            dependencies {
+                implementation(compose.preview)
+                implementation(compose.uiTooling)
+                implementation(libs.compose.ui.tooling)
+            }
+        }
+
+        androidMain {
+            dependencies {
+                implementation(libs.coil)
+                implementation(libs.coil.compose)
+                implementation(libs.airbnb.android.lottie.compose)
+                implementation(libs.accompanist.systemuicontroller)
+                implementation(libs.compose.runtime.livedata)
+            }
+        }
+    }
+}
+
+android {
+    namespace = "wallapp.pixel.ui"
+}

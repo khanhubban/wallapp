@@ -1,0 +1,11 @@
+package wallapp.di.module
+
+import org.koin.core.module.Module
+import org.koin.dsl.module
+import wallapp.billing.BillingManagerRevenueCatIos
+import wallapp.di.NamedScope
+
+@Suppress("RemoveExplicitTypeArguments")
+val BuildConfigPlatformModule: Module = module {
+    single<BillingManagerRevenueCatIos> { BillingManagerRevenueCatIos(get(), get(), get(), get(), get(), get(), get(), get(NamedScope.CoroutineScopeMain), get(NamedScope.CoroutineScopeIo)) }
+}

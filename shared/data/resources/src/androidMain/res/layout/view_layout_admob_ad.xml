@@ -1,0 +1,87 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:addStatesFromChildren="true"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/margin_normal"
+    android:paddingBottom="@dimen/margin_small">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/margin_normal"
+        android:paddingRight="@dimen/margin_normal"
+        android:orientation="horizontal"
+        >
+
+<!--        <ImageView-->
+<!--            android:id="@id/ad_app_icon"-->
+<!--            style="@style/AdIcon"-->
+<!--            tools:src="@color/accent" />-->
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/compose_view_ad_app_icon"
+            style="@style/AdIcon" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/margin_small">
+
+            <TextView
+                android:id="@id/ad_headline"
+                style="@style/AdTitle"
+                android:maxHeight="46dp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="8sp"
+                android:autoSizeMaxTextSize="18sp"
+                android:autoSizeStepGranularity="1sp"
+                android:textColor="?android:attr/textColorPrimary"
+                tools:text="Test Ad: QuickBooks Self-Employed: Tax Tracker &amp; Invoicing" />
+
+            <RatingBar
+                android:id="@id/ad_stars"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:stepSize="0.5" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@id/ad_body"
+        style="@style/AdBody"
+        android:textColor="?android:attr/textColorSecondary"
+        android:paddingLeft="@dimen/margin_normal"
+        android:paddingRight="@dimen/margin_normal"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="8sp"
+        android:autoSizeMaxTextSize="14sp"
+        android:autoSizeStepGranularity="1sp"
+        android:maxHeight="52dp"
+        tools:text="Voted #1 free Dating App. Meet local singles nearby. Never pay to send a msg." />
+  <!--  <ImageView
+        android:id="@id/ad_image"
+        style="@style/AdImage" />
+-->
+    <com.google.android.gms.ads.nativead.MediaView
+        android:id="@+id/ad_media"
+        style="@style/AdMedia" />
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/compose_view_ad_call_to_action"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_height="48dp" />
+
+</LinearLayout>
+

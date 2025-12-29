@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Note: this script assumes it is housed in /script
+SCRIPT_DIR=$(dirname "$0")
+cd "$SCRIPT_DIR" || exit 1
+
+# Define variables
+DEVICE_NAME="pixel2Api34"      # Device name
+VARIANT="WallAppNonMinifiedRelease"   # Build variant
+
+echo "Generating baseline-profiles.txt..."
+cd ..
+
+# Run Gradle command with device name and variant
+./gradlew :baselineprofile:${DEVICE_NAME}${VARIANT}AndroidTest -Pandroid.testInstrumentationRunnerArguments.androidx.benchmark.enabledRules=BaselineProfile
+
+echo "Baseline profiles generated successfully."
+
+# Additional steps after generating baseline report
+echo "After Generating Baseline Report, Performing Additional Steps:"
+# Finding the generated baseline profile
+BASELINE_PROFILE_FILE=$(find . -name "BaselineProfileGenerator_generate-startup-prof.txt")
+if [ -z "$BASELINE_PROFILE_FILE" ]; then
+    echo "Error: Baseline profile file not found."
+    exit 1
+fi
+
+# Checking and copying the generated profile to app/android/src/main/ and renaming the file
+if [ ! -d "app/android/src/main" ]; then
+    echo "Error: Directory app/android/src/main does not exist."
+    exit 1
+fi
+
+echo "Copying the generated profile to app/android/src/main/ and renaming the file to baseline-prof.txt..."
+cp "$BASELINE_PROFILE_FILE" app/android/src/main/baseline-prof.txt
+
+echo "Additional steps completed successfully."

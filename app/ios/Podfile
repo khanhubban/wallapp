@@ -1,0 +1,84 @@
+platform :ios, '16.4'
+# Comment the next line if you don't want to use dynamic frameworks
+use_frameworks!
+
+def all_pods
+  pod 'abseil', '1.20240116.2'
+  pod 'FirebaseABTesting', '11.2.0'
+  pod 'FirebaseAuth', '11.2.0'
+  pod 'FirebaseCore', '11.2.0'
+  pod 'FirebaseCoreExtension', '11.2.0'
+  pod 'FirebaseCrashlytics', '11.2.0'
+  pod 'FirebaseFirestore', '11.2.0'
+  pod 'FirebaseMessaging', '11.2.0'
+  pod 'FirebaseRemoteConfig', '11.2.0'
+  pod 'FirebaseStorage', '11.2.0'
+  pod 'gRPC-Core', '1.65.0'
+  pod 'Google-Mobile-Ads-SDK', '11.10.0'
+  pod 'GoogleSignIn', '8.0.0'
+  pod 'GoogleUserMessagingPlatform', '2.6.0'
+  pod 'Kingfisher', '7.12.0'
+  pod 'lottie-ios', '4.5.0'
+  pod 'RevenueCat', '5.3.2'
+end
+
+target 'wallApp' do
+  all_pods
+
+  target 'wallAppTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'wallAppUITests' do
+    # Pods for testing
+  end
+end
+
+target 'wallApp-dev' do
+  all_pods
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      # Set IPHONEOS_DEPLOYMENT_TARGET for all targets
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.4'
+
+      # Ensure COPY_PHASE_STRIP and STRIP_INSTALLED_PRODUCT are set to YES for all Release configurations
+      if config.name.downcase.include?('release')
+        config.build_settings['COPY_PHASE_STRIP'] = 'YES'
+        config.build_settings['STRIP_INSTALLED_PRODUCT'] = 'YES'
+      end
+    end
+
+    # Iterate through all project build configurations to ensure settings are applied globally
+    installer.pods_project.build_configurations.each do |config|
+      if config.name.downcase.include?('release')
+        config.build_settings['COPY_PHASE_STRIP'] = 'YES'
+        config.build_settings['STRIP_INSTALLED_PRODUCT'] = 'YES'
+      end
+    end
+
+    # (Hopefully short-lived) workaround to allow BoringSSL-GRPC to build against iOS 18.0.
+    # See #2098. https://stackoverflow.com/a/78633109/328679
+    if target.name == 'BoringSSL-GRPC'
+      target.build_configurations.each do |config|
+        %w[OTHER_CFLAGS OTHER_LDFLAGS OTHER_CPPFLAGS OTHER_CPLUSPLUSFLAGS].each do |flag_type|
+          if config.build_settings[flag_type]
+            config.build_settings[flag_type] = config.build_settings[flag_type].reject { |flag| flag.include?('-G') }
+          end
+        end
+      end
+
+      # Remove '-GCC_WARN_INHIBIT_ALL_WARNINGS' from BoringSSL-GRPC compiler flags
+      target.source_build_phase.files.each do |file|
+        if file.settings && file.settings['COMPILER_FLAGS']
+          flags = file.settings['COMPILER_FLAGS'].split
+          flags.reject! { |flag| flag == '-GCC_WARN_INHIBIT_ALL_WARNINGS' }
+          file.settings['COMPILER_FLAGS'] = flags.join(' ')
+        end
+      end
+    end
+  end
+end

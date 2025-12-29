@@ -1,0 +1,7 @@
+#!/bin/bash
+set -x #echo on
+
+./gradlew --no-configuration-cache shared:app:app-adapter:desktopTest
+
+echo -en '\a'
+

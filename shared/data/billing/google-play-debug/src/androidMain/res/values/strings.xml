@@ -1,0 +1,6 @@
+<resources>
+  <string name="billingx_library_name">Billing Extensions</string>
+  <string name="button_buy">Buy (Instant)</string>
+  <string name="button_buy_pending">Buy (Pending)</string>
+  <string name="debug_purchase_warning">This is a debug purchase and will not be charged.</string>
+</resources>

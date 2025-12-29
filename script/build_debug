@@ -1,0 +1,144 @@
+#!/bin/bash
+#set -x #echo on
+
+start_time=$(date +%s) # Capture start time
+
+# Note: this script assumes this script is housed in /bin
+SCRIPT_DIR=$(dirname "$0")
+cd $SCRIPT_DIR
+cd ..
+APP_ROOT=$(pwd)
+#echo "App root: $APP_ROOT"
+
+# Function to build Android
+build_android() {
+    echo ""
+    echo "*** Building Android Debug ***"
+    echo ""
+    echo "./gradlew :app:android:assembleDebug"
+    ./gradlew :app:android:assembleDebug
+    return $?
+}
+
+# Function to build Desktop
+build_desktop() {
+    echo ""
+    echo "*** Building Desktop Debug ***"
+    echo ""
+    echo "./gradlew :app:desktop:compileKotlin"
+    ./gradlew :app:desktop:compileKotlin
+    return $?
+}
+
+# Function to build iOS
+build_ios() {
+    echo ""
+    echo "*** Building iOS Debug (Simulator) ***"
+    echo ""
+    echo "./script/ios_build dev d"
+    ./script/ios_build dev d
+    return $?
+}
+
+# Function to display usage
+usage() {
+    echo "Usage: $0 <platform>"
+    echo ""
+    echo "Arguments:"
+    echo "  <platform>    Platform to build (android, desktop, ios) or 'all' for all platforms"
+    echo ""
+    echo "Examples:"
+    echo "  $0 android"
+    echo "  $0 desktop"
+    echo "  $0 ios"
+    echo "  $0 all"
+    exit 1
+}
+
+# Parse arguments
+if [ $# -eq 0 ]; then
+    echo "Error: Platform argument required"
+    usage
+fi
+
+if [ $# -gt 1 ]; then
+    echo "Error: Too many arguments"
+    usage
+fi
+
+PLATFORM="$1"
+
+# Handle help
+if [ "$PLATFORM" = "-h" ] || [ "$PLATFORM" = "--help" ]; then
+    usage
+fi
+
+# Check if platform is valid
+case $PLATFORM in
+    android|desktop|ios|all)
+        ;;
+    *)
+        echo "Error: Invalid platform '$PLATFORM'. Must be android, desktop, ios, or all"
+        usage
+        ;;
+esac
+
+echo ""
+echo "*** Build Debug Script Started ***"
+echo "App root: $APP_ROOT"
+
+# Execute builds
+overall_result=0
+
+if [ "$PLATFORM" = "all" ]; then
+    echo "Building all platforms..."
+
+    build_android
+    android_result=$?
+    if [ $android_result -ne 0 ]; then
+        overall_result=$android_result
+    fi
+
+    build_desktop
+    desktop_result=$?
+    if [ $desktop_result -ne 0 ]; then
+        overall_result=$desktop_result
+    fi
+
+    build_ios
+    ios_result=$?
+    if [ $ios_result -ne 0 ]; then
+        overall_result=$ios_result
+    fi
+
+else
+    echo "Building platform: $PLATFORM"
+
+    case $PLATFORM in
+        android)
+            build_android
+            overall_result=$?
+            ;;
+        desktop)
+            build_desktop
+            overall_result=$?
+            ;;
+        ios)
+            build_ios
+            overall_result=$?
+            ;;
+    esac
+fi
+
+end_time=$(date +%s) # Capture end time
+elapsed=$(( end_time - start_time ))
+echo ""
+echo "*** Build Debug Script Completed ***"
+echo "Elapsed time: $(($elapsed / 60)) minutes and $(($elapsed % 60)) seconds"
+
+if [ $overall_result -ne 0 ]; then
+    echo "Some builds failed. Exit code: $overall_result"
+    exit $overall_result
+else
+    echo "All builds completed successfully."
+fi

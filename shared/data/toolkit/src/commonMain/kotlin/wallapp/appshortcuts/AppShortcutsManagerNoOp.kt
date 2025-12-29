@@ -1,0 +1,4 @@
+package wallapp.appshortcuts
+
+
+class AppShortcutsManagerNoOp: AppShortcutsManager

@@ -1,0 +1,11 @@
+
+
+ext.flavorConfig = {
+
+    flavorDimensions "client"
+    productFlavors {
+        wallApp {
+            dimension "client"
+        }
+    }
+}

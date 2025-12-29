@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="accent_blue">#5290f5</color>
+    <color name="accent">@color/accent_blue</color>
+    <color name="settings_highlight">@color/accent</color>
+    <color name="settings_summary">#757575</color>
+    <color name="settings_title">@color/primary_material_dark</color>
+
+    <color name="brand_accent">#e5202c</color>
+    <color name="brand_light_tinted">#1F5CC4</color>
+    <color name="brand_light_control_highlight">#89B0F8</color>
+    <color name="brand_light_surface">#C6D8F8</color>
+
+    <color name="brand_dark">#171f21</color>
+    <color name="brand_dark_tinted">#1F5CC4</color>
+    <color name="brand_dark_control_highlight">#6B7588</color>
+    <color name="brand_dark_surface">@color/settings_summary</color>
+
+    <color name="statusBarColor">@color/translucent_chrome_dark_background</color>
+
+</resources>

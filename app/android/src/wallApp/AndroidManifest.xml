@@ -1,0 +1,27 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        tools:replace="allowBackup"
+        android:allowBackup="false"
+        android:networkSecurityConfig="@xml/network_security_config"
+        >
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_app_id"/>
+        <meta-data android:name="com.google.android.gms.ads.flag.NATIVE_AD_DEBUGGER_ENABLED"
+            android:value="false" />
+
+        <!-- Work around link error between [com.google.android.gms:play-services-measurement-api:21.5.1]
+             and [com.google.android.gms:play-services-ads-lite:22.6.0].
+             Suggestion: add 'tools:replace="android:resource"' to <property> element at AndroidManifest.xml to override.
+            https://stackoverflow.com/a/78086604 -->
+        <property
+            android:name="android.adservices.AD_SERVICES_CONFIG"
+            android:resource="@xml/gma_ad_services_config"
+            tools:replace="android:resource" />
+
+    </application>
+
+</manifest>

@@ -1,0 +1,201 @@
+{
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
+      {
+        "locale" : "en_US",
+        "policyText" : "",
+        "policyURL" : ""
+      }
+    ]
+  },
+  "identifier" : "PLACEHOLDER_APP_ID",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "7.97",
+      "familyShareable" : false,
+      "internalID" : "PLACEHOLDER_PRODUCT_ID_1",
+      "localizations" : [
+        {
+          "description" : "Indigo's Stripes collection",
+          "displayName" : "Stripes by Indigo",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "wallapp.appstore.iap.collection.indigo_stripes",
+      "referenceName" : "Indigo: Stripes",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_compatibilityTimeRate" : {
+      "3" : 6
+    },
+    "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : {
+          "index" : 1,
+          "type" : "purchase"
+        },
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : {
+          "index" : 2,
+          "type" : "generic"
+        },
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : {
+          "index" : 0,
+          "type" : "refund request"
+        },
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ],
+    "_timeRate" : 13
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "PLACEHOLDER_SUB_GROUP_ID",
+      "localizations" : [
+
+      ],
+      "name" : "Plus",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "11.97",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "PLACEHOLDER_MONTHLY_SUB_ID",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "",
+              "displayName" : "Plus Monthly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "PLACEHOLDER_MONTHLY_PRODUCT_ID",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Plus (Month) Tier 1 Base",
+          "subscriptionGroupID" : "PLACEHOLDER_SUB_GROUP_ID",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "49.97",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "PLACEHOLDER_ANNUAL_SUB_ID",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "",
+              "displayName" : "Plus Annual",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "PLACEHOLDER_ANNUAL_PRODUCT_ID",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Plus (Annual) Tier 1 Base",
+          "subscriptionGroupID" : "PLACEHOLDER_SUB_GROUP_ID",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "1.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "PLACEHOLDER_ADFREE_SUB_ID",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "",
+              "displayName" : "Plus Ad Free",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "PLACEHOLDER_ADFREE_PRODUCT_ID",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Plus Ad Free (Month)",
+          "subscriptionGroupID" : "PLACEHOLDER_SUB_GROUP_ID",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        }
+      ]
+    }
+  ],
+  "subscriptionOffersKeyPair" : {
+    "id" : "PLACEHOLDER_KEYPAIR_ID",
+    "privateKey" : "PLACEHOLDER_PRIVATE_KEY"
+  },
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}

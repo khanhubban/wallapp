@@ -1,0 +1,6549 @@
+{
+"folders": [
+{
+"titleTwoLines": "Just Added",
+"featureBannerImage": {
+"blurHash": "U6Flr]xoN2IbkAj@oca#Rn%FIbDs%Fxo~dII",
+"w": 1500,
+"h": 1875,
+"id": "100427950"
+},
+"remixIds": [
+"a~red_83b82b16",
+"a~red_ff550b50",
+"a~red_b645572f",
+"a~red_441c5442"
+],
+"collectionIds": [
+"indigo~blue~stripes"
+],
+"id": "f~justadded",
+"profileImage": {
+"blurHash": "U0A}sipPk7pOpIk5fhkNffo-ffp4pIk4j=kM",
+"id": "1662829130"
+},
+"title": "Just Added"
+}
+],
+"artists": [
+{
+"categoryIds": [
+"dark~singles",
+"dark~stripes"
+],
+"socialLinks": {
+"twitter": "https://x.com/",
+"instagram": "https://instagram.com/"
+},
+"featureBannerImage": {
+"blurHash": "U03l2Gj[t7ayj[fQayWBoffQt7WBj[fQayWB",
+"w": 600,
+"h": 600,
+"id": "1020265050"
+},
+"id": "a~dark",
+"label": "Dark",
+"profileImage": {
+"blurHash": "U03l2Gj[t7ayj[fQayWBoffQt7WBj[fQayWB",
+"id": "1020265050"
+},
+"slugs": [
+"dark"
+]
+},
+{
+"categoryIds": [
+"green~singles",
+"green~linear",
+"green~radial"
+],
+"socialLinks": {
+"twitter": "https://x.com/",
+"instagram": "https://instagram.com/"
+},
+"featureBannerImage": {
+"blurHash": "U04~~3m{b-kocOimi+jJmxmfc4bEcfmyime=",
+"w": 600,
+"h": 600,
+"id": "1599871003"
+},
+"id": "a~green",
+"label": "Green",
+"profileImage": {
+"blurHash": "U04~~3m{b-kocOimi+jJmxmfc4bEcfmyime=",
+"id": "1599871003"
+},
+"slugs": [
+"green"
+]
+},
+{
+"categoryIds": [
+"indigo~singles",
+"indigo~blue~stripes"
+],
+"socialLinks": {
+"twitter": "https://x.com/",
+"instagram": "https://instagram.com/"
+},
+"id": "a~indigo",
+"label": "Indigo",
+"profileImage": {
+"blurHash": "U17n^]oiRyj^xgf8a^ayRxaxjvf6j[j[j]j[",
+"id": "1119761978"
+},
+"slugs": [
+"indigo"
+]
+},
+{
+"categoryIds": [
+"lime~singles"
+],
+"socialLinks": {
+"twitter": "https://x.com/",
+"instagram": "https://instagram.com/"
+},
+"featureBannerImage": {
+"blurHash": "U0Dp|Jn3e.mRtje.fQeojFZPaLUcpFaef6aL",
+"w": 720,
+"h": 720,
+"id": "784392751"
+},
+"id": "a~lime",
+"label": "Lime",
+"profileImage": {
+"blurHash": "U0Dp|Jn3e.mRtje.fQeojFZPaLUcpFaef6aL",
+"id": "784392751"
+},
+"slugs": [
+"lime"
+]
+},
+{
+"categoryIds": [
+"magenta~singles",
+"magenta~linear"
+],
+"socialLinks": {
+"twitter": "https://x.com/",
+"instagram": "https://instagram.com/"
+},
+"featureBannerImage": {
+"blurHash": "U6OIGiNQR;s*oMj?a$a}oHEYR=s$R?NP-IoZ",
+"w": 600,
+"h": 600,
+"id": "1677562382"
+},
+"id": "a~magenta",
+"label": "Magenta",
+"profileImage": {
+"blurHash": "U6OIGiNQR;s*oMj?a$a}oHEYR=s$R?NP-IoZ",
+"id": "1677562382"
+},
+"slugs": [
+"magenta"
+]
+},
+{
+"categoryIds": [
+"pink~singles",
+"pink~softnoise"
+],
+"socialLinks": {
+"twitter": "https://x.com/",
+"instagram": "https://instagram.com/"
+},
+"featureBannerImage": {
+"blurHash": "U2Qr0=WGs+sp$$A017fRs+}jEmA0xGfP=qET",
+"w": 600,
+"h": 600,
+"id": "1380085835"
+},
+"id": "a~pink",
+"label": "Pink",
+"profileImage": {
+"blurHash": "U2Qr0=WGs+sp$$A017fRs+}jEmA0xGfP=qET",
+"id": "1380085835"
+},
+"slugs": [
+"pink"
+]
+},
+{
+"categoryIds": [
+"purple~singles",
+"purple~stripes"
+],
+"socialLinks": {
+"twitter": "https://x.com/",
+"instagram": "https://instagram.com/"
+},
+"featureBannerImage": {
+"blurHash": "U0KIBA$-I;I_s@WXEg0~NaWWI=5lS9WX9]0#",
+"w": 520,
+"h": 520,
+"id": "943259542"
+},
+"id": "a~purple",
+"label": "Purple",
+"profileImage": {
+"blurHash": "U0KIBA$-I;I_s@WXEg0~NaWWI=5lS9WX9]0#",
+"id": "943259542"
+},
+"slugs": [
+"purple"
+]
+},
+{
+"categoryIds": [
+"red~singles",
+"red~stripes"
+],
+"socialLinks": {
+"instagram": "https://instagram.com"
+},
+"featureBannerImage": {
+"blurHash": "U2Nrl|Fc;}so6iWpsUjt|usUSMWpw{o1Wpaz",
+"w": 896,
+"h": 860,
+"id": "951564970"
+},
+"id": "a~red",
+"label": "Red",
+"profileImage": {
+"blurHash": "U2Nrl|Fc;}so6iWpsUjt|usUSMWpw{o1Wpaz",
+"id": "1338825991"
+},
+"slugs": [
+"red"
+]
+},
+{
+"categoryIds": [
+"skyblue~singles"
+],
+"socialLinks": {
+"twitter": "https://x.com/",
+"instagram": "https://instagram.com/"
+},
+"featureBannerImage": {
+"blurHash": "U3Bj9GoNbYnog3TnbXLkXgrLXfzOoNr3j0z6",
+"w": 600,
+"h": 600,
+"id": "678053056"
+},
+"id": "a~skyblue",
+"label": "SkyBlue",
+"profileImage": {
+"blurHash": "U3Bj9GoNbYnog3TnbXLkXgrLXfzOoNr3j0z6",
+"id": "678053056"
+},
+"slugs": [
+"skyblue"
+]
+},
+{
+"categoryIds": [
+"teal~singles",
+"teal~checkers"
+],
+"socialLinks": {
+"twitter": "https://x.com/",
+"instagram": "https://instagram.com/"
+},
+"featureBannerImage": {
+"blurHash": "U3BHoZklimkEkWi,etbpfif{iVetkVh_incL",
+"w": 600,
+"h": 600,
+"id": "923174659"
+},
+"id": "a~teal",
+"label": "Teal",
+"profileImage": {
+"blurHash": "U3BHoZklimkEkWi,etbpfif{iVetkVh_incL",
+"id": "923174659"
+},
+"slugs": [
+"teal"
+]
+}
+],
+"wallpapers": [
+{
+"isDark": false,
+"dlm": {
+"sd": 2077508249,
+"w": 950,
+"h": 720,
+"hd": 2077508249
+},
+"artistId": "a~dark",
+"label": "Radial 02",
+"type": "parallax",
+"slugs": [
+"w/2QR"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U03baYj[Ioj[j[fQfQfQD%fQt7fQj[fQfQfQ",
+"id": "962966773"
+}
+]
+},
+"id": "a~dark_1a6be1c2",
+"aie": false,
+"free": false,
+"categoryId": "dark~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 63551080,
+"w": 950,
+"h": 720,
+"hd": 63551080
+},
+"artistId": "a~dark",
+"label": "Softnoise 01",
+"type": "parallax",
+"slugs": [
+"w/1TK"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U03+7dj[fQfQj[fQfkfkjtfQfkfQfQaya|fQ",
+"id": "1471356737"
+}
+]
+},
+"id": "a~dark_2a94499a",
+"aie": false,
+"free": false,
+"categoryId": "dark~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 198833506,
+"w": 950,
+"h": 720,
+"hd": 198833506
+},
+"artistId": "a~dark",
+"label": "Linear 02",
+"type": "parallax",
+"slugs": [
+"w/EQR"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U042F:offQj[%MfQfQfQj[fQfQfQoffQfQfQ",
+"id": "1277522010"
+}
+]
+},
+"id": "a~dark_3d3f96b6",
+"aie": false,
+"free": false,
+"categoryId": "dark~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1201209364,
+"w": 950,
+"h": 720,
+"hd": 1201209364
+},
+"artistId": "a~dark",
+"label": "Stripes 03",
+"type": "parallax",
+"slugs": [
+"w/68t"
+],
+"isSingle": false,
+"collectionLabel": "Dark Stripes",
+"previews": {
+"standard": [
+{
+"blurHash": "U03IVBxuofj[t7s:WBj[E1%2t7j[^+-;M{of",
+"id": "991443194"
+}
+]
+},
+"id": "a~dark_4ce58f5e",
+"aie": false,
+"free": false,
+"categoryId": "dark~stripes"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 290553835,
+"w": 950,
+"h": 720,
+"hd": 290553835
+},
+"artistId": "a~dark",
+"label": "Radial 01",
+"type": "parallax",
+"slugs": [
+"w/r0J"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U05hS%j[-;j[j[fQfQfQ_3fQRjfQj[fQfQfQ",
+"id": "1267710288"
+}
+]
+},
+"id": "a~dark_5aac4409",
+"aie": false,
+"free": false,
+"categoryId": "dark~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 434282152,
+"w": 950,
+"h": 720,
+"hd": 434282152
+},
+"artistId": "a~dark",
+"label": "Checkers 03",
+"type": "parallax",
+"slugs": [
+"w/sAh"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U03R?yfQfQj[j[ayjtayfQfQfQfQj[ayfQay",
+"id": "922487219"
+}
+]
+},
+"id": "a~dark_6f403d93",
+"aie": false,
+"free": false,
+"categoryId": "dark~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 867510041,
+"w": 950,
+"h": 720,
+"hd": 867510041
+},
+"artistId": "a~dark",
+"label": "Stripes 01",
+"type": "parallax",
+"slugs": [
+"w/CSk"
+],
+"isSingle": false,
+"collectionLabel": "Dark Stripes",
+"previews": {
+"standard": [
+{
+"blurHash": "U04U.[j[j[j[WVj[fQfQR*WVj[fQs:ayayfQ",
+"id": "756593694"
+}
+]
+},
+"id": "a~dark_7a24214e",
+"aie": false,
+"free": false,
+"categoryId": "dark~stripes"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 72139972,
+"w": 950,
+"h": 720,
+"hd": 72139972
+},
+"artistId": "a~dark",
+"label": "Stripes 02",
+"type": "parallax",
+"slugs": [
+"w/FPh"
+],
+"isSingle": false,
+"collectionLabel": "Dark Stripes",
+"previews": {
+"standard": [
+{
+"blurHash": "U03ui*j[fQfQoLayj[ayayfQayfQofayofay",
+"id": "892124996"
+}
+]
+},
+"id": "a~dark_7c7f03e6",
+"aie": false,
+"free": false,
+"categoryId": "dark~stripes"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 193719156,
+"w": 950,
+"h": 720,
+"hd": 193719156
+},
+"artistId": "a~dark",
+"label": "Checkers 02",
+"type": "parallax",
+"slugs": [
+"w/YMC"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U04.6#j[j[j[j[j[j[j[fQfQj[j[j[j[j[j[",
+"id": "125463300"
+}
+]
+},
+"id": "a~dark_7f726101",
+"aie": false,
+"free": false,
+"categoryId": "dark~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1431942506,
+"w": 950,
+"h": 720,
+"hd": 1431942506
+},
+"artistId": "a~dark",
+"label": "Softnoise 04",
+"type": "parallax",
+"slugs": [
+"w/USq"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U03+7dj[fQjtjtj[fQayfQfkfQf6j[f6fQfk",
+"id": "912166120"
+}
+]
+},
+"id": "a~dark_14f99db3",
+"aie": false,
+"free": false,
+"categoryId": "dark~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1302910681,
+"w": 950,
+"h": 720,
+"hd": 1302910681
+},
+"artistId": "a~dark",
+"label": "Softnoise 02",
+"type": "parallax",
+"slugs": [
+"w/KBq"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U04Bzij[jtfQj[ayfQfQayfQfQa|j[ayfQjt",
+"id": "1769609224"
+}
+]
+},
+"id": "a~dark_29e99407",
+"aie": false,
+"free": false,
+"categoryId": "dark~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1483773264,
+"w": 950,
+"h": 720,
+"hd": 1483773264
+},
+"artistId": "a~dark",
+"label": "Softnoise 03",
+"type": "parallax",
+"slugs": [
+"w/NaA"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U042F:bHfQj[fka|f6jta|fQjtjtj[jtfQjt",
+"id": "42192710"
+}
+]
+},
+"id": "a~dark_3465ea9f",
+"aie": false,
+"free": false,
+"categoryId": "dark~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 884588846,
+"w": 950,
+"h": 720,
+"hd": 884588846
+},
+"artistId": "a~dark",
+"label": "Linear 04",
+"type": "parallax",
+"slugs": [
+"w/UVb"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U03IVBD%j[WB?bWBayfQofj[a|j[offQayfQ",
+"id": "901755654"
+}
+]
+},
+"id": "a~dark_42494ea7",
+"aie": false,
+"free": false,
+"categoryId": "dark~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 249538844,
+"w": 950,
+"h": 720,
+"hd": 249538844
+},
+"artistId": "a~dark",
+"label": "Linear 01",
+"type": "parallax",
+"slugs": [
+"w/KrX"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U05Evx%gj[of4nayj[fQkCayfQayV@fQj[fQ",
+"id": "821977082"
+}
+]
+},
+"id": "a~dark_46abfcba",
+"aie": false,
+"free": false,
+"categoryId": "dark~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1058323970,
+"w": 950,
+"h": 720,
+"hd": 1058323970
+},
+"artistId": "a~dark",
+"label": "Radial 03",
+"type": "parallax",
+"slugs": [
+"w/9HD"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U03bdgj[M{j[j[fQfQfQE1fQs:fQj[fQfQfQ",
+"id": "1176720534"
+}
+]
+},
+"id": "a~dark_678850c2",
+"aie": false,
+"free": false,
+"categoryId": "dark~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 156114298,
+"w": 950,
+"h": 720,
+"hd": 156114298
+},
+"artistId": "a~dark",
+"label": "Stripes 04",
+"type": "parallax",
+"slugs": [
+"w/hbQ"
+],
+"isSingle": false,
+"collectionLabel": "Dark Stripes",
+"previews": {
+"standard": [
+{
+"blurHash": "U03l2Gj[ayj[fQWBayRjayfQayj[fQWBayRj",
+"id": "1991720434"
+}
+]
+},
+"id": "a~dark_881d7742",
+"aie": false,
+"free": false,
+"categoryId": "dark~stripes"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1026089842,
+"w": 950,
+"h": 720,
+"hd": 1026089842
+},
+"artistId": "a~dark",
+"label": "Radial 04",
+"type": "parallax",
+"slugs": [
+"w/ah4"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U03IVBj[IUj[j[fQfQfQD%fQt7fQjtfQfQfQ",
+"id": "683727888"
+}
+]
+},
+"id": "a~dark_aecb07c9",
+"aie": false,
+"free": false,
+"categoryId": "dark~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 785195430,
+"w": 950,
+"h": 720,
+"hd": 785195430
+},
+"artistId": "a~dark",
+"label": "Checkers 01",
+"type": "parallax",
+"slugs": [
+"w/XPG"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U03IVBj[fQj[j[jtj[j[j[j[fQfQj[j[j[j[",
+"id": "629713874"
+}
+]
+},
+"id": "a~dark_af001df1",
+"aie": false,
+"free": false,
+"categoryId": "dark~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 651125816,
+"w": 950,
+"h": 720,
+"hd": 651125816
+},
+"artistId": "a~dark",
+"label": "Checkers 04",
+"type": "parallax",
+"slugs": [
+"w/82p"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U03ui*j[fQj[fQfQayfQayfQfQfQj[fQfQfQ",
+"id": "627149426"
+}
+]
+},
+"id": "a~dark_cb9bbc2d",
+"aie": false,
+"free": false,
+"categoryId": "dark~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1615151711,
+"w": 950,
+"h": 720,
+"hd": 1615151711
+},
+"artistId": "a~dark",
+"label": "Linear 03",
+"type": "parallax",
+"slugs": [
+"w/5RA"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U04B%qoffQj[xafQfQfQjtfQfQfQoLfQfQfQ",
+"id": "128819755"
+}
+]
+},
+"id": "a~dark_f83d7078",
+"aie": false,
+"free": false,
+"categoryId": "dark~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 127383070,
+"w": 950,
+"h": 720,
+"hd": 127383070
+},
+"artistId": "a~green",
+"label": "Softnoise 02",
+"type": "parallax",
+"slugs": [
+"w/TWU"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U046Q*kVkUkVkofkf*g1fka2epkBkUf*e:af",
+"id": "703660413"
+}
+]
+},
+"id": "a~green_2fd1382b",
+"aie": false,
+"free": false,
+"categoryId": "green~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1721994337,
+"w": 950,
+"h": 720,
+"hd": 1721994337
+},
+"artistId": "a~green",
+"label": "Radial 01",
+"type": "parallax",
+"slugs": [
+"w/WC0"
+],
+"isSingle": false,
+"collectionLabel": "Green Radial",
+"previews": {
+"standard": [
+{
+"blurHash": "U34%k9f*lOf*f*fQfQfQl$fQeWf7kBfQfQfQ",
+"id": "193712482"
+}
+]
+},
+"id": "a~green_3d5eebf9",
+"aie": false,
+"free": false,
+"categoryId": "green~radial"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 373120998,
+"w": 950,
+"h": 720,
+"hd": 373120998
+},
+"artistId": "a~green",
+"label": "Stripes 03",
+"type": "parallax",
+"slugs": [
+"w/ya8"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U150jZlUf+f4Q8Z$lAf5Ube.kWa0UuUblUad",
+"id": "1662740449"
+}
+]
+},
+"id": "a~green_5a30783f",
+"aie": false,
+"free": false,
+"categoryId": "green~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 790507428,
+"w": 950,
+"h": 720,
+"hd": 790507428
+},
+"artistId": "a~green",
+"label": "Softnoise 03",
+"type": "parallax",
+"slugs": [
+"w/2v9"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U04PookVkBkokUkBkBafa2f6fPf6kCf*kBf6",
+"id": "1608985531"
+}
+]
+},
+"id": "a~green_9b4138c8",
+"aie": false,
+"free": false,
+"categoryId": "green~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1793239514,
+"w": 950,
+"h": 720,
+"hd": 1793239514
+},
+"artistId": "a~green",
+"label": "Linear 04",
+"type": "parallax",
+"slugs": [
+"w/7II"
+],
+"isSingle": false,
+"collectionLabel": "Green Linear",
+"previews": {
+"standard": [
+{
+"blurHash": "U05JAXLhfQc7Lij[fRf6fQfRf7f7c8fjf7fk",
+"id": "392320612"
+}
+]
+},
+"id": "a~green_41ba07dc",
+"aie": false,
+"free": false,
+"categoryId": "green~linear"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 218109837,
+"w": 950,
+"h": 720,
+"hd": 218109837
+},
+"artistId": "a~green",
+"label": "Checkers 01",
+"type": "parallax",
+"slugs": [
+"w/6Tu"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U04GZ%kof6koWTaLVsaKfQfjfQfkVsVtQ.Vs",
+"id": "1245931440"
+}
+]
+},
+"id": "a~green_53acaa28",
+"aie": false,
+"free": false,
+"categoryId": "green~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1445952809,
+"w": 950,
+"h": 720,
+"hd": 1445952809
+},
+"artistId": "a~green",
+"label": "Stripes 02",
+"type": "parallax",
+"slugs": [
+"w/i4F"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0502AnEb.konpc3c4jJi+inb.bXnXX]c3jK",
+"id": "2142123754"
+}
+]
+},
+"id": "a~green_57d08a8e",
+"aie": false,
+"free": false,
+"categoryId": "green~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 2065791350,
+"w": 950,
+"h": 720,
+"hd": 2065791350
+},
+"artistId": "a~green",
+"label": "Checkers 03",
+"type": "parallax",
+"slugs": [
+"w/VPy"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U05+[#koobkoo_f7k9f7ocazouazo_fRocfR",
+"id": "484678972"
+}
+]
+},
+"id": "a~green_07275640",
+"aie": false,
+"free": false,
+"categoryId": "green~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1874984009,
+"w": 950,
+"h": 720,
+"hd": 1874984009
+},
+"artistId": "a~green",
+"label": "Radial 04",
+"type": "parallax",
+"slugs": [
+"w/Yjq"
+],
+"isSingle": false,
+"collectionLabel": "Green Radial",
+"previews": {
+"standard": [
+{
+"blurHash": "U03|F6koL$kVkofjf7f7D4f7u2f7kVfjfQf7",
+"id": "1240155495"
+}
+]
+},
+"id": "a~green_72e4dff4",
+"aie": false,
+"free": false,
+"categoryId": "green~radial"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1642682071,
+"w": 950,
+"h": 720,
+"hd": 1642682071
+},
+"artistId": "a~green",
+"label": "Radial 02",
+"type": "parallax",
+"slugs": [
+"w/lAs"
+],
+"isSingle": false,
+"collectionLabel": "Green Radial",
+"previews": {
+"standard": [
+{
+"blurHash": "U04$zAkohgkVkVfjf7f7l:f6c;fjkVfQfjfQ",
+"id": "1157461656"
+}
+]
+},
+"id": "a~green_a43f344e",
+"aie": false,
+"free": false,
+"categoryId": "green~radial"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1906166709,
+"w": 950,
+"h": 720,
+"hd": 1906166709
+},
+"artistId": "a~green",
+"label": "Radial 03",
+"type": "parallax",
+"slugs": [
+"w/FNT"
+],
+"isSingle": false,
+"collectionLabel": "Green Radial",
+"previews": {
+"standard": [
+{
+"blurHash": "U35c3ef*rPkBkBfQfQfQr8fQbofQkBfQfQf7",
+"id": "1484047409"
+}
+]
+},
+"id": "a~green_b2af1c89",
+"aie": false,
+"free": false,
+"categoryId": "green~radial"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1977161246,
+"w": 950,
+"h": 720,
+"hd": 1977161246
+},
+"artistId": "a~green",
+"label": "Stripes 04",
+"type": "parallax",
+"slugs": [
+"w/NVO"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U14P.Takfia9f+a8f8VQfiV7fiQQkUk$fipj",
+"id": "1782248218"
+}
+]
+},
+"id": "a~green_b402e7bd",
+"aie": false,
+"free": false,
+"categoryId": "green~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 361407052,
+"w": 950,
+"h": 720,
+"hd": 361407052
+},
+"artistId": "a~green",
+"label": "Linear 02",
+"type": "parallax",
+"slugs": [
+"w/hfd"
+],
+"isSingle": false,
+"collectionLabel": "Green Linear",
+"previews": {
+"standard": [
+{
+"blurHash": "U05mCNHZj@af4TkBkBfQkBkBfQkBVHf7kBfQ",
+"id": "1006639420"
+}
+]
+},
+"id": "a~green_b595f9ba",
+"aie": false,
+"free": false,
+"categoryId": "green~linear"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1973098833,
+"w": 950,
+"h": 720,
+"hd": 1973098833
+},
+"artistId": "a~green",
+"label": "Softnoise 01",
+"type": "parallax",
+"slugs": [
+"w/jco"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U04PlgkokUf*kVaLf6kBafafaffQkofjfjfj",
+"id": "69263912"
+}
+]
+},
+"id": "a~green_bb9180a0",
+"aie": false,
+"free": false,
+"categoryId": "green~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1835800792,
+"w": 950,
+"h": 720,
+"hd": 1835800792
+},
+"artistId": "a~green",
+"label": "Linear 03",
+"type": "parallax",
+"slugs": [
+"w/UXk"
+],
+"isSingle": false,
+"collectionLabel": "Green Linear",
+"previews": {
+"standard": [
+{
+"blurHash": "U14%a@l+fjkoY,f6fkfQfkf6f7f6i{fkfkfj",
+"id": "1167746643"
+}
+]
+},
+"id": "a~green_c9086cc1",
+"aie": false,
+"free": false,
+"categoryId": "green~linear"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 24204062,
+"w": 950,
+"h": 720,
+"hd": 24204062
+},
+"artistId": "a~green",
+"label": "Checkers 04",
+"type": "parallax",
+"slugs": [
+"w/v2G"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U05I@:nmbZnAkojHfji~bZi$bYmskoi}f%i#",
+"id": "158045696"
+}
+]
+},
+"id": "a~green_cd0addf3",
+"aie": false,
+"free": false,
+"categoryId": "green~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1987439448,
+"w": 950,
+"h": 720,
+"hd": 1987439448
+},
+"artistId": "a~green",
+"label": "Stripes 01",
+"type": "parallax",
+"slugs": [
+"w/KbA"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U04${wk.f7k:kVepf6eoe:gLe:gLkBeBepd[",
+"id": "419432671"
+}
+]
+},
+"id": "a~green_d1a7d514",
+"aie": false,
+"free": false,
+"categoryId": "green~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1765605651,
+"w": 950,
+"h": 720,
+"hd": 1765605651
+},
+"artistId": "a~green",
+"label": "Linear 01",
+"type": "parallax",
+"slugs": [
+"w/KUC"
+],
+"isSingle": false,
+"collectionLabel": "Green Linear",
+"previews": {
+"standard": [
+{
+"blurHash": "U34$?ugqfQf~hNfkf8fQfkf8fQf8f}fQf8fQ",
+"id": "487399907"
+}
+]
+},
+"id": "a~green_d6bc4cdf",
+"aie": false,
+"free": false,
+"categoryId": "green~linear"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 809960178,
+"w": 950,
+"h": 720,
+"hd": 809960178
+},
+"artistId": "a~green",
+"label": "Checkers 02",
+"type": "parallax",
+"slugs": [
+"w/7UE"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U05cSKbpfPf|kpaxf7f5fQacfkackpaxf7fO",
+"id": "902753784"
+}
+]
+},
+"id": "a~green_e6ff2fe8",
+"aie": false,
+"free": false,
+"categoryId": "green~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 179202,
+"w": 950,
+"h": 720,
+"hd": 179202
+},
+"artistId": "a~green",
+"label": "Softnoise 04",
+"type": "parallax",
+"slugs": [
+"w/2V4"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U04F_rkoaMkok.e:kBfja2fRf*fkkof%f7f%",
+"id": "550509520"
+}
+]
+},
+"id": "a~green_e23210ec",
+"aie": false,
+"free": false,
+"categoryId": "green~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1765662559,
+"w": 950,
+"h": 720,
+"hd": 1765662559
+},
+"artistId": "a~indigo",
+"label": "Softnoise 02",
+"type": "parallax",
+"slugs": [
+"w/fBv"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U07B:jkFfkohkEfRfljbjbfPflf8kEfPa~f8",
+"id": "868467854"
+}
+]
+},
+"id": "a~indigo_1c0de6a0",
+"aie": false,
+"free": false,
+"categoryId": "indigo~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1713943634,
+"w": 950,
+"h": 720,
+"hd": 1713943634
+},
+"artistId": "a~indigo",
+"label": "Softnoise 01",
+"type": "parallax",
+"slugs": [
+"w/pKn"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U072IrkEj^ohkEa|f6fPj[j]bFbHkDj[fRju",
+"id": "1027421072"
+}
+]
+},
+"id": "a~indigo_2b9149ab",
+"aie": false,
+"free": false,
+"categoryId": "indigo~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1570487985,
+"w": 950,
+"h": 720,
+"hd": 1570487985
+},
+"artistId": "a~indigo",
+"label": "Checkers 01",
+"type": "parallax",
+"slugs": [
+"w/G83"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U06l=}X+nTTtoOXNjIXgnSTCnTPKoOXNjITC",
+"id": "1684116624"
+}
+]
+},
+"id": "a~indigo_3f793c1c",
+"aie": false,
+"free": false,
+"categoryId": "indigo~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 18448651,
+"w": 950,
+"h": 720,
+"hd": 18448651
+},
+"artistId": "a~indigo",
+"label": "Softnoise 04",
+"type": "parallax",
+"slugs": [
+"w/a9u"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U06l1-juj^kEoiflj^j]f6awa_j[j^kEjvWT",
+"id": "683023624"
+}
+]
+},
+"id": "a~indigo_7ac3ebc3",
+"aie": false,
+"free": false,
+"categoryId": "indigo~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1117184058,
+"w": 950,
+"h": 720,
+"hd": 1117184058
+},
+"artistId": "a~indigo",
+"label": "Linear 01",
+"type": "parallax",
+"slugs": [
+"w/AMS"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U17-,^vafjnoTlayfQfQfjfQfQfQf+fQf6fQ",
+"id": "1293855337"
+}
+]
+},
+"id": "a~indigo_7dff82d1",
+"aie": false,
+"free": false,
+"categoryId": "indigo~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1416667942,
+"w": 950,
+"h": 720,
+"hd": 1416667942
+},
+"artistId": "a~indigo",
+"label": "Radial 04",
+"type": "parallax",
+"slugs": [
+"w/Txx"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U398f:j]%zj]j]fQfQfQ.lfQRQfQj]fQfQfQ",
+"id": "1691841434"
+}
+]
+},
+"id": "a~indigo_9e342fe3",
+"aie": false,
+"free": false,
+"categoryId": "indigo~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1849380265,
+"w": 950,
+"h": 720,
+"hd": 1849380265
+},
+"artistId": "a~indigo",
+"label": "Stripes 01",
+"type": "parallax",
+"slugs": [
+"w/Tik"
+],
+"isSingle": false,
+"collectionLabel": "Indigo Stripes",
+"previews": {
+"standard": [
+{
+"blurHash": "U09tO0XANsX9bd]tWU}L$lsq$Sw}ohNsjuNr",
+"id": "458102286"
+}
+]
+},
+"id": "a~indigo_169071f9",
+"aie": false,
+"free": false,
+"categoryId": "indigo~blue~stripes"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 970103818,
+"w": 950,
+"h": 720,
+"hd": 970103818
+},
+"artistId": "a~indigo",
+"label": "Checkers 03",
+"type": "parallax",
+"slugs": [
+"w/HOs"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U073MLkEjFkEkEf6f6f6e-f6jFf6kEfRf6fQ",
+"id": "955934787"
+}
+]
+},
+"id": "a~indigo_19905bc4",
+"aie": false,
+"free": false,
+"categoryId": "indigo~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1883474176,
+"w": 950,
+"h": 720,
+"hd": 1883474176
+},
+"artistId": "a~indigo",
+"label": "Radial 01",
+"type": "parallax",
+"slugs": [
+"w/Ugw"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U06b+~kE9:kEkEfPfQfQ5MayxNfPkDfQf6fQ",
+"id": "433142652"
+}
+]
+},
+"id": "a~indigo_224a67a6",
+"aie": false,
+"free": false,
+"categoryId": "indigo~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1634718291,
+"w": 950,
+"h": 720,
+"hd": 1634718291
+},
+"artistId": "a~indigo",
+"label": "Stripes 03",
+"type": "parallax",
+"slugs": [
+"w/sqA"
+],
+"isSingle": false,
+"collectionLabel": "Indigo Stripes",
+"previews": {
+"standard": [
+{
+"blurHash": "U07xD1c7m^n:P=j1j1bXUIU0mxjbj_X]j1bp",
+"id": "538636254"
+}
+]
+},
+"id": "a~indigo_3680e4d9",
+"aie": false,
+"free": false,
+"categoryId": "indigo~blue~stripes"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1677219002,
+"w": 950,
+"h": 720,
+"hd": 1677219002
+},
+"artistId": "a~indigo",
+"label": "Linear 03",
+"type": "parallax",
+"slugs": [
+"w/pnf"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U08hh~00ofRO00ofj[fPj[fkayj[RPfPj[fQ",
+"id": "507937736"
+}
+]
+},
+"id": "a~indigo_40d13105",
+"aie": false,
+"free": false,
+"categoryId": "indigo~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 519858734,
+"w": 950,
+"h": 720,
+"hd": 519858734
+},
+"artistId": "a~indigo",
+"label": "Radial 03",
+"type": "parallax",
+"slugs": [
+"w/1wg"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U58PESj]u3j]j]fQfQfQy=fQa1fQj]fQfQfQ",
+"id": "383531312"
+}
+]
+},
+"id": "a~indigo_4778324c",
+"aie": false,
+"free": false,
+"categoryId": "indigo~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1292838971,
+"w": 950,
+"h": 720,
+"hd": 1292838971
+},
+"artistId": "a~indigo",
+"label": "Checkers 02",
+"type": "parallax",
+"slugs": [
+"w/Nkq"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U07CtekXe:gNkEbte:b[f6baf6b[ohbte:b[",
+"id": "179050413"
+}
+]
+},
+"id": "a~indigo_574e9b6d",
+"aie": false,
+"free": false,
+"categoryId": "indigo~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 2113605793,
+"w": 950,
+"h": 720,
+"hd": 2113605793
+},
+"artistId": "a~indigo",
+"label": "Checkers 04",
+"type": "parallax",
+"slugs": [
+"w/F7r"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U07n_DkEjfkEoifRf9j[jffPjffQkFfPjdfR",
+"id": "835478842"
+}
+]
+},
+"id": "a~indigo_748f78c8",
+"aie": false,
+"free": false,
+"categoryId": "indigo~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 135442605,
+"w": 950,
+"h": 720,
+"hd": 135442605
+},
+"artistId": "a~indigo",
+"label": "Linear 02",
+"type": "parallax",
+"slugs": [
+"w/511"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U16+7Rj^fRj^?@fQfQfQkAfQfQfQozfQfQfP",
+"id": "1398442406"
+}
+]
+},
+"id": "a~indigo_823a056c",
+"aie": false,
+"free": false,
+"categoryId": "indigo~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 56847857,
+"w": 950,
+"h": 720,
+"hd": 56847857
+},
+"artistId": "a~indigo",
+"label": "Radial 02",
+"type": "parallax",
+"slugs": [
+"w/xjb"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U47.n,j]pKj]j]fQfQfQu6fRaJfQj]fQfQfQ",
+"id": "481063023"
+}
+]
+},
+"id": "a~indigo_87169069",
+"aie": false,
+"free": false,
+"categoryId": "indigo~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1484466035,
+"w": 950,
+"h": 720,
+"hd": 1484466035
+},
+"artistId": "a~indigo",
+"label": "Linear 04",
+"type": "parallax",
+"slugs": [
+"w/sLj"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U26uy2xyjtog%Qj[ayfQj[ayfPayohfQayfQ",
+"id": "1420612098"
+}
+]
+},
+"id": "a~indigo_957b7970",
+"aie": false,
+"free": false,
+"categoryId": "indigo~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1329882772,
+"w": 950,
+"h": 720,
+"hd": 1329882772
+},
+"artistId": "a~indigo",
+"label": "Stripes 04",
+"type": "parallax",
+"slugs": [
+"w/TN8"
+],
+"isSingle": false,
+"collectionLabel": "Indigo Stripes",
+"previews": {
+"standard": [
+{
+"blurHash": "U08}52w}F{bdkEs9n%W;s9wIF{W=kEwIn$W;",
+"id": "375091751"
+}
+]
+},
+"id": "a~indigo_977e8631",
+"aie": false,
+"free": false,
+"categoryId": "indigo~blue~stripes"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 2039309809,
+"w": 950,
+"h": 720,
+"hd": 2039309809
+},
+"artistId": "a~indigo",
+"label": "Softnoise 03",
+"type": "parallax",
+"slugs": [
+"w/Rrl"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U07B,akEj]kEkEfRfSfRaxayjvaykEf8fPfP",
+"id": "2121523288"
+}
+]
+},
+"id": "a~indigo_ad6b18e8",
+"aie": false,
+"free": false,
+"categoryId": "indigo~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1294315476,
+"w": 950,
+"h": 720,
+"hd": 1294315476
+},
+"artistId": "a~indigo",
+"label": "Stripes 02",
+"type": "parallax",
+"slugs": [
+"w/Fsd"
+],
+"isSingle": false,
+"collectionLabel": "Indigo Stripes",
+"previews": {
+"standard": [
+{
+"blurHash": "U08E=:t8V{tRohk9k9k9V{tLRotLx@tLx-x-",
+"id": "1024903651"
+}
+]
+},
+"id": "a~indigo_c771b89c",
+"aie": false,
+"free": false,
+"categoryId": "indigo~blue~stripes"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 226576005,
+"w": 950,
+"h": 720,
+"hd": 226576005
+},
+"artistId": "a~lime",
+"label": "Linear 02",
+"type": "parallax",
+"slugs": [
+"w/Am1"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U8Dyy?b[fQkBUUfjf7fQfjf7fQfQbtfQf7fQ",
+"id": "912948146"
+}
+]
+},
+"id": "a~lime_2ffe58ab",
+"aie": false,
+"free": false,
+"categoryId": "lime~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 346407402,
+"w": 950,
+"h": 720,
+"hd": 346407402
+},
+"artistId": "a~lime",
+"label": "Linear 04",
+"type": "parallax",
+"slugs": [
+"w/rCg"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0E?Gv3an+P23tsWn+fQn+n+a|n+KtfQn+ay",
+"id": "2122072090"
+}
+]
+},
+"id": "a~lime_3fd8dd25",
+"aie": false,
+"free": false,
+"categoryId": "lime~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1177733218,
+"w": 950,
+"h": 720,
+"hd": 1177733218
+},
+"artistId": "a~lime",
+"label": "Softnoise 04",
+"type": "parallax",
+"slugs": [
+"w/iDi"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0C0g#kBpFo{u0azV[oxa{afoxafkUj[afkB",
+"id": "635719766"
+}
+]
+},
+"id": "a~lime_7f7c3e35",
+"aie": false,
+"free": false,
+"categoryId": "lime~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1577236071,
+"w": 950,
+"h": 720,
+"hd": 1577236071
+},
+"artistId": "a~lime",
+"label": "Linear 01",
+"type": "parallax",
+"slugs": [
+"w/RlQ"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U4EiXJC_j@XjPPj@fQfQfjfQfQfQbtfQfQfQ",
+"id": "151346652"
+}
+]
+},
+"id": "a~lime_7f14862a",
+"aie": false,
+"free": false,
+"categoryId": "lime~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1941494948,
+"w": 950,
+"h": 720,
+"hd": 1941494948
+},
+"artistId": "a~lime",
+"label": "Checkers 02",
+"type": "parallax",
+"slugs": [
+"w/doP"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0Cw;TYen7UVpFayayf6n6Ttn6P*pFfjf7f7",
+"id": "1140134786"
+}
+]
+},
+"id": "a~lime_12043398",
+"aie": false,
+"free": false,
+"categoryId": "lime~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1541570519,
+"w": 950,
+"h": 720,
+"hd": 1541570519
+},
+"artistId": "a~lime",
+"label": "Radial 04",
+"type": "parallax",
+"slugs": [
+"w/rAG"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0A}bypF00pFpFfQayay00az_0fQpFayfQay",
+"id": "309929821"
+}
+]
+},
+"id": "a~lime_2506ec58",
+"aie": false,
+"free": false,
+"categoryId": "lime~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1826500406,
+"w": 950,
+"h": 720,
+"hd": 1826500406
+},
+"artistId": "a~lime",
+"label": "Checkers 04",
+"type": "parallax",
+"slugs": [
+"w/Yt3"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0E?DZtiwJx?x=n%r?n$r?n%wJni%Gn$wIs9",
+"id": "629411432"
+}
+]
+},
+"id": "a~lime_370e17e7",
+"aie": false,
+"free": false,
+"categoryId": "lime~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1629663521,
+"w": 950,
+"h": 720,
+"hd": 1629663521
+},
+"artistId": "a~lime",
+"label": "Softnoise 03",
+"type": "parallax",
+"slugs": [
+"w/uu0"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0B@0CoxjIt%tia{V]V]kBo{kBaftiayV]kB",
+"id": "2051102069"
+}
+]
+},
+"id": "a~lime_579dd441",
+"aie": false,
+"free": false,
+"categoryId": "lime~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1289988885,
+"w": 950,
+"h": 720,
+"hd": 1289988885
+},
+"artistId": "a~lime",
+"label": "Softnoise 01",
+"type": "parallax",
+"slugs": [
+"w/gPX"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0C,tJpFkVtipZf7afbHafjZkBafpFj?jGf*",
+"id": "1066890092"
+}
+]
+},
+"id": "a~lime_57c90766",
+"aie": false,
+"free": false,
+"categoryId": "lime~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 968994227,
+"w": 950,
+"h": 720,
+"hd": 968994227
+},
+"artistId": "a~lime",
+"label": "Radial 02",
+"type": "parallax",
+"slugs": [
+"w/8Wi"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U1EGMMo{-wo_o{fjj@f7^.f6N4fQo_fQfjj@",
+"id": "6191031"
+}
+]
+},
+"id": "a~lime_60f950f6",
+"aie": false,
+"free": false,
+"categoryId": "lime~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1344486486,
+"w": 950,
+"h": 720,
+"hd": 1344486486
+},
+"artistId": "a~lime",
+"label": "Softnoise 02",
+"type": "parallax",
+"slugs": [
+"w/mIZ"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0D3+upGfktipFj@afj[e:fkkBf*tifkkBfk",
+"id": "1773686662"
+}
+]
+},
+"id": "a~lime_706e741c",
+"aie": false,
+"free": false,
+"categoryId": "lime~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1606143281,
+"w": 950,
+"h": 720,
+"hd": 1606143281
+},
+"artistId": "a~lime",
+"label": "Checkers 01",
+"type": "parallax",
+"slugs": [
+"w/O0S"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0D::9tjaKtjtjj[ayfQaJj]aJj]tjfRf6j[",
+"id": "1871643761"
+}
+]
+},
+"id": "a~lime_81a169c8",
+"aie": false,
+"free": false,
+"categoryId": "lime~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1843458356,
+"w": 950,
+"h": 720,
+"hd": 1843458356
+},
+"artistId": "a~lime",
+"label": "Linear 03",
+"type": "parallax",
+"slugs": [
+"w/VZU"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U4FIzY|#jts:7DWpjtfQjta|fjazX5fQjtfQ",
+"id": "660287676"
+}
+]
+},
+"id": "a~lime_be9e1534",
+"aie": false,
+"free": false,
+"categoryId": "lime~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 783901803,
+"w": 950,
+"h": 720,
+"hd": 783901803
+},
+"artistId": "a~lime",
+"label": "Radial 03",
+"type": "parallax",
+"slugs": [
+"w/u8k"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0A}MIo{00pFpFfQayf700fj~of7pFj@fjf7",
+"id": "2047348653"
+}
+]
+},
+"id": "a~lime_c88ee265",
+"aie": false,
+"free": false,
+"categoryId": "lime~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1322578643,
+"w": 950,
+"h": 720,
+"hd": 1322578643
+},
+"artistId": "a~lime",
+"label": "Stripes 04",
+"type": "parallax",
+"slugs": [
+"w/2j0"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0CdcSpGj@pGx:skwbwbs9Fgs9FNcCSOShS5",
+"id": "545254086"
+}
+]
+},
+"id": "a~lime_d6c6ab16",
+"aie": false,
+"free": false,
+"categoryId": "lime~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 226147702,
+"w": 950,
+"h": 720,
+"hd": 226147702
+},
+"artistId": "a~lime",
+"label": "Stripes 02",
+"type": "parallax",
+"slugs": [
+"w/g2e"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U2Cm;rkUfQkV~cIca#WE~b?7Rooc0Ft2xnj@",
+"id": "545869334"
+}
+]
+},
+"id": "a~lime_e238e0e4",
+"aie": false,
+"free": false,
+"categoryId": "lime~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 207362463,
+"w": 950,
+"h": 720,
+"hd": 207362463
+},
+"artistId": "a~lime",
+"label": "Stripes 01",
+"type": "parallax",
+"slugs": [
+"w/wtI"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U3C,,kf$j[kU.jf7RQkBx@tQaykByBx[R7kB",
+"id": "1203663110"
+}
+]
+},
+"id": "a~lime_e265507f",
+"aie": false,
+"free": false,
+"categoryId": "lime~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 628486500,
+"w": 950,
+"h": 720,
+"hd": 628486500
+},
+"artistId": "a~lime",
+"label": "Stripes 03",
+"type": "parallax",
+"slugs": [
+"w/d5p"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U2Flr]%YD=9i%Yx.~dIID=~d0D0E9iD=0E?k",
+"id": "2126570368"
+}
+]
+},
+"id": "a~lime_e60a9188",
+"aie": false,
+"free": false,
+"categoryId": "lime~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1570382345,
+"w": 950,
+"h": 720,
+"hd": 1570382345
+},
+"artistId": "a~lime",
+"label": "Checkers 03",
+"type": "parallax",
+"slugs": [
+"w/EeF"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0Dp|Ju2e.uMtjfkf6f+jFk;aLlStjbHj@f+",
+"id": "2122442285"
+}
+]
+},
+"id": "a~lime_e9700368",
+"aie": false,
+"free": false,
+"categoryId": "lime~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1074262662,
+"w": 950,
+"h": 720,
+"hd": 1074262662
+},
+"artistId": "a~lime",
+"label": "Radial 01",
+"type": "parallax",
+"slugs": [
+"w/v46"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U5Cw;ekBT_kBkBfQfQfQQ5fQn5fQkBfQfQfQ",
+"id": "2002107196"
+}
+]
+},
+"id": "a~lime_f8bc4daa",
+"aie": false,
+"free": false,
+"categoryId": "lime~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1387749707,
+"w": 950,
+"h": 720,
+"hd": 1387749707
+},
+"artistId": "a~magenta",
+"label": "Stripes 03",
+"type": "parallax",
+"slugs": [
+"w/jBE"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U1OusywebItAvxnKnLfkXqn0i]XVw}XWq?jX",
+"id": "104974003"
+}
+]
+},
+"id": "a~magenta_3f1e3ef2",
+"aie": false,
+"free": false,
+"categoryId": "magenta~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1583550588,
+"w": 950,
+"h": 720,
+"hd": 1583550588
+},
+"artistId": "a~magenta",
+"label": "Stripes 02",
+"type": "parallax",
+"slugs": [
+"w/RzU"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U2OIGiRtR=xSspR;$?oZa#I#NixRs+I#}yxQ",
+"id": "1930711914"
+}
+]
+},
+"id": "a~magenta_4e576228",
+"aie": false,
+"free": false,
+"categoryId": "magenta~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1031788177,
+"w": 950,
+"h": 720,
+"hd": 1031788177
+},
+"artistId": "a~magenta",
+"label": "Radial 04",
+"type": "parallax",
+"slugs": [
+"w/5jC"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U2PC9]sp%XspspfQfQju.FfQRofQspa{fQa{",
+"id": "640264715"
+}
+]
+},
+"id": "a~magenta_6dbfa22d",
+"aie": false,
+"free": false,
+"categoryId": "magenta~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1363083269,
+"w": 950,
+"h": 720,
+"hd": 1363083269
+},
+"artistId": "a~magenta",
+"label": "Softnoise 01",
+"type": "parallax",
+"slugs": [
+"w/fev"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0Myhf$lS1xH$SWUfQWUw}a{fRS0sqspsqWU",
+"id": "611841836"
+}
+]
+},
+"id": "a~magenta_6e899833",
+"aie": false,
+"free": false,
+"categoryId": "magenta~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 699426081,
+"w": 950,
+"h": 720,
+"hd": 699426081
+},
+"artistId": "a~magenta",
+"label": "Linear 01",
+"type": "parallax",
+"slugs": [
+"w/8Np"
+],
+"isSingle": false,
+"collectionLabel": "Magenta Linear",
+"previews": {
+"standard": [
+{
+"blurHash": "U1Ob%{_hj]#j+DfkfQjujua{fQa{wdj[fQa{",
+"id": "387757868"
+}
+]
+},
+"id": "a~magenta_8c236ac7",
+"aie": false,
+"free": false,
+"categoryId": "magenta~linear"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1133004570,
+"w": 950,
+"h": 720,
+"hd": 1133004570
+},
+"artistId": "a~magenta",
+"label": "Radial 03",
+"type": "parallax",
+"slugs": [
+"w/wQ7"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U1OI-psq7*sqsqa|fQfQ3@fQw9jus:fQfQfQ",
+"id": "2088944324"
+}
+]
+},
+"id": "a~magenta_18c7c65c",
+"aie": false,
+"free": false,
+"categoryId": "magenta~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1462963188,
+"w": 950,
+"h": 720,
+"hd": 1462963188
+},
+"artistId": "a~magenta",
+"label": "Checkers 01",
+"type": "parallax",
+"slugs": [
+"w/OlB"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0Niew$mOF$moiWqJ.W;OEWqOFWqbeW;J.W;",
+"id": "433494443"
+}
+]
+},
+"id": "a~magenta_202af181",
+"aie": false,
+"free": false,
+"categoryId": "magenta~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 150500758,
+"w": 950,
+"h": 720,
+"hd": 150500758
+},
+"artistId": "a~magenta",
+"label": "Stripes 04",
+"type": "parallax",
+"slugs": [
+"w/kDa"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U4Ou+-oMfPoMoqnXjKfhf8f8fPfQb*rknpfh",
+"id": "563163256"
+}
+]
+},
+"id": "a~magenta_22e21b22",
+"aie": false,
+"free": false,
+"categoryId": "magenta~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 777326675,
+"w": 950,
+"h": 720,
+"hd": 777326675
+},
+"artistId": "a~magenta",
+"label": "Radial 02",
+"type": "parallax",
+"slugs": [
+"w/UmO"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U1PK??w}:]w}w}a{fQa{{EfQOlfQw}a{fQfQ",
+"id": "530849977"
+}
+]
+},
+"id": "a~magenta_3584b08a",
+"aie": false,
+"free": false,
+"categoryId": "magenta~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 228912375,
+"w": 950,
+"h": 720,
+"hd": 228912375
+},
+"artistId": "a~magenta",
+"label": "Softnoise 04",
+"type": "parallax",
+"slugs": [
+"w/kgl"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0Mp0[oMNr,]sqsqsqw}S0sqspsq,^juayxH",
+"id": "806187739"
+}
+]
+},
+"id": "a~magenta_35c97847",
+"aie": false,
+"free": false,
+"categoryId": "magenta~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 2021524471,
+"w": 950,
+"h": 720,
+"hd": 2021524471
+},
+"artistId": "a~magenta",
+"label": "Checkers 03",
+"type": "parallax",
+"slugs": [
+"w/VxE"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0OuQ%#+kDwG$laxfRaxfmW8kDV:$ljYj[aw",
+"id": "1882482079"
+}
+]
+},
+"id": "a~magenta_43d7555f",
+"aie": false,
+"free": false,
+"categoryId": "magenta~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 858059288,
+"w": 950,
+"h": 720,
+"hd": 858059288
+},
+"artistId": "a~magenta",
+"label": "Softnoise 03",
+"type": "parallax",
+"slugs": [
+"w/f5k"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0NFs6$lWVw~,^S1WUWVjvj@a{ju$layWosp",
+"id": "1741295182"
+}
+]
+},
+"id": "a~magenta_49c3e3f1",
+"aie": false,
+"free": false,
+"categoryId": "magenta~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1449171415,
+"w": 950,
+"h": 720,
+"hd": 1449171415
+},
+"artistId": "a~magenta",
+"label": "Linear 03",
+"type": "parallax",
+"slugs": [
+"w/Iwv"
+],
+"isSingle": false,
+"collectionLabel": "Magenta Linear",
+"previews": {
+"standard": [
+{
+"blurHash": "U4N=yu9?fQay}daya{fQj[jufQjuxHfQa{fQ",
+"id": "45719000"
+}
+]
+},
+"id": "a~magenta_6529e4fd",
+"aie": false,
+"free": false,
+"categoryId": "magenta~linear"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 815532011,
+"w": 950,
+"h": 720,
+"hd": 815532011
+},
+"artistId": "a~magenta",
+"label": "Linear 02",
+"type": "parallax",
+"slugs": [
+"w/GOa"
+],
+"isSingle": false,
+"collectionLabel": "Magenta Linear",
+"previews": {
+"standard": [
+{
+"blurHash": "U3Pn=m}jjsxF18ayj?fQj[a}fQazWZfQj?fQ",
+"id": "1474474625"
+}
+]
+},
+"id": "a~magenta_7354fab6",
+"aie": false,
+"free": false,
+"categoryId": "magenta~linear"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 2090073324,
+"w": 950,
+"h": 720,
+"hd": 2090073324
+},
+"artistId": "a~magenta",
+"label": "Softnoise 02",
+"type": "parallax",
+"slugs": [
+"w/6WJ"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0Mp0[xIS1$l$lWospjua{WUS0jb$SS1S0oL",
+"id": "816449466"
+}
+]
+},
+"id": "a~magenta_85a13686",
+"aie": false,
+"free": false,
+"categoryId": "magenta~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 152059185,
+"w": 950,
+"h": 720,
+"hd": 152059185
+},
+"artistId": "a~magenta",
+"label": "Checkers 02",
+"type": "parallax",
+"slugs": [
+"w/vGL"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0O8rk$ls;$l$layj[jus;fPs;a{$layj]ju",
+"id": "450573784"
+}
+]
+},
+"id": "a~magenta_91458cf2",
+"aie": false,
+"free": false,
+"categoryId": "magenta~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1636892565,
+"w": 950,
+"h": 720,
+"hd": 1636892565
+},
+"artistId": "a~magenta",
+"label": "Checkers 04",
+"type": "parallax",
+"slugs": [
+"w/5Mx"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0P_h#$loM$m^8R%-DNZj[a{j[ju}vJ5^8I.",
+"id": "1366691735"
+}
+]
+},
+"id": "a~magenta_93939d7d",
+"aie": false,
+"free": false,
+"categoryId": "magenta~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 24738302,
+"w": 950,
+"h": 720,
+"hd": 24738302
+},
+"artistId": "a~magenta",
+"label": "Linear 04",
+"type": "parallax",
+"slugs": [
+"w/kB6"
+],
+"isSingle": false,
+"collectionLabel": "Magenta Linear",
+"previews": {
+"standard": [
+{
+"blurHash": "U6N?BvOXfQj]{la|a|fQj@jtfQfQsDfQfQfQ",
+"id": "224245689"
+}
+]
+},
+"id": "a~magenta_994ab9bd",
+"aie": false,
+"free": false,
+"categoryId": "magenta~linear"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 766051735,
+"w": 950,
+"h": 720,
+"hd": 766051735
+},
+"artistId": "a~magenta",
+"label": "Radial 01",
+"type": "parallax",
+"slugs": [
+"w/AVG"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0N5~G$l0J$l$lfQa|a{00ay}vjuxIa{j[ay",
+"id": "1421006740"
+}
+]
+},
+"id": "a~magenta_a9623046",
+"aie": false,
+"free": false,
+"categoryId": "magenta~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1865589998,
+"w": 950,
+"h": 720,
+"hd": 1865589998
+},
+"artistId": "a~magenta",
+"label": "Stripes 01",
+"type": "parallax",
+"slugs": [
+"w/nIg"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U1P2AQR#WT,{NWI+xJa{-H5fI+$.=j-GA6R$",
+"id": "1785576484"
+}
+]
+},
+"id": "a~magenta_cee0f7d7",
+"aie": false,
+"free": false,
+"categoryId": "magenta~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 175752035,
+"w": 950,
+"h": 720,
+"hd": 175752035
+},
+"artistId": "a~pink",
+"label": "Radial 02",
+"type": "parallax",
+"slugs": [
+"w/7mJ"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U7QXm3oLnYoMoMfQfQfQrkfQbVfQoMfQfQfQ",
+"id": "891678587"
+}
+]
+},
+"id": "a~pink_0b31da8c",
+"aie": false,
+"free": false,
+"categoryId": "pink~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1414787201,
+"w": 950,
+"h": 720,
+"hd": 1414787201
+},
+"artistId": "a~pink",
+"label": "Softnoise 04",
+"type": "parallax",
+"slugs": [
+"w/OWR"
+],
+"isSingle": false,
+"collectionLabel": "Pink Softnoise",
+"previews": {
+"standard": [
+{
+"blurHash": "U0NG1oxHxH=gazspoLw|J6NZ$laya}oMw}oL",
+"id": "822206067"
+}
+]
+},
+"id": "a~pink_01e73285",
+"aie": false,
+"free": false,
+"categoryId": "pink~softnoise"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 117795269,
+"w": 950,
+"h": 720,
+"hd": 117795269
+},
+"artistId": "a~pink",
+"label": "Softnoise 01",
+"type": "parallax",
+"slugs": [
+"w/JTq"
+],
+"isSingle": false,
+"collectionLabel": "Pink Softnoise",
+"previews": {
+"standard": [
+{
+"blurHash": "U0O[}F,]spxH,]jso0jtspoLoLWVs:WUoLso",
+"id": "428462343"
+}
+]
+},
+"id": "a~pink_5b09e339",
+"aie": false,
+"free": false,
+"categoryId": "pink~softnoise"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1996979600,
+"w": 950,
+"h": 720,
+"hd": 1996979600
+},
+"artistId": "a~pink",
+"label": "Checkers 03",
+"type": "parallax",
+"slugs": [
+"w/W02"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0Qq#J$kfQ$l,ta{r=fRjufQfQfQ,tjur=ay",
+"id": "1585620569"
+}
+]
+},
+"id": "a~pink_7b9d06ae",
+"aie": false,
+"free": false,
+"categoryId": "pink~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 260526798,
+"w": 950,
+"h": 720,
+"hd": 260526798
+},
+"artistId": "a~pink",
+"label": "Radial 03",
+"type": "parallax",
+"slugs": [
+"w/BQ2"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U2PxZFspEDspspfQjufQ52a|t0fQspjtfQfQ",
+"id": "1678748303"
+}
+]
+},
+"id": "a~pink_8f1aeb78",
+"aie": false,
+"free": false,
+"categoryId": "pink~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 266263125,
+"w": 950,
+"h": 720,
+"hd": 266263125
+},
+"artistId": "a~pink",
+"label": "Linear 02",
+"type": "parallax",
+"slugs": [
+"w/ZpB"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U1Q5LvxHj[xH}fjtfQfPj^jtjtfQ$ba{jtfQ",
+"id": "1508677708"
+}
+]
+},
+"id": "a~pink_21954d3e",
+"aie": false,
+"free": false,
+"categoryId": "pink~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 487168328,
+"w": 950,
+"h": 720,
+"hd": 487168328
+},
+"artistId": "a~pink",
+"label": "Linear 03",
+"type": "parallax",
+"slugs": [
+"w/yJN"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U9P2I}EHj[ax^Uaxa{fQj]jufQjus;fPa{fQ",
+"id": "390554334"
+}
+]
+},
+"id": "a~pink_379b7e47",
+"aie": false,
+"free": false,
+"categoryId": "pink~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 2079381907,
+"w": 950,
+"h": 720,
+"hd": 2079381907
+},
+"artistId": "a~pink",
+"label": "Stripes 01",
+"type": "parallax",
+"slugs": [
+"w/qAw"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0QrGf-D%Q?K-Eaxt9IRxxj]-@%Q-XWUxwDz",
+"id": "576546994"
+}
+]
+},
+"id": "a~pink_490bfa05",
+"aie": false,
+"free": false,
+"categoryId": "pink~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1752570200,
+"w": 950,
+"h": 720,
+"hd": 1752570200
+},
+"artistId": "a~pink",
+"label": "Stripes 03",
+"type": "parallax",
+"slugs": [
+"w/mV7"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U2Q#kjR:s+I^$zA0ETj?s+-4El18=rj?}iI]",
+"id": "1025921683"
+}
+]
+},
+"id": "a~pink_5796a202",
+"aie": false,
+"free": false,
+"categoryId": "pink~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 2121386513,
+"w": 950,
+"h": 720,
+"hd": 2121386513
+},
+"artistId": "a~pink",
+"label": "Stripes 04",
+"type": "parallax",
+"slugs": [
+"w/AAD"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U5Peg4I-WBoM}ws;WUoM^SR%R%oMsp^TWUoM",
+"id": "721027858"
+}
+]
+},
+"id": "a~pink_650732a6",
+"aie": false,
+"free": false,
+"categoryId": "pink~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1490213354,
+"w": 950,
+"h": 720,
+"hd": 1490213354
+},
+"artistId": "a~pink",
+"label": "Radial 01",
+"type": "parallax",
+"slugs": [
+"w/uic"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U2QO+#spphs:spa{fQfQuQfQa9fQs:j[a|fQ",
+"id": "540075462"
+}
+]
+},
+"id": "a~pink_78f0b390",
+"aie": false,
+"free": false,
+"categoryId": "pink~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 2035547264,
+"w": 950,
+"h": 720,
+"hd": 2035547264
+},
+"artistId": "a~pink",
+"label": "Checkers 02",
+"type": "parallax",
+"slugs": [
+"w/hhx"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0PC6b,]oM,]$loMjuo3oMsqsqsq,]o3oMoM",
+"id": "1892417999"
+}
+]
+},
+"id": "a~pink_8111851a",
+"aie": false,
+"free": false,
+"categoryId": "pink~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 100379878,
+"w": 950,
+"h": 720,
+"hd": 100379878
+},
+"artistId": "a~pink",
+"label": "Stripes 02",
+"type": "parallax",
+"slugs": [
+"w/Wa8"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0P2Yow|00sD$kfQfQj[aya|a|fQ$kfQa|ju",
+"id": "1253457734"
+}
+]
+},
+"id": "a~pink_0973d343",
+"aie": false,
+"free": false,
+"categoryId": "pink~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1735169423,
+"w": 950,
+"h": 720,
+"hd": 1735169423
+},
+"artistId": "a~pink",
+"label": "Radial 04",
+"type": "parallax",
+"slugs": [
+"w/vlu"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0QhZA$l]z,]$ljua{a|}ijuJCfQ-Cayj[ju",
+"id": "1808151340"
+}
+]
+},
+"id": "a~pink_a3d6e7df",
+"aie": false,
+"free": false,
+"categoryId": "pink~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1314002194,
+"w": 950,
+"h": 720,
+"hd": 1314002194
+},
+"artistId": "a~pink",
+"label": "Checkers 04",
+"type": "parallax",
+"slugs": [
+"w/jWC"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0RQuj,]r[,],]jbn+jZwNn+r]n+,]n+r]jb",
+"id": "1688708470"
+}
+]
+},
+"id": "a~pink_a853db99",
+"aie": false,
+"free": false,
+"categoryId": "pink~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1287355826,
+"w": 950,
+"h": 720,
+"hd": 1287355826
+},
+"artistId": "a~pink",
+"label": "Linear 01",
+"type": "parallax",
+"slugs": [
+"w/LFF"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U5Qq^kNkjuoNJIfSjsfQfRjsfQjsj^fRfPfQ",
+"id": "1367068755"
+}
+]
+},
+"id": "a~pink_a86ca8e9",
+"aie": false,
+"free": false,
+"categoryId": "pink~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1169779,
+"w": 950,
+"h": 720,
+"hd": 1169779
+},
+"artistId": "a~pink",
+"label": "Softnoise 02",
+"type": "parallax",
+"slugs": [
+"w/K0T"
+],
+"isSingle": false,
+"collectionLabel": "Pink Softnoise",
+"previews": {
+"standard": [
+{
+"blurHash": "U0N6g0spsps;$lw}n+Wo,]azNsoLxGS0spo2",
+"id": "1740321290"
+}
+]
+},
+"id": "a~pink_b25c3876",
+"aie": false,
+"free": false,
+"categoryId": "pink~softnoise"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1124619152,
+"w": 950,
+"h": 720,
+"hd": 1124619152
+},
+"artistId": "a~pink",
+"label": "Checkers 01",
+"type": "parallax",
+"slugs": [
+"w/5j6"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0QXr$$jnf$j,@jsjYaxjCjYnfjX,@jsjXf6",
+"id": "847934803"
+}
+]
+},
+"id": "a~pink_b79e6a99",
+"aie": false,
+"free": false,
+"categoryId": "pink~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1972416384,
+"w": 950,
+"h": 720,
+"hd": 1972416384
+},
+"artistId": "a~pink",
+"label": "Softnoise 03",
+"type": "parallax",
+"slugs": [
+"w/bjS"
+],
+"isSingle": false,
+"collectionLabel": "Pink Softnoise",
+"previews": {
+"standard": [
+{
+"blurHash": "U0Mf;:$lj[$k$koLoLw}spJ6S1sp];o2NZw}",
+"id": "864259633"
+}
+]
+},
+"id": "a~pink_ce688a1c",
+"aie": false,
+"free": false,
+"categoryId": "pink~softnoise"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 985249163,
+"w": 950,
+"h": 720,
+"hd": 985249163
+},
+"artistId": "a~pink",
+"label": "Linear 04",
+"type": "parallax",
+"slugs": [
+"w/2pd"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U4P{3+TOfRog:Nf5bHjtj]jZfQjsr;fQfkfQ",
+"id": "716196838"
+}
+]
+},
+"id": "a~pink_d26fa336",
+"aie": false,
+"free": false,
+"categoryId": "pink~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 55541394,
+"w": 950,
+"h": 720,
+"hd": 55541394
+},
+"artistId": "a~purple",
+"label": "Checkers 04",
+"type": "parallax",
+"slugs": [
+"w/EWL"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0KIBA$,R*-Ds?$%R+=dWWs.WX$joP$%Nb=x",
+"id": "1611126306"
+}
+]
+},
+"id": "a~purple_0f43ce51",
+"aie": false,
+"free": false,
+"categoryId": "purple~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 485352978,
+"w": 950,
+"h": 720,
+"hd": 485352978
+},
+"artistId": "a~purple",
+"label": "Softnoise 03",
+"type": "parallax",
+"slugs": [
+"w/fgt"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0IVm+srj[xJxdWToNoMoff7ayfQs=WAbHoM",
+"id": "1967429427"
+}
+]
+},
+"id": "a~purple_1fd6b4ee",
+"aie": false,
+"free": false,
+"categoryId": "purple~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 689654551,
+"w": 950,
+"h": 720,
+"hd": 689654551
+},
+"artistId": "a~purple",
+"label": "Radial 01",
+"type": "parallax",
+"slugs": [
+"w/37H"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0H+$Rs?01s?xJayaya{00a|^Pa{s?fQfQfQ",
+"id": "1318177293"
+}
+]
+},
+"id": "a~purple_2aca7ecf",
+"aie": false,
+"free": false,
+"categoryId": "purple~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1993373845,
+"w": 950,
+"h": 720,
+"hd": 1993373845
+},
+"artistId": "a~purple",
+"label": "Stripes 04",
+"type": "parallax",
+"slugs": [
+"w/UgO"
+],
+"isSingle": false,
+"collectionLabel": "Purple Stripes",
+"previews": {
+"standard": [
+{
+"blurHash": "U0KHs4[NKHt9;DByByr^#Z:uKHSw[N7n7nr^",
+"id": "1472792927"
+}
+]
+},
+"id": "a~purple_5a2d8b29",
+"aie": false,
+"free": false,
+"categoryId": "purple~stripes"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1688868872,
+"w": 950,
+"h": 720,
+"hd": 1688868872
+},
+"artistId": "a~purple",
+"label": "Linear 04",
+"type": "parallax",
+"slugs": [
+"w/faN"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U8HS-JEhjta$}Yaza|fQoKjtfQjts:fQa|fQ",
+"id": "1199724756"
+}
+]
+},
+"id": "a~purple_6a9f2119",
+"aie": false,
+"free": false,
+"categoryId": "purple~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 400402831,
+"w": 950,
+"h": 720,
+"hd": 400402831
+},
+"artistId": "a~purple",
+"label": "Linear 02",
+"type": "parallax",
+"slugs": [
+"w/Nfd"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0J~2;0vj]Sc0cjvoMfQoMoMayoMNqayj]ay",
+"id": "1622082296"
+}
+]
+},
+"id": "a~purple_7f39dad1",
+"aie": false,
+"free": false,
+"categoryId": "purple~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1824402482,
+"w": 950,
+"h": 720,
+"hd": 1824402482
+},
+"artistId": "a~purple",
+"label": "Stripes 03",
+"type": "parallax",
+"slugs": [
+"w/J2X"
+],
+"isSingle": false,
+"collectionLabel": "Purple Stripes",
+"previews": {
+"standard": [
+{
+"blurHash": "U0KuL$xJj[xJ0vjuj[a{0]ayayfQ0cfQjuj[",
+"id": "623300781"
+}
+]
+},
+"id": "a~purple_42832842",
+"aie": false,
+"free": false,
+"categoryId": "purple~stripes"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1550600382,
+"w": 950,
+"h": 720,
+"hd": 1550600382
+},
+"artistId": "a~purple",
+"label": "Radial 02",
+"type": "parallax",
+"slugs": [
+"w/Czc"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U3KRZDoN;eoMoNfQfQfQ{^fQOEfQoMfQfQfR",
+"id": "1303971958"
+}
+]
+},
+"id": "a~purple_4605b4dc",
+"aie": false,
+"free": false,
+"categoryId": "purple~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 700909668,
+"w": 950,
+"h": 720,
+"hd": 700909668
+},
+"artistId": "a~purple",
+"label": "Stripes 02",
+"type": "parallax",
+"slugs": [
+"w/Iqz"
+],
+"isSingle": false,
+"collectionLabel": "Purple Stripes",
+"previews": {
+"standard": [
+{
+"blurHash": "U1KIHJxHoJ$%oO-NWF}#s+-NxB}$xHETs+0?",
+"id": "962357810"
+}
+]
+},
+"id": "a~purple_47874ddb",
+"aie": false,
+"free": false,
+"categoryId": "purple~stripes"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1577518206,
+"w": 950,
+"h": 720,
+"hd": 1577518206
+},
+"artistId": "a~purple",
+"label": "Checkers 02",
+"type": "parallax",
+"slugs": [
+"w/ARj"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0IL?^xJR:xJxJayayj[R:j?R:j?s?jua#fP",
+"id": "110582586"
+}
+]
+},
+"id": "a~purple_4916ca1a",
+"aie": false,
+"free": false,
+"categoryId": "purple~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 163652046,
+"w": 950,
+"h": 720,
+"hd": 163652046
+},
+"artistId": "a~purple",
+"label": "Softnoise 01",
+"type": "parallax",
+"slugs": [
+"w/yfI"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0HS%^s=WTs=s=a#axj]WUjuWTWTs=WTaxs=",
+"id": "864595884"
+}
+]
+},
+"id": "a~purple_5583f55a",
+"aie": false,
+"free": false,
+"categoryId": "purple~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 811992277,
+"w": 950,
+"h": 720,
+"hd": 811992277
+},
+"artistId": "a~purple",
+"label": "Linear 03",
+"type": "parallax",
+"slugs": [
+"w/3Zl"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U5GsqT0^oKR*}vWVa|a|oLjufQjus;a|a{fQ",
+"id": "580913576"
+}
+]
+},
+"id": "a~purple_609cdac9",
+"aie": false,
+"free": false,
+"categoryId": "purple~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1753511667,
+"w": 950,
+"h": 720,
+"hd": 1753511667
+},
+"artistId": "a~purple",
+"label": "Checkers 03",
+"type": "parallax",
+"slugs": [
+"w/wIo"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0HvdYxJayxJs?skj[skj[oIa|oIs?sja}sj",
+"id": "931408770"
+}
+]
+},
+"id": "a~purple_65be45b1",
+"aie": false,
+"free": false,
+"categoryId": "purple~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1182957833,
+"w": 950,
+"h": 720,
+"hd": 1182957833
+},
+"artistId": "a~purple",
+"label": "Softnoise 02",
+"type": "parallax",
+"slugs": [
+"w/Yr7"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0ICeYs=oNxJxJa_ayjuoLj@a^oMxJjua}a_",
+"id": "210749416"
+}
+]
+},
+"id": "a~purple_88afe992",
+"aie": false,
+"free": false,
+"categoryId": "purple~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1020675898,
+"w": 950,
+"h": 720,
+"hd": 1020675898
+},
+"artistId": "a~purple",
+"label": "Softnoise 04",
+"type": "parallax",
+"slugs": [
+"w/ve6"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0G?pKj]oMsrxJfPS0WAbGWUazoNxJj[R~s=",
+"id": "789138666"
+}
+]
+},
+"id": "a~purple_b3a60e26",
+"aie": false,
+"free": false,
+"categoryId": "purple~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 75745464,
+"w": 950,
+"h": 720,
+"hd": 75745464
+},
+"artistId": "a~purple",
+"label": "Checkers 01",
+"type": "parallax",
+"slugs": [
+"w/uXz"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0J~5y$+oHxIxJfPj[jsoIoHoHoHxJjsjsfP",
+"id": "707408251"
+}
+]
+},
+"id": "a~purple_b75bd16d",
+"aie": false,
+"free": false,
+"categoryId": "purple~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 2131039080,
+"w": 950,
+"h": 720,
+"hd": 2131039080
+},
+"artistId": "a~purple",
+"label": "Radial 04",
+"type": "parallax",
+"slugs": [
+"w/AS7"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U9Lw.^j]=Mj]j]fQfQfQ}HfQNtfQoMfQfQfQ",
+"id": "955846673"
+}
+]
+},
+"id": "a~purple_cc0ef604",
+"aie": false,
+"free": false,
+"categoryId": "purple~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1552767083,
+"w": 950,
+"h": 720,
+"hd": 1552767083
+},
+"artistId": "a~purple",
+"label": "Radial 03",
+"type": "parallax",
+"slugs": [
+"w/vTD"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U8LnRaj]=hj]j]fQfQfQ}KfQNrfQoMfQfQfQ",
+"id": "921220801"
+}
+]
+},
+"id": "a~purple_dce96beb",
+"aie": false,
+"free": false,
+"categoryId": "purple~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 93146178,
+"w": 950,
+"h": 720,
+"hd": 93146178
+},
+"artistId": "a~purple",
+"label": "Stripes 01",
+"type": "parallax",
+"slugs": [
+"w/0h5"
+],
+"isSingle": false,
+"collectionLabel": "Purple Stripes",
+"previews": {
+"standard": [
+{
+"blurHash": "U0Hcqa$n2Q$ns?fRfRfRfQayjufQs?fQfQfQ",
+"id": "440049654"
+}
+]
+},
+"id": "a~purple_dddd2010",
+"aie": false,
+"free": false,
+"categoryId": "purple~stripes"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 629382555,
+"w": 950,
+"h": 720,
+"hd": 629382555
+},
+"artistId": "a~purple",
+"label": "Linear 01",
+"type": "parallax",
+"slugs": [
+"w/wpv"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U7HT9_,qjtoM|sjta|jto1a|fQa|sofQa|fQ",
+"id": "290296934"
+}
+]
+},
+"id": "a~purple_eeb42cb5",
+"aie": false,
+"free": false,
+"categoryId": "purple~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1971414575,
+"w": 950,
+"h": 720,
+"hd": 1971414575
+},
+"artistId": "a~red",
+"label": "Stripes 02",
+"type": "parallax",
+"slugs": [
+"w/PUw"
+],
+"isSingle": false,
+"collectionLabel": "Red Stripes",
+"previews": {
+"standard": [
+{
+"blurHash": "U0Pdht$P=Y$Q$Qa#S4WX}RWX}RS4}9w]]$$f",
+"id": "1685848064"
+}
+]
+},
+"id": "a~red_0f5de241",
+"aie": false,
+"free": false,
+"categoryId": "red~stripes"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1309660142,
+"w": 950,
+"h": 720,
+"hd": 1309660142
+},
+"artistId": "a~red",
+"label": "Radial 03",
+"type": "parallax",
+"slugs": [
+"w/1J7"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U5P_gWoL?FoLoLfQfQfQ~TfQNHfQoLfQfQfQ",
+"id": "15564027"
+}
+]
+},
+"id": "a~red_3ecc857b",
+"aie": false,
+"free": false,
+"categoryId": "red~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 2137991487,
+"w": 950,
+"h": 720,
+"hd": 2137991487
+},
+"artistId": "a~red",
+"label": "Stripes 01",
+"type": "parallax",
+"slugs": [
+"w/dYo"
+],
+"isSingle": false,
+"collectionLabel": "Red Stripes",
+"previews": {
+"standard": [
+{
+"blurHash": "U6Pd@woLj[oL4;%1j@j[0gE2s:ay~ANHNHay",
+"id": "380374664"
+}
+]
+},
+"id": "a~red_3fc71070",
+"aie": false,
+"free": false,
+"categoryId": "red~stripes"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 653498296,
+"w": 950,
+"h": 720,
+"hd": 653498296
+},
+"artistId": "a~red",
+"label": "Stripes 03",
+"type": "parallax",
+"slugs": [
+"w/J91"
+],
+"isSingle": false,
+"collectionLabel": "Red Stripes",
+"previews": {
+"standard": [
+{
+"blurHash": "U0O*3M#Be:$j*Eg1epbGl6jGafkB%Kg{eVkB",
+"id": "1131861522"
+}
+]
+},
+"id": "a~red_6c339aa0",
+"aie": false,
+"free": false,
+"categoryId": "red~stripes"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 2136721956,
+"w": 950,
+"h": 720,
+"hd": 2136721956
+},
+"artistId": "a~red",
+"label": "Softnoise 01",
+"type": "parallax",
+"slugs": [
+"w/VRj"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0L+ptw{w{soW;WVNusUfka|jtsoW;j[oLWV",
+"id": "1920963583"
+}
+]
+},
+"id": "a~red_9a34e2eb",
+"aie": false,
+"free": false,
+"categoryId": "red~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 452959848,
+"w": 950,
+"h": 720,
+"hd": 452959848
+},
+"artistId": "a~red",
+"label": "Stripes 04",
+"type": "parallax",
+"slugs": [
+"w/zJ8"
+],
+"isSingle": false,
+"collectionLabel": "Red Stripes",
+"previews": {
+"standard": [
+{
+"blurHash": "U1Okrh#EnSt4+5zeLCbZH2.zzeTEPfLCrcnl",
+"id": "1533108471"
+}
+]
+},
+"id": "a~red_359ea0ca",
+"aie": false,
+"free": false,
+"categoryId": "red~stripes"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1507932727,
+"w": 950,
+"h": 720,
+"hd": 1507932727
+},
+"artistId": "a~red",
+"label": "Softnoise 02",
+"type": "parallax",
+"slugs": [
+"w/LRM"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0Lc3+w{SM,@,@jtw{S2Nuw{soWpsoWpw{Nu",
+"id": "852385836"
+}
+]
+},
+"id": "a~red_3694332c",
+"aie": false,
+"free": false,
+"categoryId": "red~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 856813604,
+"w": 950,
+"h": 720,
+"hd": 856813604
+},
+"artistId": "a~red",
+"label": "Linear 02",
+"type": "parallax",
+"slugs": [
+"w/XEG"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0OtYf_6kB$y?gf*jubGbGazjtju$ybGjujt",
+"id": "812779698"
+}
+]
+},
+"id": "a~red_4190277d",
+"aie": false,
+"free": false,
+"categoryId": "red~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 257329560,
+"w": 950,
+"h": 720,
+"hd": 257329560
+},
+"artistId": "a~red",
+"label": "Linear 01",
+"type": "parallax",
+"slugs": [
+"w/KGB"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U3N=6=1vjtWp|_a|a|jtjtjta|jtw{fQa|fQ",
+"id": "572053432"
+}
+]
+},
+"id": "a~red_441c5442",
+"aie": false,
+"free": false,
+"categoryId": "red~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1055720438,
+"w": 950,
+"h": 720,
+"hd": 1055720438
+},
+"artistId": "a~red",
+"label": "Radial 04",
+"type": "parallax",
+"slugs": [
+"w/KNI"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U6QDZKoL;.o2oLfQfQfQ|kjtN?fQoLfQfQfQ",
+"id": "1029940173"
+}
+]
+},
+"id": "a~red_66c7b2ef",
+"aie": false,
+"free": false,
+"categoryId": "red~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 403547475,
+"w": 950,
+"h": 720,
+"hd": 403547475
+},
+"artistId": "a~red",
+"label": "Checkers 01",
+"type": "parallax",
+"slugs": [
+"w/uwJ"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0P^[{$i$%$i,@fQoLjt$%WV$%ay,@j[oLa|",
+"id": "1544482543"
+}
+]
+},
+"id": "a~red_80d1b5fe",
+"aie": false,
+"free": false,
+"categoryId": "red~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1874558628,
+"w": 950,
+"h": 720,
+"hd": 1874558628
+},
+"artistId": "a~red",
+"label": "Checkers 02",
+"type": "parallax",
+"slugs": [
+"w/WEv"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0N=PcxGSgxG$ja|bHa|SgSgSgSg$ja|a|bH",
+"id": "1112745902"
+}
+]
+},
+"id": "a~red_83b82b16",
+"aie": false,
+"free": false,
+"categoryId": "red~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 2076476629,
+"w": 950,
+"h": 720,
+"hd": 2076476629
+},
+"artistId": "a~red",
+"label": "Softnoise 04",
+"type": "parallax",
+"slugs": [
+"w/FJa"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0NOayw{S2w{$Pa|sow{W;WVoLay$jS2soso",
+"id": "1970342425"
+}
+]
+},
+"id": "a~red_86f45787",
+"aie": false,
+"free": false,
+"categoryId": "red~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 2001841401,
+"w": 950,
+"h": 720,
+"hd": 2001841401
+},
+"artistId": "a~red",
+"label": "Radial 02",
+"type": "parallax",
+"slugs": [
+"w/QIZ"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U6QDV%oL;ho1oLfQfQfQ|IfQODfQo1fQfQfQ",
+"id": "1743614580"
+}
+]
+},
+"id": "a~red_a0431bfe",
+"aie": false,
+"free": false,
+"categoryId": "red~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 572893816,
+"w": 950,
+"h": 720,
+"hd": 572893816
+},
+"artistId": "a~red",
+"label": "Linear 03",
+"type": "parallax",
+"slugs": [
+"w/3su"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U1OackEEbHsE}yjYa#jtj[fifQfPxBfQa#jt",
+"id": "1949566558"
+}
+]
+},
+"id": "a~red_aadf0767",
+"aie": false,
+"free": false,
+"categoryId": "red~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1607731954,
+"w": 950,
+"h": 720,
+"hd": 1607731954
+},
+"artistId": "a~red",
+"label": "Checkers 04",
+"type": "parallax",
+"slugs": [
+"w/xGC"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0P1XC$ioI$i$ia{j?oKsmoJoIj?$ij@j?js",
+"id": "511097224"
+}
+]
+},
+"id": "a~red_b645572f",
+"aie": false,
+"free": false,
+"categoryId": "red~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 344130816,
+"w": 950,
+"h": 720,
+"hd": 344130816
+},
+"artistId": "a~red",
+"label": "Softnoise 03",
+"type": "parallax",
+"slugs": [
+"w/yAH"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0Nhc[w{o1w{w{o1soa|NujtfQWpw{a|o1o1",
+"id": "122849736"
+}
+]
+},
+"id": "a~red_b977d7c0",
+"aie": false,
+"free": false,
+"categoryId": "red~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 141779588,
+"w": 950,
+"h": 720,
+"hd": 141779588
+},
+"artistId": "a~red",
+"label": "Radial 01",
+"type": "parallax",
+"slugs": [
+"w/g0U"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0N5GC$Q0rw{$Qa|a|jt0GfR}Sa|w|jtjtjt",
+"id": "493358955"
+}
+]
+},
+"id": "a~red_c4554f39",
+"aie": false,
+"free": false,
+"categoryId": "red~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 214256993,
+"w": 950,
+"h": 720,
+"hd": 214256993
+},
+"artistId": "a~red",
+"label": "Linear 04",
+"type": "parallax",
+"slugs": [
+"w/xXI"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U2OR5A]}jtw^=YfQfQfQjtfQjtfQw^a|fQfQ",
+"id": "2001730260"
+}
+]
+},
+"id": "a~red_e63c4f79",
+"aie": false,
+"free": false,
+"categoryId": "red~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 410927256,
+"w": 950,
+"h": 720,
+"hd": 410927256
+},
+"artistId": "a~red",
+"label": "Checkers 03",
+"type": "parallax",
+"slugs": [
+"w/fyu"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0O@tT$QbE$Q$Pa|a{fQbEjubEju$Pa|j?fQ",
+"id": "1386765660"
+}
+]
+},
+"id": "a~red_ff550b50",
+"aie": false,
+"free": false,
+"categoryId": "red~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1397007460,
+"w": 950,
+"h": 720,
+"hd": 1397007460
+},
+"artistId": "a~skyblue",
+"label": "Radial 01",
+"type": "parallax",
+"slugs": [
+"w/Onb"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0AD+vo~HXo~o~fQf6fkD4f8uef6o~fkfQay",
+"id": "1929829385"
+}
+]
+},
+"id": "a~skyblue_1a92aa67",
+"aie": false,
+"free": false,
+"categoryId": "skyblue~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1389647135,
+"w": 950,
+"h": 720,
+"hd": 1389647135
+},
+"artistId": "a~skyblue",
+"label": "Checkers 02",
+"type": "parallax",
+"slugs": [
+"w/V1y"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0A:{hn;b:n=o~f8fif8b:i+c6ikp0jbfie=",
+"id": "1661165199"
+}
+]
+},
+"id": "a~skyblue_1abd45a5",
+"aie": false,
+"free": false,
+"categoryId": "skyblue~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 967866934,
+"w": 950,
+"h": 720,
+"hd": 967866934
+},
+"artistId": "a~skyblue",
+"label": "Stripes 03",
+"type": "parallax",
+"slugs": [
+"w/bpO"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0AWxlpJg2pJm[k:ZQl7kpkpkpkphklkY-l+",
+"id": "1969088364"
+}
+]
+},
+"id": "a~skyblue_1c2f2a87",
+"aie": false,
+"free": false,
+"categoryId": "skyblue~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 419035305,
+"w": 950,
+"h": 720,
+"hd": 419035305
+},
+"artistId": "a~skyblue",
+"label": "Linear 04",
+"type": "parallax",
+"slugs": [
+"w/gZ1"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U5A|sSP;fkbwT|fkfQfQfkf6fQfQbvfkfQfQ",
+"id": "535873807"
+}
+]
+},
+"id": "a~skyblue_03b4c805",
+"aie": false,
+"free": false,
+"categoryId": "skyblue~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1027985698,
+"w": 950,
+"h": 720,
+"hd": 1027985698
+},
+"artistId": "a~skyblue",
+"label": "Checkers 04",
+"type": "parallax",
+"slugs": [
+"w/BeD"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0A#nYpbf$ptpbl0kSp+f$kkkAk*pblJkRq1",
+"id": "623958638"
+}
+]
+},
+"id": "a~skyblue_4a37c65f",
+"aie": false,
+"free": false,
+"categoryId": "skyblue~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 909391871,
+"w": 950,
+"h": 720,
+"hd": 909391871
+},
+"artistId": "a~skyblue",
+"label": "Radial 03",
+"type": "parallax",
+"slugs": [
+"w/4T3"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U1Ba6vo#-Eo#kXfkfkfQ]@fQR$fko#f6fQfk",
+"id": "646262113"
+}
+]
+},
+"id": "a~skyblue_16998869",
+"aie": false,
+"free": false,
+"categoryId": "skyblue~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1045473986,
+"w": 950,
+"h": 720,
+"hd": 1045473986
+},
+"artistId": "a~skyblue",
+"label": "Linear 03",
+"type": "parallax",
+"slugs": [
+"w/Q4D"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "UDANH3a4fQf8q9f7f7fQf%fjfQfQkVfQfQfQ",
+"id": "914281329"
+}
+]
+},
+"id": "a~skyblue_31309f82",
+"aie": false,
+"free": false,
+"categoryId": "skyblue~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1163193469,
+"w": 950,
+"h": 720,
+"hd": 1163193469
+},
+"artistId": "a~skyblue",
+"label": "Radial 04",
+"type": "parallax",
+"slugs": [
+"w/zVR"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U78+.NkCPdkCkCfQfQfQLlfQnAfQf+fQfQfQ",
+"id": "168544404"
+}
+]
+},
+"id": "a~skyblue_339d23c4",
+"aie": false,
+"free": false,
+"categoryId": "skyblue~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 43025995,
+"w": 950,
+"h": 720,
+"hd": 43025995
+},
+"artistId": "a~skyblue",
+"label": "Linear 02",
+"type": "parallax",
+"slugs": [
+"w/A5z"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U2BZ-6.%jtr{HJazjufkj@fjfQfjXlfQf7fk",
+"id": "1828651376"
+}
+]
+},
+"id": "a~skyblue_443fefc3",
+"aie": false,
+"free": false,
+"categoryId": "skyblue~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 2048165441,
+"w": 950,
+"h": 720,
+"hd": 2048165441
+},
+"artistId": "a~skyblue",
+"label": "Stripes 04",
+"type": "parallax",
+"slugs": [
+"w/bKr"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U5A;goW[a%oaW]WKoXjrsyNSWJoFs|szWba%",
+"id": "1428438784"
+}
+]
+},
+"id": "a~skyblue_51561121",
+"aie": false,
+"free": false,
+"categoryId": "skyblue~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1079609871,
+"w": 950,
+"h": 720,
+"hd": 1079609871
+},
+"artistId": "a~skyblue",
+"label": "Linear 01",
+"type": "parallax",
+"slugs": [
+"w/AjX"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U2Bjh9[hj[s=G5ayf7fkjta{fkfPXRfQjufQ",
+"id": "47293531"
+}
+]
+},
+"id": "a~skyblue_81939367",
+"aie": false,
+"free": false,
+"categoryId": "skyblue~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 762793902,
+"w": 950,
+"h": 720,
+"hd": 762793902
+},
+"artistId": "a~skyblue",
+"label": "Softnoise 03",
+"type": "parallax",
+"slugs": [
+"w/pVB"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U09U4|kXaeo~f,kDkCkWfikDaeaJpJf8aJj[",
+"id": "1517786518"
+}
+]
+},
+"id": "a~skyblue_a3428fd6",
+"aie": false,
+"free": false,
+"categoryId": "skyblue~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1809019314,
+"w": 950,
+"h": 720,
+"hd": 1809019314
+},
+"artistId": "a~skyblue",
+"label": "Softnoise 02",
+"type": "parallax",
+"slugs": [
+"w/x41"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U09-bHo~f+o~krj[j[aeaeflkWado~jakDae",
+"id": "1726018805"
+}
+]
+},
+"id": "a~skyblue_ad35d858",
+"aie": false,
+"free": false,
+"categoryId": "skyblue~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1265066061,
+"w": 950,
+"h": 720,
+"hd": 1265066061
+},
+"artistId": "a~skyblue",
+"label": "Checkers 03",
+"type": "parallax",
+"slugs": [
+"w/XPl"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0A5g]pIcTpIpbf6b@f6X#jbX#f7pbf7b@f6",
+"id": "431353462"
+}
+]
+},
+"id": "a~skyblue_b7ae52e4",
+"aie": false,
+"free": false,
+"categoryId": "skyblue~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 87570408,
+"w": 950,
+"h": 720,
+"hd": 87570408
+},
+"artistId": "a~skyblue",
+"label": "Stripes 01",
+"type": "parallax",
+"slugs": [
+"w/dQa"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0Bsp*r}u_v?r}TUrMPd*avE.+z6Q0z6LR.+",
+"id": "954397848"
+}
+]
+},
+"id": "a~skyblue_b40b02c4",
+"aie": false,
+"free": false,
+"categoryId": "skyblue~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 852428624,
+"w": 950,
+"h": 720,
+"hd": 852428624
+},
+"artistId": "a~skyblue",
+"label": "Softnoise 04",
+"type": "parallax",
+"slugs": [
+"w/YTe"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U09_30o~adpJpJbHayf5ayfPf6aepIjuaKf+",
+"id": "548123071"
+}
+]
+},
+"id": "a~skyblue_c1ecb0e7",
+"aie": false,
+"free": false,
+"categoryId": "skyblue~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 837600645,
+"w": 950,
+"h": 720,
+"hd": 837600645
+},
+"artistId": "a~skyblue",
+"label": "Radial 02",
+"type": "parallax",
+"slugs": [
+"w/pJV"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U69eESkCRakCkCfQfQfQM?fRoZfQkCfQfQfQ",
+"id": "547833880"
+}
+]
+},
+"id": "a~skyblue_e513d286",
+"aie": false,
+"free": false,
+"categoryId": "skyblue~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1348633849,
+"w": 950,
+"h": 720,
+"hd": 1348633849
+},
+"artistId": "a~skyblue",
+"label": "Softnoise 01",
+"type": "parallax",
+"slugs": [
+"w/KxR"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U09nMqkWkXo~pJadfPadaJf6kWaypJkWfkae",
+"id": "455177149"
+}
+]
+},
+"id": "a~skyblue_ee0b7bdf",
+"aie": false,
+"free": false,
+"categoryId": "skyblue~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1702559914,
+"w": 950,
+"h": 720,
+"hd": 1702559914
+},
+"artistId": "a~skyblue",
+"label": "Checkers 01",
+"type": "parallax",
+"slugs": [
+"w/4q3"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0ANcno~kBo$pcU{k:Uef*aef*aLpcUyk;QA",
+"id": "1466705960"
+}
+]
+},
+"id": "a~skyblue_fb8c22d2",
+"aie": false,
+"free": false,
+"categoryId": "skyblue~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 272130167,
+"w": 950,
+"h": 720,
+"hd": 272130167
+},
+"artistId": "a~skyblue",
+"label": "Stripes 02",
+"type": "parallax",
+"slugs": [
+"w/PhU"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U2AhMgkEk|kWZ1a8fifiZJZtk|f8klZJe?fP",
+"id": "175225844"
+}
+]
+},
+"id": "a~skyblue_fd80f843",
+"aie": false,
+"free": false,
+"categoryId": "skyblue~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 597927397,
+"w": 950,
+"h": 720,
+"hd": 597927397
+},
+"artistId": "a~teal",
+"label": "Radial 01",
+"type": "parallax",
+"slugs": [
+"w/yx1"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "UCB8$kj[cGkBj[fQfQfQcbfQemfQkCfQfQfQ",
+"id": "1612586187"
+}
+]
+},
+"id": "a~teal_3fba0e45",
+"aie": false,
+"free": false,
+"categoryId": "teal~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1765637383,
+"w": 950,
+"h": 720,
+"hd": 1765637383
+},
+"artistId": "a~teal",
+"label": "Softnoise 02",
+"type": "parallax",
+"slugs": [
+"w/ZFI"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0AO4YpHbbo}pbaef6aKjse.aKj]k9kWkWfk",
+"id": "1903074942"
+}
+]
+},
+"id": "a~teal_6ad8f26e",
+"aie": false,
+"free": false,
+"categoryId": "teal~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1790330435,
+"w": 950,
+"h": 720,
+"hd": 1790330435
+},
+"artistId": "a~teal",
+"label": "Radial 04",
+"type": "parallax",
+"slugs": [
+"w/SP1"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U19y3kkp9pkVkpfQfjfQ0cfPxgf6kofQf7fQ",
+"id": "1533700751"
+}
+]
+},
+"id": "a~teal_6d315aaa",
+"aie": false,
+"free": false,
+"categoryId": "teal~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1662829130,
+"w": 950,
+"h": 720,
+"hd": 1662829130
+},
+"artistId": "a~teal",
+"label": "Checkers 04",
+"type": "parallax",
+"slugs": [
+"w/F3W"
+],
+"isSingle": false,
+"collectionLabel": "Teal Checkers",
+"previews": {
+"standard": [
+{
+"blurHash": "U0A}sip2akkcpJaka$alakaUakV,pJakfAaT",
+"id": "1141849347"
+}
+]
+},
+"id": "a~teal_7e512453",
+"aie": false,
+"free": false,
+"categoryId": "teal~checkers"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1610690524,
+"w": 950,
+"h": 720,
+"hd": 1610690524
+},
+"artistId": "a~teal",
+"label": "Checkers 03",
+"type": "parallax",
+"slugs": [
+"w/Kj1"
+],
+"isSingle": false,
+"collectionLabel": "Teal Checkers",
+"previews": {
+"standard": [
+{
+"blurHash": "U0Ar9Xb.ohSYpIW9j^V=ohRNo#R2pIW9kDV=",
+"id": "1605407902"
+}
+]
+},
+"id": "a~teal_8f16a88a",
+"aie": false,
+"free": false,
+"categoryId": "teal~checkers"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1990983851,
+"w": 950,
+"h": 720,
+"hd": 1990983851
+},
+"artistId": "a~teal",
+"label": "Stripes 04",
+"type": "parallax",
+"slugs": [
+"w/puZ"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0Ah*IpGbVpIpIS:r~s0axbEW+jwpIOfs0s0",
+"id": "1195439871"
+}
+]
+},
+"id": "a~teal_152f185a",
+"aie": false,
+"free": false,
+"categoryId": "teal~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1152959847,
+"w": 950,
+"h": 720,
+"hd": 1152959847
+},
+"artistId": "a~teal",
+"label": "Softnoise 03",
+"type": "parallax",
+"slugs": [
+"w/XuG"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0A4[_pIaKpbpbkWaKaKaekCj[j[f+o|f*ae",
+"id": "1528049319"
+}
+]
+},
+"id": "a~teal_19040969",
+"aie": false,
+"free": false,
+"categoryId": "teal~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 983917838,
+"w": 950,
+"h": 720,
+"hd": 983917838
+},
+"artistId": "a~teal",
+"label": "Radial 03",
+"type": "parallax",
+"slugs": [
+"w/qSW"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U3A=L7kVWKkVkVfQf6fQRvfRj:fQkWfQfQfQ",
+"id": "518680318"
+}
+]
+},
+"id": "a~teal_37f75f52",
+"aie": false,
+"free": false,
+"categoryId": "teal~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 913317343,
+"w": 950,
+"h": 720,
+"hd": 913317343
+},
+"artistId": "a~teal",
+"label": "Checkers 02",
+"type": "parallax",
+"slugs": [
+"w/9IN"
+],
+"isSingle": false,
+"collectionLabel": "Teal Checkers",
+"previews": {
+"standard": [
+{
+"blurHash": "U0B@ogpHjZpHtQjYjEe.aef6jsf6tPjYjEjF",
+"id": "1933659140"
+}
+]
+},
+"id": "a~teal_48e7c94e",
+"aie": false,
+"free": false,
+"categoryId": "teal~checkers"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 979776225,
+"w": 950,
+"h": 720,
+"hd": 979776225
+},
+"artistId": "a~teal",
+"label": "Stripes 01",
+"type": "parallax",
+"slugs": [
+"w/SD8"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0AF8HpHj[k;.9-?ax%ND#-?xwWAS^Ri?d-?",
+"id": "565532437"
+}
+]
+},
+"id": "a~teal_52208424",
+"aie": false,
+"free": false,
+"categoryId": "teal~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1082444633,
+"w": 950,
+"h": 720,
+"hd": 1082444633
+},
+"artistId": "a~teal",
+"label": "Linear 03",
+"type": "parallax",
+"slugs": [
+"w/vx4"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U2A=L4OLfRbwxjfPfRfPf6fjfQfPoxfQfQfQ",
+"id": "1404636044"
+}
+]
+},
+"id": "a~teal_66af302e",
+"aie": false,
+"free": false,
+"categoryId": "teal~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 824380751,
+"w": 950,
+"h": 720,
+"hd": 824380751
+},
+"artistId": "a~teal",
+"label": "Linear 01",
+"type": "parallax",
+"slugs": [
+"w/wnG"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U6Bk2,Y3fQg2UWfjf6fjfjf7fQf7bufQf7fQ",
+"id": "450203332"
+}
+]
+},
+"id": "a~teal_90df956d",
+"aie": false,
+"free": false,
+"categoryId": "teal~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 942679277,
+"w": 950,
+"h": 720,
+"hd": 942679277
+},
+"artistId": "a~teal",
+"label": "Softnoise 01",
+"type": "parallax",
+"slugs": [
+"w/cxx"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U0AO4YpbaKpHjFkWbHaeaKaKaLj?pbf8kBaK",
+"id": "1210896748"
+}
+]
+},
+"id": "a~teal_94dcd53b",
+"aie": false,
+"free": false,
+"categoryId": "teal~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1217309694,
+"w": 950,
+"h": 720,
+"hd": 1217309694
+},
+"artistId": "a~teal",
+"label": "Radial 02",
+"type": "parallax",
+"slugs": [
+"w/FNp"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U1AEy6kWD4kVkWfQf6fj4Tayu6fQkVf6fQfk",
+"id": "963536077"
+}
+]
+},
+"id": "a~teal_b6d1450f",
+"aie": false,
+"free": false,
+"categoryId": "teal~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1281464731,
+"w": 950,
+"h": 720,
+"hd": 1281464731
+},
+"artistId": "a~teal",
+"label": "Stripes 02",
+"type": "parallax",
+"slugs": [
+"w/fZv"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U2C1uhWHk8oyyMRWRDk9V{RWobj?.XMnMnk9",
+"id": "507140097"
+}
+]
+},
+"id": "a~teal_bbf73b04",
+"aie": false,
+"free": false,
+"categoryId": "teal~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 976970277,
+"w": 950,
+"h": 720,
+"hd": 976970277
+},
+"artistId": "a~teal",
+"label": "Linear 04",
+"type": "parallax",
+"slugs": [
+"w/1Sl"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U4AOio*0juoztlj[fQfQfkfQfQfQkWfkfQfQ",
+"id": "530884130"
+}
+]
+},
+"id": "a~teal_c3fdead7",
+"aie": false,
+"free": false,
+"categoryId": "teal~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1613283883,
+"w": 950,
+"h": 720,
+"hd": 1613283883
+},
+"artistId": "a~teal",
+"label": "Softnoise 04",
+"type": "parallax",
+"slugs": [
+"w/MrW"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U09-zVaekVkWo}f6a{kBpHaeaekWpHo}kCae",
+"id": "129545365"
+}
+]
+},
+"id": "a~teal_c74e7707",
+"aie": false,
+"free": false,
+"categoryId": "teal~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 307289763,
+"w": 950,
+"h": 720,
+"hd": 307289763
+},
+"artistId": "a~teal",
+"label": "Linear 02",
+"type": "parallax",
+"slugs": [
+"w/esd"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U6B*Q$wUfRogS=fPfQfQfRfPfQfQbXfQfRfQ",
+"id": "673441860"
+}
+]
+},
+"id": "a~teal_cb7a891f",
+"aie": false,
+"free": false,
+"categoryId": "teal~singles"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1134895526,
+"w": 950,
+"h": 720,
+"hd": 1134895526
+},
+"artistId": "a~teal",
+"label": "Checkers 01",
+"type": "parallax",
+"slugs": [
+"w/I0d"
+],
+"isSingle": false,
+"collectionLabel": "Teal Checkers",
+"previews": {
+"standard": [
+{
+"blurHash": "U0AFHgk;fjcDpHWVfkW.ayWVfQWVpHWVbGS1",
+"id": "23183344"
+}
+]
+},
+"id": "a~teal_e45bb179",
+"aie": false,
+"free": false,
+"categoryId": "teal~checkers"
+},
+{
+"isDark": false,
+"dlm": {
+"sd": 1114543287,
+"w": 950,
+"h": 720,
+"hd": 1114543287
+},
+"artistId": "a~teal",
+"label": "Stripes 03",
+"type": "parallax",
+"slugs": [
+"w/5ej"
+],
+"isSingle": true,
+"collectionLabel": "Singles",
+"previews": {
+"standard": [
+{
+"blurHash": "U1BHoZo#f|o|o#ini,cLf#f9f|f#oPh^iVYl",
+"id": "727219784"
+}
+]
+},
+"id": "a~teal_ecbe1958",
+"aie": false,
+"free": false,
+"categoryId": "teal~singles"
+}
+],
+"categories": [
+{
+"categoryType": "Singles",
+"remixIds": [
+"a~dark_1a6be1c2",
+"a~dark_2a94499a",
+"a~dark_3d3f96b6",
+"a~dark_5aac4409",
+"a~dark_6f403d93",
+"a~dark_7f726101",
+"a~dark_14f99db3",
+"a~dark_29e99407",
+"a~dark_3465ea9f",
+"a~dark_42494ea7",
+"a~dark_46abfcba",
+"a~dark_678850c2",
+"a~dark_aecb07c9",
+"a~dark_af001df1",
+"a~dark_cb9bbc2d",
+"a~dark_f83d7078"
+],
+"previewRemixId": "a~dark_1a6be1c2",
+"artistId": "a~dark",
+"id": "dark~singles",
+"label": "Singles",
+"slugs": [
+"dark/singles"
+]
+},
+{
+"categoryType": "Collection",
+"remixIds": [
+"a~dark_4ce58f5e",
+"a~dark_7a24214e",
+"a~dark_7c7f03e6",
+"a~dark_881d7742"
+],
+"purchasableProductIds": {
+"appStore": "wallapp.appstore.iap.collection.dark_stripes",
+"revenueCat": "Collection: Dark: Dark Stripes",
+"playStore": "wallapp.playstore.iap.collection.dark_stripes"
+},
+"previewRemixId": "a~dark_4ce58f5e",
+"artistId": "a~dark",
+"id": "dark~stripes",
+"label": "Dark Stripes",
+"slugs": [
+"dark/dark-stripes"
+]
+},
+{
+"categoryType": "Collection",
+"remixIds": [
+"a~green_41ba07dc",
+"a~green_b595f9ba",
+"a~green_c9086cc1",
+"a~green_d6bc4cdf"
+],
+"purchasableProductIds": {
+"appStore": "wallapp.appstore.iap.collection.green_linear",
+"revenueCat": "Collection: Green: Green Linear",
+"playStore": "wallapp.playstore.iap.collection.green_linear"
+},
+"previewRemixId": "a~green_41ba07dc",
+"artistId": "a~green",
+"id": "green~linear",
+"label": "Green Linear",
+"slugs": [
+"green/green-linear"
+]
+},
+{
+"categoryType": "Collection",
+"remixIds": [
+"a~green_3d5eebf9",
+"a~green_72e4dff4",
+"a~green_a43f344e",
+"a~green_b2af1c89"
+],
+"purchasableProductIds": {
+"appStore": "wallapp.appstore.iap.collection.green_radial",
+"revenueCat": "Collection: Green: Green Radial",
+"playStore": "wallapp.playstore.iap.collection.green_radial"
+},
+"previewRemixId": "a~green_3d5eebf9",
+"artistId": "a~green",
+"id": "green~radial",
+"label": "Green Radial",
+"slugs": [
+"green/green-radial"
+]
+},
+{
+"categoryType": "Singles",
+"remixIds": [
+"a~green_2fd1382b",
+"a~green_5a30783f",
+"a~green_9b4138c8",
+"a~green_53acaa28",
+"a~green_57d08a8e",
+"a~green_07275640",
+"a~green_b402e7bd",
+"a~green_bb9180a0",
+"a~green_cd0addf3",
+"a~green_d1a7d514",
+"a~green_e6ff2fe8",
+"a~green_e23210ec"
+],
+"previewRemixId": "a~green_2fd1382b",
+"artistId": "a~green",
+"id": "green~singles",
+"label": "Singles",
+"slugs": [
+"green/singles"
+]
+},
+{
+"categoryType": "Collection",
+"remixIds": [
+"a~indigo_169071f9",
+"a~indigo_3680e4d9",
+"a~indigo_977e8631",
+"a~indigo_c771b89c"
+],
+"purchasableProductIds": {
+"appStore": "wallapp.appstore.iap.collection.indigo_blue_stripes",
+"revenueCat": "Collection: Indigo: Indigo Stripes",
+"playStore": "wallapp.playstore.iap.collection.indigo_blue_stripes"
+},
+"previewRemixId": "a~indigo_169071f9",
+"artistId": "a~indigo",
+"id": "indigo~blue~stripes",
+"label": "Indigo Stripes",
+"slugs": [
+"indigo/indigo-stripes"
+]
+},
+{
+"categoryType": "Singles",
+"remixIds": [
+"a~indigo_1c0de6a0",
+"a~indigo_2b9149ab",
+"a~indigo_3f793c1c",
+"a~indigo_7ac3ebc3",
+"a~indigo_7dff82d1",
+"a~indigo_9e342fe3",
+"a~indigo_19905bc4",
+"a~indigo_224a67a6",
+"a~indigo_40d13105",
+"a~indigo_4778324c",
+"a~indigo_574e9b6d",
+"a~indigo_748f78c8",
+"a~indigo_823a056c",
+"a~indigo_87169069",
+"a~indigo_957b7970",
+"a~indigo_ad6b18e8"
+],
+"previewRemixId": "a~indigo_1c0de6a0",
+"artistId": "a~indigo",
+"id": "indigo~singles",
+"label": "Singles",
+"slugs": [
+"indigo/singles"
+]
+},
+{
+"categoryType": "Singles",
+"remixIds": [
+"a~lime_2ffe58ab",
+"a~lime_3fd8dd25",
+"a~lime_7f7c3e35",
+"a~lime_7f14862a",
+"a~lime_12043398",
+"a~lime_2506ec58",
+"a~lime_370e17e7",
+"a~lime_579dd441",
+"a~lime_57c90766",
+"a~lime_60f950f6",
+"a~lime_706e741c",
+"a~lime_81a169c8",
+"a~lime_be9e1534",
+"a~lime_c88ee265",
+"a~lime_d6c6ab16",
+"a~lime_e238e0e4",
+"a~lime_e265507f",
+"a~lime_e60a9188",
+"a~lime_e9700368",
+"a~lime_f8bc4daa"
+],
+"previewRemixId": "a~lime_2ffe58ab",
+"artistId": "a~lime",
+"id": "lime~singles",
+"label": "Singles",
+"slugs": [
+"lime/singles"
+]
+},
+{
+"categoryType": "Collection",
+"remixIds": [
+"a~magenta_8c236ac7",
+"a~magenta_6529e4fd",
+"a~magenta_7354fab6",
+"a~magenta_994ab9bd"
+],
+"purchasableProductIds": {
+"appStore": "wallapp.appstore.iap.collection.magenta_linear",
+"revenueCat": "Collection: Magenta: Magenta Linear",
+"playStore": "wallapp.playstore.iap.collection.magenta_linear"
+},
+"previewRemixId": "a~magenta_8c236ac7",
+"artistId": "a~magenta",
+"id": "magenta~linear",
+"label": "Magenta Linear",
+"slugs": [
+"magenta/magenta-linear"
+]
+},
+{
+"categoryType": "Singles",
+"remixIds": [
+"a~magenta_3f1e3ef2",
+"a~magenta_4e576228",
+"a~magenta_6dbfa22d",
+"a~magenta_6e899833",
+"a~magenta_18c7c65c",
+"a~magenta_202af181",
+"a~magenta_22e21b22",
+"a~magenta_3584b08a",
+"a~magenta_35c97847",
+"a~magenta_43d7555f",
+"a~magenta_49c3e3f1",
+"a~magenta_85a13686",
+"a~magenta_91458cf2",
+"a~magenta_93939d7d",
+"a~magenta_a9623046",
+"a~magenta_cee0f7d7"
+],
+"previewRemixId": "a~magenta_3f1e3ef2",
+"artistId": "a~magenta",
+"id": "magenta~singles",
+"label": "Singles",
+"slugs": [
+"magenta/singles"
+]
+},
+{
+"categoryType": "Singles",
+"remixIds": [
+"a~pink_0b31da8c",
+"a~pink_7b9d06ae",
+"a~pink_8f1aeb78",
+"a~pink_21954d3e",
+"a~pink_379b7e47",
+"a~pink_490bfa05",
+"a~pink_5796a202",
+"a~pink_650732a6",
+"a~pink_78f0b390",
+"a~pink_8111851a",
+"a~pink_0973d343",
+"a~pink_a3d6e7df",
+"a~pink_a853db99",
+"a~pink_a86ca8e9",
+"a~pink_b79e6a99",
+"a~pink_d26fa336"
+],
+"previewRemixId": "a~pink_0b31da8c",
+"artistId": "a~pink",
+"id": "pink~singles",
+"label": "Singles",
+"slugs": [
+"pink/singles"
+]
+},
+{
+"categoryType": "Collection",
+"remixIds": [
+"a~pink_01e73285",
+"a~pink_5b09e339",
+"a~pink_b25c3876",
+"a~pink_ce688a1c"
+],
+"purchasableProductIds": {
+"appStore": "wallapp.appstore.iap.collection.pink_softnoise",
+"revenueCat": "Collection: Pink: Pink Softnoise",
+"playStore": "wallapp.playstore.iap.collection.pink_softnoise"
+},
+"previewRemixId": "a~pink_01e73285",
+"artistId": "a~pink",
+"id": "pink~softnoise",
+"label": "Pink Softnoise",
+"slugs": [
+"pink/pink-softnoise"
+]
+},
+{
+"categoryType": "Singles",
+"remixIds": [
+"a~purple_0f43ce51",
+"a~purple_1fd6b4ee",
+"a~purple_2aca7ecf",
+"a~purple_6a9f2119",
+"a~purple_7f39dad1",
+"a~purple_4605b4dc",
+"a~purple_4916ca1a",
+"a~purple_5583f55a",
+"a~purple_609cdac9",
+"a~purple_65be45b1",
+"a~purple_88afe992",
+"a~purple_b3a60e26",
+"a~purple_b75bd16d",
+"a~purple_cc0ef604",
+"a~purple_dce96beb",
+"a~purple_eeb42cb5"
+],
+"previewRemixId": "a~purple_0f43ce51",
+"artistId": "a~purple",
+"id": "purple~singles",
+"label": "Singles",
+"slugs": [
+"purple/singles"
+]
+},
+{
+"categoryType": "Collection",
+"remixIds": [
+"a~purple_5a2d8b29",
+"a~purple_42832842",
+"a~purple_47874ddb",
+"a~purple_dddd2010"
+],
+"purchasableProductIds": {
+"appStore": "wallapp.appstore.iap.collection.purple_stripes",
+"revenueCat": "Collection: Purple: Purple Stripes",
+"playStore": "wallapp.playstore.iap.collection.purple_stripes"
+},
+"previewRemixId": "a~purple_5a2d8b29",
+"artistId": "a~purple",
+"id": "purple~stripes",
+"label": "Purple Stripes",
+"slugs": [
+"purple/purple-stripes"
+]
+},
+{
+"categoryType": "Singles",
+"remixIds": [
+"a~red_3ecc857b",
+"a~red_9a34e2eb",
+"a~red_3694332c",
+"a~red_4190277d",
+"a~red_441c5442",
+"a~red_66c7b2ef",
+"a~red_80d1b5fe",
+"a~red_83b82b16",
+"a~red_86f45787",
+"a~red_a0431bfe",
+"a~red_aadf0767",
+"a~red_b645572f",
+"a~red_b977d7c0",
+"a~red_c4554f39",
+"a~red_e63c4f79",
+"a~red_ff550b50"
+],
+"previewRemixId": "a~red_3ecc857b",
+"artistId": "a~red",
+"id": "red~singles",
+"label": "Singles",
+"slugs": [
+"red/singles"
+]
+},
+{
+"categoryType": "Collection",
+"remixIds": [
+"a~red_0f5de241",
+"a~red_3fc71070",
+"a~red_6c339aa0",
+"a~red_359ea0ca"
+],
+"purchasableProductIds": {
+"appStore": "wallapp.appstore.iap.collection.red_stripes",
+"revenueCat": "Collection: Red: Red Stripes",
+"playStore": "wallapp.playstore.iap.collection.red_stripes"
+},
+"previewRemixId": "a~red_0f5de241",
+"artistId": "a~red",
+"id": "red~stripes",
+"label": "Red Stripes",
+"slugs": [
+"red/red-stripes"
+]
+},
+{
+"categoryType": "Singles",
+"remixIds": [
+"a~skyblue_1a92aa67",
+"a~skyblue_1abd45a5",
+"a~skyblue_1c2f2a87",
+"a~skyblue_03b4c805",
+"a~skyblue_4a37c65f",
+"a~skyblue_16998869",
+"a~skyblue_31309f82",
+"a~skyblue_339d23c4",
+"a~skyblue_443fefc3",
+"a~skyblue_51561121",
+"a~skyblue_81939367",
+"a~skyblue_a3428fd6",
+"a~skyblue_ad35d858",
+"a~skyblue_b7ae52e4",
+"a~skyblue_b40b02c4",
+"a~skyblue_c1ecb0e7",
+"a~skyblue_e513d286",
+"a~skyblue_ee0b7bdf",
+"a~skyblue_fb8c22d2",
+"a~skyblue_fd80f843"
+],
+"previewRemixId": "a~skyblue_1a92aa67",
+"artistId": "a~skyblue",
+"id": "skyblue~singles",
+"label": "Singles",
+"slugs": [
+"skyblue/singles"
+]
+},
+{
+"categoryType": "Collection",
+"remixIds": [
+"a~teal_7e512453",
+"a~teal_8f16a88a",
+"a~teal_48e7c94e",
+"a~teal_e45bb179"
+],
+"purchasableProductIds": {
+"appStore": "wallapp.appstore.iap.collection.teal_checkers",
+"revenueCat": "Collection: Teal: Teal Checkers",
+"playStore": "wallapp.playstore.iap.collection.teal_checkers"
+},
+"previewRemixId": "a~teal_7e512453",
+"artistId": "a~teal",
+"id": "teal~checkers",
+"label": "Teal Checkers",
+"slugs": [
+"teal/teal-checkers"
+]
+},
+{
+"categoryType": "Singles",
+"remixIds": [
+"a~teal_3fba0e45",
+"a~teal_6ad8f26e",
+"a~teal_6d315aaa",
+"a~teal_152f185a",
+"a~teal_19040969",
+"a~teal_37f75f52",
+"a~teal_52208424",
+"a~teal_66af302e",
+"a~teal_90df956d",
+"a~teal_94dcd53b",
+"a~teal_b6d1450f",
+"a~teal_bbf73b04",
+"a~teal_c3fdead7",
+"a~teal_c74e7707",
+"a~teal_cb7a891f",
+"a~teal_ecbe1958"
+],
+"previewRemixId": "a~teal_3fba0e45",
+"artistId": "a~teal",
+"id": "teal~singles",
+"label": "Singles",
+"slugs": [
+"teal/singles"
+]
+}
+]
+}

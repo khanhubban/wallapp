@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ad_height_shortest">72dp</dimen>
+    <dimen name="ad_height_short">92dp</dimen>
+    <dimen name="ad_height_medium">160dp</dimen>
+    <dimen name="ad_height_tall">340dp</dimen>
+    <dimen name="ad_height_short_rounded">88dp</dimen>
+    <dimen name="ad_elevation">0dp</dimen>
+</resources>

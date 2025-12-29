@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- All these AdMob ids are testing ids provided by AdMob: https://developers.google.com/admob/android/test-ads#sample_ad_units -->
+    <string name="admob_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+
+    <string name="default_notification_channel_id" translatable="false">example.com.notification.channel.content_updates</string>
+
+</resources>

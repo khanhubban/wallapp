@@ -38,7 +38,7 @@ See [./doc/firebase-usage.md](./doc/firebase-usage.md).
 ### How is API data updated?
 For production apps, the API data should be uploaded for Firebase Storage. See `./service/service-export-remoteapi` and `./firebase-backend/README.md` for more information.
 
-This open source release is configured to support the use of API data bundled with the application. This code was added for the this open source release.
+The `bundled-assets` branch supports the use of API data bundled with the application. This code was added for the open source release to make it easier to run the project without needing to create and configure a Firebase project and upload data to Firebase Storage.
 
 ### What's the testing situation like in the project?
 Most tests are located in the `./shared/app/app-adapter` module. Running these tests on the Desktop platform is recommended.

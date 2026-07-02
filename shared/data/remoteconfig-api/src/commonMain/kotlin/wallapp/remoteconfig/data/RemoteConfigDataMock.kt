@@ -16,6 +16,8 @@ class RemoteConfigDataMock(
         MutableStateFlow(provider.accountGoogleSignInEnabled)
     override val appUpdateMinimumAllowedAppVersion_platformSpecific: StateFlow<AppVersion?> =
         MutableStateFlow(null)
+    override val catalogVersion: StateFlow<String> =
+        MutableStateFlow(provider.catalogVersion)
     override val contentShowSingles: StateFlow<Boolean> =
         MutableStateFlow(provider.contentShowSingles)
     override val feedAdsEnabled: StateFlow<Boolean> =

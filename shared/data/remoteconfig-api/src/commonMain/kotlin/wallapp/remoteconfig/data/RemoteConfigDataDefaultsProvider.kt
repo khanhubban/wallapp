@@ -11,6 +11,8 @@ open class RemoteConfigDataDefaultsProvider {
         get() = true
     open val appUpdateMinimumAllowedAppVersion_platformSpecific: String
         get() = ""
+    open val catalogVersion: String
+        get() = "99999999"
     open val contentShowSingles: Boolean
         get() = true
     open val feedAdsEnabled: Boolean

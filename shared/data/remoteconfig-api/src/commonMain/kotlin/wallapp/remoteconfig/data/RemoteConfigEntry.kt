@@ -28,6 +28,11 @@ sealed class RemoteConfigEntry<T : Any>(
         Provider.appUpdateMinimumAllowedAppVersion_platformSpecific,
     )
 
+    data object CatalogVersion : RemoteConfigEntry<String>(
+        RemoteConfigKey.CatalogVersion.key,
+        Provider.catalogVersion,
+    )
+
     data object ContentShowSingles : RemoteConfigEntry<Boolean>(
         RemoteConfigKey.ContentShowSingles.key,
         Provider.contentShowSingles,
@@ -139,6 +144,7 @@ fun RemoteConfigKey.toRemoteConfigEntry(): RemoteConfigEntry<*> =
         RemoteConfigKey.AccountSignInAppleEnabled -> RemoteConfigEntry.AccountSignInAppleEnabled
         RemoteConfigKey.AccountSignInGoogleEnabled -> RemoteConfigEntry.AccountGoogleSignInEnabled
         RemoteConfigKey.AppUpdateMinimumAllowedAppVersion -> RemoteConfigEntry.AppUpdateMinimumAllowedAppVersion
+        RemoteConfigKey.CatalogVersion -> RemoteConfigEntry.CatalogVersion
         RemoteConfigKey.ContentShowSingles -> RemoteConfigEntry.ContentShowSingles
         RemoteConfigKey.FeedAdsEnabled -> RemoteConfigEntry.FeedAdsEnabled
         RemoteConfigKey.HighlightArtist -> RemoteConfigEntry.HighlightArtist

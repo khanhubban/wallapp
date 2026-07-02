@@ -3,6 +3,7 @@ package wallapp.content
 import kotlinx.serialization.json.Json
 import wallapp.content.network.model.NetworkContent
 import wallapp.content.network.model.NetworkMedia
+import wallapp.search.model.NetworkSearchMetadata
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -22,6 +23,15 @@ class NetworkContentCompatTest {
     fun mediaDecode_toleratesMissingBlurHash() {
         val media = Json.decodeFromString<NetworkMedia>("""{"id":42}""")
         assertNull(media.blurHash)
+    }
+
+    // NetworkSearchMetadata decodes content-metadata-1a, published catalog data (spec §3.4).
+    // Today it uses ignoreUnknownKeys = false, so an additive field crashes every installed client.
+    @Test
+    fun searchMetadataDecode_ignoresUnknownKeys() {
+        val json = """{"remixMetadata":[],"artistMetadata":[],"folderMetadata":[],"futureField":{"x":1}}"""
+        val metadata = NetworkSearchMetadata.fromExportString(json)
+        assertEquals(0, metadata.remixMetadata.size)
     }
 
 }

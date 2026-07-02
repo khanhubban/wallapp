@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WallApp Content Pipeline — Design</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --panel: #181b24;
+    --panel2: #1f2330;
+    --border: #2e3444;
+    --text: #e8eaf0;
+    --muted: #9aa3b5;
+    --accent: #6c9ef8;
+    --green: #5fd39a;
+    --amber: #f0b45b;
+    --red: #f07178;
+    --purple: #b48af8;
+    --mono: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f6f7fa; --panel: #ffffff; --panel2: #eef1f6; --border: #d5dae4;
+      --text: #1c2130; --muted: #5c6577;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+    padding: 32px 24px 64px; line-height: 1.45;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  h1 { font-size: 22px; margin-bottom: 4px; }
+  .sub { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
+  .lane {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px 20px; margin-bottom: 0;
+  }
+  .lane h2 {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 1.2px;
+    color: var(--muted); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+  }
+  .lane h2 .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .flow-arrow {
+    text-align: center; color: var(--muted); font-size: 20px;
+    padding: 6px 0; position: relative;
+  }
+  .flow-arrow span {
+    font-size: 12px; background: var(--panel2); border: 1px solid var(--border);
+    border-radius: 20px; padding: 3px 12px; vertical-align: middle; margin-left: 8px;
+  }
+  .tree {
+    font-family: var(--mono); font-size: 12.5px; background: var(--panel2);
+    border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px;
+    white-space: pre; overflow-x: auto; color: var(--text);
+  }
+  .tree .c { color: var(--muted); }
+  .tree .k { color: var(--accent); }
+  .tree .g { color: var(--green); }
+  .tree .a { color: var(--amber); }
+  .stages { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .stage {
+    background: var(--panel2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px; position: relative;
+  }
+  .stage .num {
+    font-size: 11px; font-weight: 700; color: var(--bg);
+    background: var(--accent); border-radius: 20px; padding: 1px 8px;
+    display: inline-block; margin-bottom: 6px;
+  }
+  .stage h3 { font-size: 14px; margin-bottom: 6px; }
+  .stage p { font-size: 12px; color: var(--muted); }
+  .stage.fail { border-color: color-mix(in srgb, var(--red) 45%, var(--border)); }
+  .badge {
+    display: inline-block; font-size: 11px; border-radius: 5px; padding: 1px 7px;
+    margin-top: 8px; font-weight: 600;
+  }
+  .badge.stop { background: color-mix(in srgb, var(--red) 20%, transparent); color: var(--red); }
+  .badge.safe { background: color-mix(in srgb, var(--green) 18%, transparent); color: var(--green); }
+  .storage { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+  .version {
+    border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px;
+    background: var(--panel2); font-family: var(--mono); font-size: 12.5px;
+  }
+  .version.live { border-color: color-mix(in srgb, var(--green) 55%, var(--border)); }
+  .version.next { border-color: color-mix(in srgb, var(--amber) 55%, var(--border)); }
+  .version .tag { font-family: -apple-system, sans-serif; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .version.live .tag { color: var(--green); }
+  .version.next .tag { color: var(--amber); }
+  .version div.f { color: var(--muted); padding-left: 12px; }
+  .keyrow {
+    display: flex; align-items: center; gap: 12px; background: var(--panel2);
+    border: 1px dashed color-mix(in srgb, var(--purple) 60%, var(--border));
+    border-radius: 10px; padding: 10px 14px; font-family: var(--mono); font-size: 13px;
+  }
+  .keyrow .lbl { color: var(--purple); font-weight: 700; }
+  .keyrow .old { color: var(--muted); text-decoration: line-through; }
+  .keyrow .new { color: var(--green); font-weight: 700; }
+  .clients { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .client {
+    background: var(--panel2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 14px; font-size: 13px;
+  }
+  .client h3 { font-size: 13.5px; margin-bottom: 4px; }
+  .client p { color: var(--muted); font-size: 12px; }
+  .note {
+    margin-top: 26px; border-left: 3px solid var(--accent); padding: 10px 14px;
+    background: var(--panel); border-radius: 0 10px 10px 0; font-size: 13px; color: var(--muted);
+  }
+  .note b { color: var(--text); }
+  .rollback {
+    margin-top: 10px; font-size: 12.5px; color: var(--muted);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .rollback .arrow { color: var(--red); font-weight: 700; }
+  .contract {
+    margin-top: 12px; display: flex; gap: 10px; align-items: stretch;
+    font-size: 12.5px;
+  }
+  .contract .box {
+    flex: 1; background: var(--panel2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 12px;
+  }
+  .contract .box b { font-family: var(--mono); font-size: 12px; color: var(--accent); }
+  .contract .eq { align-self: center; color: var(--green); font-weight: 800; font-size: 16px; }
+  @media (max-width: 700px) {
+    .stages { grid-template-columns: 1fr 1fr; }
+    .storage, .clients { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Content pipeline — publish-then-flip</h1>
+  <div class="sub">Weekly drop = add images + metadata, run one command. Nothing live is ever mutated.</div>
+
+  <!-- LANE 1: WORKSPACE -->
+  <div class="lane">
+    <h2><span class="dot" style="background:var(--accent)"></span>1 · Content workspace <span style="text-transform:none;letter-spacing:0;font-weight:400">— private git repo (source of truth)</span></h2>
+    <div class="tree"><span class="k">content/</span>
+├── <span class="k">wallpapers/</span>
+│   ├── <span class="k">aurora-peak-001/</span>
+│   │   ├── master.png          <span class="c">← AI output OR licensed photo, high-res</span>
+│   │   └── meta.yaml           <span class="c">← title · category · tags</span>
+│   │       <span class="a">source: ai | photo-licensed | own</span>   <span class="c">← mandatory</span>
+│   │       <span class="a">license: …attribution/audit trail…</span> <span class="c">← mandatory</span>
+│   │       <span class="g">tier: free | reward-unlock | plus-only</span>
+│   └── <span class="k">city-rain-002/</span> …
+└── <span class="k">collections/</span>
+    └── 2026-07-drop-01.yaml    <span class="c">← the weekly drop: ids, order, featured</span></div>
+  </div>
+
+  <div class="flow-arrow">▼ <span>one command: <code>./gradlew :service:content-pipeline:publish</code></span></div>
+
+  <!-- LANE 2: PIPELINE -->
+  <div class="lane">
+    <h2><span class="dot" style="background:var(--amber)"></span>2 · Pipeline tool <span style="text-transform:none;letter-spacing:0;font-weight:400">— new <code>service/service-content-pipeline</code> (Kotlin)</span></h2>
+    <div class="stages">
+      <div class="stage fail">
+        <span class="num">1</span>
+        <h3>Validate</h3>
+        <p>Schema-check every meta.yaml · masters exist · min resolution &amp; aspect · license present</p>
+        <span class="badge stop">fails fast — nothing uploads</span>
+      </div>
+      <div class="stage">
+        <span class="num">2</span>
+        <h3>Render</h3>
+        <p>Generate per-device renditions the app already expects (<code>media-1a-c-p~uhd</code>, <code>~s</code>, tablet…) · v1 replicates demo format exactly; WebP/AVIF = phase&nbsp;2</p>
+      </div>
+      <div class="stage">
+        <span class="num">3</span>
+        <h3>Build</h3>
+        <p>Serialize catalog JSON <b>using the app's own client models</b> into a fresh <code>api/YYYYMMDD/</code> dir</p>
+      </div>
+      <div class="stage">
+        <span class="num">4</span>
+        <h3>Publish</h3>
+        <p>Upload complete version dir (staging first, then prod) · flip pointer last</p>
+        <span class="badge safe">atomic-ish · rollback = flip back</span>
+      </div>
+    </div>
+    <div class="contract">
+      <div class="box">Pipeline serializes with <b>shared/data/content-network</b> models</div>
+      <div class="eq">=</div>
+      <div class="box">App deserializes with the <b>same Kotlin classes</b> → format drift is a compile error, not a prod bug</div>
+    </div>
+  </div>
+
+  <div class="flow-arrow">▼ <span>upload → then flip pointer</span></div>
+
+  <!-- LANE 3: STORAGE -->
+  <div class="lane">
+    <h2><span class="dot" style="background:var(--green)"></span>3 · Firebase Storage <span style="text-transform:none;letter-spacing:0;font-weight:400">— versioned, immutable directories</span></h2>
+    <div class="storage">
+      <div class="version live">
+        <div class="tag">● live (last week)</div>
+        api/<b>20260625</b>/
+        <div class="f">content-1a</div>
+        <div class="f">content-metadata-1a</div>
+        <div class="f">media-1a-c-p~uhd/ …</div>
+      </div>
+      <div class="version next">
+        <div class="tag">◌ uploading (this week)</div>
+        api/<b>20260702</b>/
+        <div class="f">content-1a</div>
+        <div class="f">content-metadata-1a</div>
+        <div class="f">media-1a-c-p~uhd/ …</div>
+      </div>
+    </div>
+    <div class="keyrow">
+      <span class="lbl">key →</span>
+      <span class="old">api/20260625</span>
+      <span>⟶</span>
+      <span class="new">api/20260702</span>
+      <span style="color:var(--muted); font-family:-apple-system,sans-serif; font-size:12px">← flipped only after upload completes</span>
+    </div>
+    <div class="rollback"><span class="arrow">⟲</span> Rollback: point key back at <code style="font-family:var(--mono)">api/20260625</code> — old version is still there, untouched.</div>
+  </div>
+
+  <div class="flow-arrow">▼ <span>clients follow the pointer</span></div>
+
+  <!-- LANE 4: CLIENTS -->
+  <div class="lane">
+    <h2><span class="dot" style="background:var(--purple)"></span>4 · Clients <span style="text-transform:none;letter-spacing:0;font-weight:400">— no live API server, just static downloads + cache</span></h2>
+    <div class="clients">
+      <div class="client">
+        <h3>🤖 Android (Compose)</h3>
+        <p>read key → fetch version JSON → download sized renditions → cache</p>
+      </div>
+      <div class="client">
+        <h3>🍎 iOS (SwiftUI)</h3>
+        <p>same flow via shared KMP <code>content-network</code> code</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>AI generation stays outside the pipeline.</b> Whatever generates images just deposits
+    <code>master.png</code> + a <code>meta.yaml</code> stub into the workspace. Photos and AI art flow identically —
+    the pipeline is source-agnostic.
+  </div>
+</div>
+</body>
+</html>

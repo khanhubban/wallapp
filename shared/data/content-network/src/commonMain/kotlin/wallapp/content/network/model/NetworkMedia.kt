@@ -12,5 +12,5 @@ data class NetworkMedia(
     val id: Long,
     @SerialName("w") val width: Int? = null,
     @SerialName("h") val height: Int? = null,
-    val blurHash: String?,
+    val blurHash: String? = null,
 )

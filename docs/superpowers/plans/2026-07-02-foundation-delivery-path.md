@@ -234,16 +234,10 @@ class NetworkContentCompatTest {
         assertNull(media.blurHash)
     }
 
-    // coerceInputValues: null for a defaulted non-nullable field must coerce to the default.
-    @Test
-    fun mediaDecode_coercesNullToDefault_viaContentJson() {
-        val json = """{"wallpapers":[],"categories":[],"artists":[],"folders":[],"probe":null}"""
-        // Full-model coercion is exercised in Task 9's fixture test; here we lock the Json flags:
-        val content = NetworkContent.fromExportString(json)
-        assertEquals(0, content.folders.size)
-    }
 }
 ```
+
+(The `coerceInputValues` flag itself is a one-line diff-reviewed change; behavioral coercion tests arrive with the catalog-v2 fixtures in the pipeline plan, where fixture shapes are fully ours.)
 
 - [ ] **Step 2: Run to verify failure** — `./script/test_unit`
 Expected: `mediaDecode_toleratesMissingBlurHash` FAILS with `MissingFieldException: Field 'blurHash' is required`. The other two pass (regression locks).

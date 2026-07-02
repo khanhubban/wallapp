@@ -1,9 +1,9 @@
 # Ship Plan — Forking WallApp into a Production Wallpaper App
 
 **Date:** 2026-07-02
-**Status:** Approved section-by-section in brainstorming; pending final review.
+**Status:** v2 — external-review deltas applied inline (2026-07-02). This document is canonical; companions are design-rationale records.
 **Companion research:** [research/2026-07-02-report-engineering.md](research/2026-07-02-report-engineering.md), [research/2026-07-02-report-aigen.md](research/2026-07-02-report-aigen.md)
-**Amendments (2026-07-02, supersede conflicting text below):** [2026-07-02-delivery-r2-design.md](2026-07-02-delivery-r2-design.md) (R2 + Cloudflare delivery, Remote Config pointer), [2026-07-02-schema-validation-design.md](2026-07-02-schema-validation-design.md) (meta.yaml schema, catalog contract, validation rules)
+**Design-rationale records (deltas applied inline here):** [2026-07-02-delivery-r2-design.md](2026-07-02-delivery-r2-design.md) (R2 + Cloudflare delivery, Remote Config pointer, decision history), [2026-07-02-schema-validation-design.md](2026-07-02-schema-validation-design.md) (meta.yaml schema, catalog contract, validation rules)
 
 ---
 
@@ -48,22 +48,24 @@ Ship a rebranded, production wallpaper app on **Android and iOS**, built from th
 Private git repo (separate from the app repo):
 
 ```
-content/
-  candidates/               # raw generation output awaiting curation
+content/                        # git repo: metadata + collections ONLY — no image bytes
+  candidates/                   # raw generation output, no meta.yaml (local/scratch)
   wallpapers/<id>/
-    master.png              # high-res original (AI output or licensed photo)
-    meta.yaml               # structured schema — see schema-validation design §2:
-                            # id (== dirname), title, category (∈ committed enum), tags,
-                            # tier: free | reward-unlock | plus-only
-                            # source: ai | photo-licensed | own   (MANDATORY)
-                            # license: {type, detail, agreement_ref}  (MANDATORY; type ∉ stock denylist)
-                            # ai: {model ∈ allowlist, provider, seed, prompt_ref}  (if source: ai)
-                            # status: candidate | published | retired
+    meta.yaml                   # structured schema — see schema-validation design §2:
+                                # id (== dirname), title, category (∈ committed enum), tags,
+                                # tier: free | reward-unlock | plus-only
+                                # source: ai | photo-licensed | own   (MANDATORY)
+                                # license: {type ∈ closed allowlist, detail, agreement_ref}  (MANDATORY)
+                                # ai: {model ∈ allowlist, provider, seed, prompt_ref}  (if source: ai)
+                                # status: staged | published | retired  +  retired_at
   collections/
-    YYYY-MM-drop-NN.yaml    # weekly drop: wallpaper ids, ordering, featured flags
+    YYYY-MM-drop-NN.yaml        # weekly drop: wallpaper ids, ordering, featured flags
+
+r2://<app>-masters              # master images keyed by wallpaper id (H2: multi-GB masters
+                                # do not live in git; validated by HEAD check)
 ```
 
-`source` + `license` are validation-enforced from day one — the audit trail for store review and takedowns. AI and photo content flow identically; the pipeline is source-agnostic.
+`source` + `license` are validation-enforced from day one — the audit trail for store review and takedowns. AI and photo content flow identically; the pipeline is source-agnostic. State has one source of truth — the `status` field (`candidates/` merely holds raw output that hasn't been promoted). **Masters durability is load-bearing:** disaster recovery assumes masters + git + deterministic pipeline can rebuild the content bucket, so the monthly `rclone` snapshot of the masters bucket to a secondary (B2/GCS coldline) is **required**, not optional.
 
 ### 3.2 Pipeline stages — `service/service-content-pipeline` (new Kotlin module)
 
@@ -78,7 +80,8 @@ Reuses `service-common` + `RemoteApiStorageManager`. One command runs:
 ### 3.3 Storage, caching, rollback (delivery design §4, §6, §7, §9)
 
 - Single R2 bucket per environment behind Cloudflare CDN on `media.<domain>`. Layout: `media/<wallpaperId>/<hash8>-<class>.webp` (content-addressed, stable across drops — warm client caches survive every flip) + `catalog/<version>.json` (version = `YYYYMMDD-NN`). All objects **immutable**: `Cache-Control: public, max-age=31536000, immutable`. The catalog carries **absolute rendition URLs** (exit hedge: host migration = rclone sync + one catalog publish).
-- The version pointer is the RC param `catalogVersion` — no mutable pointer object in v1. Rollback = RC edit to N−1 (propagation bounded by the 12h jittered fetch interval). Retain N−2 and older while referenced. Content removal/takedown is two-phase (drop from catalog → age out → prefix delete + per-URL purge); never purge for updates.
+- The version pointer is the RC param `catalogVersion` — no mutable pointer object in v1. Rollback = RC edit to N−1 (propagation bounded by the 12h jittered fetch interval). Retain N−2 and older while referenced. Content removal/takedown is two-phase (drop from catalog → age out → prefix delete + per-URL purge); "aged out" is computable — absent from every retained catalog version and `retired_at` past the client cache window. Never purge for updates.
+- **Catalog growth (no client pagination):** the active catalog is capped (~1,500 entries); as drops land, the oldest non-featured wallpapers rotate to `retired`, feeding the two-phase deletion flow. Weekly drops without an archival policy would grow the catalog unboundedly.
 
 ### 3.4 Client models & serialization
 
@@ -110,19 +113,22 @@ The app already has a production networking layer; implementation starts with an
 
 - **AdMob:** account + both app entries + ad units per format (native feed, native video, reward, interstitial, app-open). Real IDs in the `AdUnitIds` implementations (`shared/app/app-adapter`, iOS Swift side) — **release builds only; debug keeps Google test IDs**. UMP privacy message configured in console. Boot contract: `requestConsentInfoUpdate()` every launch → `canRequestAds()` gate → SDK init → load ads; audit existing `PrivacyMessagingManager` code against it. Native-ad pool discipline (sized-to-need, ~1h TTL, `destroy()` on eviction) audited likewise. *(These integration claims are doc-sourced but were not adversarially verified — spot-check current Google docs during implementation.)*
 - **RevenueCat:** project + API keys; single entitlement (`plus`) with monthly/annual products attached, mirrored in Play Console + App Store Connect. Release-checklist line item: "every product is attached to the entitlement" (documented pay-but-locked failure mode). Existing `license-state` gating unchanged. Test procedures per `doc/ads.md` / `doc/billing.md`.
-- **iOS ATT** prompt with honest copy (AdMob uses the advertising identifier).
+- **iOS ATT** prompt with honest copy (AdMob uses the advertising identifier), sequenced through the UMP explainer flow rather than shown cold.
+- **SDK init off the critical path:** MobileAds initialization can hang when offline — initialize asynchronously, never blocking first frame or catalog sync.
 
 ### 5.2 Rebrand
 
-Name (store + trademark + domain check) → new `applicationId`/bundle ID, icons, splash, in-app copy, URL schemes (deep links + Google Sign-In), store metadata. Internal `wallapp` package names stay (Apache-2.0 permits; only user-visible branding and all "Panels" references must change). Grep-driven inventory (`Panels`, `panels-oss`, visible `WallApp` strings) in the implementation plan. Lottie asset licenses reviewed.
+Name (store + trademark + domain check) → new `applicationId`/bundle ID, icons, splash, in-app copy, URL schemes (deep links + Google Sign-In), store metadata. Internal `wallapp` package names stay (Apache-2.0 permits; only user-visible branding and all "Panels" references must change). Grep-driven inventory (`Panels`, `panels-oss`, visible `WallApp` strings) in the implementation plan. Lottie asset licenses reviewed. **Apache-2.0 compliance (H4):** retain upstream LICENSE + NOTICE, and keep the in-app OSS-licenses screen (`OssLicenses.kt`) accurate for dependencies we add or remove.
 
 ### 5.3 Legal + store presence
 
-Privacy policy + ToS on own domain — the domain's DNS lives on the Cloudflare zone (pages via Cloudflare Pages or elsewhere) — disclosing the exact collector list (Firebase Auth/Firestore, AdMob, RevenueCat, Crashlytics), linked in-app and in both listings. Play data-safety form and App Store privacy labels consistent with that list. **Store listing:** iOS review risk under guidelines 4.2/4.3 is real for wallpaper apps — lean on collections, Plus, and live features to demonstrate differentiation. **Open item:** verify Google Play's current AI-generated-content policy against the primary source before launch (research left this unverified).
+Privacy policy + ToS on own domain — the domain's DNS lives on the Cloudflare zone (pages via Cloudflare Pages or elsewhere) — disclosing the exact collector list (Firebase Auth/Firestore, AdMob, RevenueCat, Crashlytics), linked in-app and in both listings. Play data-safety form and App Store privacy labels consistent with that list. **Store listing:** iOS review risk under guidelines 4.2/4.3 is real for wallpaper apps — lean on collections, Plus, and live features to demonstrate differentiation. **AI policy (resolved):** Play's AI-generated-content policy targets apps that *generate* content in-app; a distribution-only catalog is out of its scope — but general content policies still apply to the wallpapers themselves.
+
+**Account deletion (approval blocker — C4):** Firebase Auth = account creation, so Play requires an in-app deletion path **plus** a web deletion-request link entered in the Data safety form; Apple requires in-app deletion (guideline 5.1.1(v)). Audit the OSS client for an existing flow; if absent, build pre-launch. Deletion must remove associated Firestore user data; document any retention (fraud/legal) in the privacy policy. The web resource lives on the Cloudflare-zone domain (the delivery design already reserves "deletion pages").
 
 ### 5.4 Release
 
-Android keystore + Play App Signing; iOS signing under existing account. Internal tracks first (Play internal testing + TestFlight) including a **real test purchase visible in RevenueCat**. Staged rollout (Play percentage, iOS phased release). Crashlytics dSYM upload and Android baseline profile verified. A written **launch checklist** is the ship-day contract (incident-derived additions over time), seeded with: repeatable publish builds + canary + staged rollout; written timeout/retry policy per call path; graceful-degradation verification; "products attached to entitlement"; plus the delivery-design §13 items (disaster drill rebuilding the bucket from the content repo, read-back validation green in CI, never-challenge rule verified on real devices, scoped tokens only, canary + takedown rehearsals on staging, AWS SDK ↔ R2 checksum mode pinned).
+Android keystore + Play App Signing; iOS signing under existing account. Internal tracks first (Play internal testing + TestFlight) including a **real test purchase visible in RevenueCat**. Staged rollout (Play percentage, iOS phased release). Crashlytics dSYM upload and Android baseline profile verified. A written **launch checklist** is the ship-day contract (incident-derived additions over time), seeded with: repeatable publish builds + canary + staged rollout; written timeout/retry policy per call path; graceful-degradation verification; "products attached to entitlement"; plus the delivery-design §13 items (disaster drill rebuilding the bucket from masters + content repo, read-back validation green in CI, never-challenge rule verified on real devices, scoped tokens only, canary + takedown rehearsals on staging, AWS SDK ↔ R2 checksum mode pinned, masters snapshot job green). **Platform compliance current at launch (H3):** Android target API 36 and 16 KB page-size support; iOS privacy manifests (`PrivacyInfo.xcprivacy`) for app + SDKs; EU DSA trader status declared in both consoles.
 
 ---
 
@@ -148,4 +154,4 @@ Two research passes (adversarial verification interrupted early to cap token cos
 - **Engineering:** confirmed — SRE launch checklist/retry/jitter/staged rollout, Confluent compatibility semantics, kotlinx.serialization evolution mechanics, Etsy atomic pointer-flip. Unverified — offline-first specifics, background-scheduling specifics, image delivery, all AdMob/RevenueCat items (spot-check during implementation).
 - **AI generation:** confirmed — FLUX pricing ballpark, FLUX.1-schnell Apache-2.0 (commercial-safe), FLUX.1-dev weights non-commercial (outputs via licensed APIs OK), SD 3.5 commercial < $1M/yr, USCO Jan-2025: prompt-only AI images have no US copyright (moat = curation/brand/freshness, not image IP), hosted models cap ~4 MP (upscale stage is structural). Unverified — Leonardo terms, GPU-rental spot rates, Play AI-content policy.
 - **Delivery (R2 + Cloudflare):** web-verified 2026-07-02 in the delivery design §15 — zero egress, pricing/free tier, no object versioning yet, edge-cache behavior, purge tiers, `r2.dev` non-production status. Incident timelines and AWS-SDK checksum history are from memory (medium confidence).
-- **External review:** findings C1 (licensing exposure → takedown as first-class flow) and C2 (cache invalidation → content-addressed naming) are resolved by the amendments; H1 (host choice) is now an explicit decision. **Findings C3 and C4 were lost in transfer — re-capture before implementation planning.**
+- **External review:** all findings landed — C1 (licensing exposure → takedown as first-class flow), C2 (cache invalidation → content-addressed naming), C3 (canary mechanics + telemetry → delivery design §7/§12.4), C4 (account deletion → §5.3), H1 (host choice → explicit R2 decision), H2 (masters → dedicated bucket + meta-only git, §3.1), H3 (platform compliance → §5.4), H4 (Apache-2.0 compliance → §5.2). Second-pass review also resolved three internal conflicts (allowlist-vs-denylist, status-field-vs-directory, masters-in-git) and added the string-map-keys, frozen-runtime, metadata-stripping, and cross-repo-invocation rules to the schema doc.

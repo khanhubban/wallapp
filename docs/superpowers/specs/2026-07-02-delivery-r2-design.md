@@ -1,7 +1,7 @@
 # Delivery Design — R2 + Cloudflare CDN Content Distribution
 
 **Date:** 2026-07-02
-**Status:** Approved (R2 green-lit). Amends ship plan §1 non-goals, §2, §3.2 Stage 4, §3.3, §5.3–5.4.
+**Status:** Approved (R2 green-lit). Design-rationale record — all deltas applied inline in ship plan v2. Amends ship plan §1 non-goals, §2, §3.2 Stage 4, §3.3, §5.3–5.4.
 **Companion to:** [2026-07-02-ship-plan-design.md](2026-07-02-ship-plan-design.md)
 
 ---
@@ -140,7 +140,7 @@ Credentials: **bucket-scoped API token (Object Read & Write)** per environment, 
 ## 9. Rollback, takedown, retention
 
 - **Rollback** = RC edit to N−1. Retain N−2 and older while any RC value or installed client may reference them (unchanged from ship plan §3.3).
-- **Takedown (two-phase, unchanged in principle):** drop wallpaper from next catalog → after old catalogs age out of all clients → `DELETE media/<id>/*` (one prefix) → per-URL purge of its rendition URLs. Keep rendition-class count bounded so per-URL purging stays trivial (prefix purge is Enterprise-only).
+- **Takedown (two-phase, unchanged in principle):** drop wallpaper from next catalog → after old catalogs age out of all clients → `DELETE media/<id>/*` (one prefix) → per-URL purge of its rendition URLs. Keep rendition-class count bounded so per-URL purging stays trivial (prefix purge is Enterprise-only). "Aged out" is computable: media objects are deletable only when the id is absent from **every retained catalog version** and `meta.yaml retired_at` exceeds the client cache window (schema doc §2).
 - **Never purge for content updates** — immutable hashed names make it structurally unnecessary.
 - Licensing exposure (ship-plan C1) makes fast takedown a first-class flow: rehearse it once on staging.
 
@@ -164,7 +164,7 @@ Projected bill ≈ $0 for the foreseeable future. The delivery cost curve is now
 | # | Risk | Exposure | Mitigation |
 |---|---|---|---|
 | 1 | Cloudflare/R2 outage (Feb 2025 R2 ~1h; Nov 18 2025 global, hours) | Weekly drop delayed; new-install first sync fails during window | Already priced in by ship plan §4: browsing/search/set-wallpaper run from cache; first launch runs from bundled seed catalog. Blast radius = "content is a day late" |
-| 2 | No object versioning; R&W token can delete everything it can write | Bucket loss via bad script or leaked token | Bucket is a **derived artifact**: git masters + deterministic pipeline regenerate it. Make it real: **disaster drill on launch checklist** (§13). Optional monthly `rclone sync` snapshot to secondary (B2 / GCS coldline) — pennies |
+| 2 | No object versioning; R&W token can delete everything it can write | Bucket loss via bad script or leaked token | Content bucket is a **derived artifact**: masters bucket + git metadata + deterministic pipeline regenerate it. Make it real: **disaster drill on launch checklist** (§13). Monthly `rclone sync` snapshot of the **masters bucket** to secondary (B2 / GCS coldline) is **required** (masters are the non-derivable input) — pennies |
 | 3 | Single-vendor coupling: DNS + CDN + storage all Cloudflare | Correlated failure; lock-in gravity | Accepted, named. Hedged by #4 |
 | 4 | Repricing / ToS change | Cost structure shift | Exit cost deliberately tiny: S3-compatible API (`rclone sync` out) + absolute URLs in catalog (cutover = one catalog publish). Hours, not a migration project |
 | 5 | Plus-only renditions publicly fetchable at discoverable URLs | Tier gating is client-side only | Accepted v1 (was equally true on Firebase Storage public-read; realistic impact ~screenshots). Upgrade path if it ever matters: tiny Worker signing URLs. Do not build for v1 |
@@ -185,13 +185,13 @@ Projected bill ≈ $0 for the foreseeable future. The delivery cost curve is now
 
 ## 13. Launch checklist additions
 
-- [ ] Disaster drill: rebuild prod bucket contents from content repo into staging; app passes E2E against it
+- [ ] Disaster drill: rebuild prod bucket contents from masters bucket + content repo into staging; app passes E2E against it
 - [ ] Read-back validation through custom domain with byte-hash + `cf-cache-status` assertions, green in publish CI
 - [ ] Never-challenge rule verified from real devices, both platforms, non-Cloudflare network
 - [ ] Bucket-scoped tokens per env in CI secrets; zero account-level keys anywhere; content repo contains no credentials
 - [ ] Canary rehearsal on staging: flip RC condition to 5% → confirm only hashed cohort updates → abort to N−1 → confirm recovery
 - [ ] Takedown rehearsal: catalog drop → prefix delete → per-URL purge, on staging
-- [ ] Snapshot job green (if adopted)
+- [ ] Masters-bucket snapshot job green (required — see risk ledger #2)
 - [ ] AWS SDK ↔ R2 upload compatibility pinned (checksum mode) in staging CI
 
 ---

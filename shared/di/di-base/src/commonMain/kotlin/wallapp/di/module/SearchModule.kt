@@ -19,6 +19,7 @@ import wallapp.search.content.SearchContentRepositoryDefault
 import wallapp.search.network.repository.NetworkSearchContentRepository
 import wallapp.search.network.repository.NetworkSearchContentRepositoryConfig
 import wallapp.search.network.repository.NetworkSearchContentRepositoryConfigDefault
+import wallapp.search.network.repository.NetworkSearchContentRepositoryKtor
 import wallapp.search.network.repository.NetworkSearchContentRepositoryNetwork
 import wallapp.search.sort.SearchResultSorter
 import wallapp.search.sort.SearchResultSorterDefault
@@ -27,6 +28,7 @@ import wallapp.search.sort.SearchResultSorterDefault
 val SearchModule = module {
     single<NetworkSearchContentRepository> { Factory.networkSearchContentRepository(this) }
     single<NetworkSearchContentRepositoryConfig> { NetworkSearchContentRepositoryConfigDefault(get()) }
+    single<NetworkSearchContentRepositoryKtor> { NetworkSearchContentRepositoryKtor(get(), get()) }
     single<NetworkSearchContentRepositoryNetwork> { NetworkSearchContentRepositoryNetwork(get(), get(), get()) }
     single<SearchCategorySpecFactory> { SearchCategorySpecFactory(get()) }
     single<SearchContentRepository> { get<SearchContentRepositoryDefault>() }

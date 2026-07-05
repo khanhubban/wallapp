@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Deploys Firestore + Storage rules and indexes from firebase-backend/.
+set -euo pipefail
+cd "$(dirname "$0")/../firebase-backend"
+firebase deploy --only firestore:rules,firestore:indexes,storage

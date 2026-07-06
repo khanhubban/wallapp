@@ -1,0 +1,11 @@
+{
+  "parameters": {
+    "catalog_version": {
+      "defaultValue": {
+        "value": "99999999"
+      },
+      "description": "Content catalog version pointer (delivery design §7). Percentage conditions on this param provide canary rollout and rollback.",
+      "valueType": "STRING"
+    }
+  }
+}

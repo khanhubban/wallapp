@@ -1,44 +1,26 @@
 {
   "project_info": {
-    "project_number": "550120118652",
-    "project_id": "panels-oss",
-    "storage_bucket": "panels-oss.firebasestorage.app"
+    "project_number": "809386236419",
+    "project_id": "stillscenes-prod",
+    "storage_bucket": "stillscenes-prod.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:550120118652:android:5ab5e47d4f3d5759dc2cf9",
+        "mobilesdk_app_id": "1:809386236419:android:9f8c2b92e16afbacc54c36",
         "android_client_info": {
           "package_name": "com.example.wallapp"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "550120118652-ta2hquu10npr1rpsekttu28sguka7tg3.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.wallapp",
-            "certificate_hash": "65355edc27991ab4812fc8613671a4acdb109751"
-          }
-        },
-        {
-          "client_id": "550120118652-jef7dhfl82i1f5as48dt97tej89324fg.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAoTFb9Kkg5MJdqui8IWJMADwDIDjBPdEE"
+          "current_key": "AIzaSyCn_gRNHiQzYeUMwOMEITHcL2Gduk1-Ng0"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "550120118652-jef7dhfl82i1f5as48dt97tej89324fg.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

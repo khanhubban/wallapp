@@ -61,7 +61,7 @@ class FirebaseAuthManagerFirebaseTest {
             FirebaseOptions(
                 applicationId = "...",
                 apiKey = "...",
-                projectId = "panels-oss",
+                projectId = "stillscenes-prod",
             )
         )
 

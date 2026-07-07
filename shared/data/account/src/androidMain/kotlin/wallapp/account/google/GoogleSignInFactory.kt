@@ -10,7 +10,7 @@ object GoogleSignInFactory {
     fun createGoogleSignInClient(context: Context): GoogleSignInClient {
         // This id token must match the `client_id` in `app/android/src/google-services.json`.
         // The value is also in "R.string.default_web_client_id", but that's inaccessible from here.
-        val requestIdToken = "550120118652-jef7dhfl82i1f5as48dt97tej89324fg.apps.googleusercontent.com"
+        val requestIdToken = "809386236419-d40uel00p899t7sfk5p8gtj4l0sam6ku.apps.googleusercontent.com"
 
         val signInOptions: GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(requestIdToken)

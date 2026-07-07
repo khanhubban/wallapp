@@ -12,7 +12,20 @@
           "package_name": "com.example.wallapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "809386236419-n72vsdrn2h53k3i7tm75hpdjureebd60.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wallapp",
+            "certificate_hash": "66c9cc786c5dabd4ef6bd0f1d9ebfbcc734abcd2"
+          }
+        },
+        {
+          "client_id": "809386236419-d40uel00p899t7sfk5p8gtj4l0sam6ku.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCn_gRNHiQzYeUMwOMEITHcL2Gduk1-Ng0"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "809386236419-d40uel00p899t7sfk5p8gtj4l0sam6ku.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "809386236419-9s0tuj6dft86cpu3072falreivuql6gg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.development.Wallapp"
+              }
+            }
+          ]
         }
       }
     }

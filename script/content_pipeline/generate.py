@@ -1,5 +1,5 @@
 # pip install pillow requests
-import hashlib, io, json, os, sys, time
+import hashlib, os, sys, time
 from PIL import Image
 
 RENDITION_MAX = {"download": (1440, 3120), "preview": (1080, 2160)}  # preview fits p~five0
@@ -35,7 +35,7 @@ def render_webp(src_path: str, out_path: str, max_w: int, max_h: int, quality: i
     im.save(out_path, "WEBP", quality=quality, method=6)
 
 def generate_candidates(prompts: list, out_dir: str) -> list:
-    """Real BFL FLUX.2 [klein] async calls. Isolated so unit tests don't hit the network."""
+    """Real BFL FLUX.2 [klein] async calls. Isolated so unit tests don't hit the network. Note: the BFL endpoint path and response shape are best-effort and MUST be verified against the live BFL API on the first real call."""
     import requests
     key = os.environ["BFL_API_KEY"]
     results = []

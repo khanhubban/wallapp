@@ -2,7 +2,7 @@ import os
 import tempfile
 import unittest
 
-from generate import build_manifest, render_webp, RENDITION_MAX
+from generate import build_manifest, render_webp
 
 
 class TestBuildManifest(unittest.TestCase):

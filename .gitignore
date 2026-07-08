@@ -19,6 +19,9 @@ build/
 # ...but do NOT ignore source packages named 'build' (content-pipeline's BUILD stage lives in package wallapp.pipeline.build). Gradle output dirs are <module>/build, never under src/, so they stay ignored.
 !**/src/**/build/
 
+__pycache__/
+*.pyc
+
 # Local configuration file (sdk path, etc)
 local.properties
 

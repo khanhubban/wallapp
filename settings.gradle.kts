@@ -23,6 +23,7 @@ if (!extra.has("excludeAndroidModule")) {
 
 include(
     ":service:service-common",
+    ":service:content-pipeline",
     ":service:service-export-remoteapi",
     ":shared",
     ":shared:admin:admin",

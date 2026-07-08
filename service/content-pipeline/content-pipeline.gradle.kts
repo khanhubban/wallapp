@@ -1,10 +1,15 @@
 plugins {
     kotlin("jvm")
     alias(libs.plugins.serialization)
+    application
 }
 
 group = "com.wallapp.service.contentpipeline"
 version = "1.0.0"
+
+application {
+    mainClass.set("wallapp.pipeline.MainKt")
+}
 
 dependencies {
     api(libs.kotlinx.coroutines.core)

@@ -19,18 +19,25 @@ class MediaEntityKindTest {
         )
     }
 
+    /**
+     * Set.equals() is order-insensitive, so asserting against a Set cannot observe the declaration
+     * order that determines published wire-key order. Compare lists.
+     */
     @Test
-    fun sizedImageKeysAreUnique() {
+    fun requiredKeyStringsPreserveDeclarationOrder() {
         assertEquals(
-            SizedImage.entries.size,
-            SizedImage.entries.map { it.key }.distinct().size,
-            "duplicate wire keys in SizedImage",
+            listOf("dhd", "dsd"),
+            MediaEntityKind.WallpaperDownload.requiredKeyStrings.toList(),
         )
-    }
-
-    @Test
-    fun requiredKeyStringsMatchTheEnumKeys() {
-        assertEquals(setOf("dhd", "dsd"), MediaEntityKind.WallpaperDownload.requiredKeyStrings)
-        assertEquals(setOf("e"), MediaEntityKind.FolderBanner.requiredKeyStrings)
+        assertEquals(
+            listOf("s", "wfs", "wft", "fs", "wcs0", "wcs1", "wcs2", "wcl0", "wcl1", "wcl2"),
+            MediaEntityKind.WallpaperPreview.requiredKeyStrings.toList(),
+        )
+        assertEquals(
+            listOf("am", "as", "e"),
+            MediaEntityKind.ArtistProfile.requiredKeyStrings.toList(),
+        )
+        assertEquals(listOf("wfs"), MediaEntityKind.FolderProfile.requiredKeyStrings.toList())
+        assertEquals(listOf("e"), MediaEntityKind.FolderBanner.requiredKeyStrings.toList())
     }
 }

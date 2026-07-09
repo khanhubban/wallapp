@@ -20,7 +20,7 @@ enum class MediaEntityKind(val requiredKeys: Set<SizedImage>) {
         ),
     ),
 
-    /** A collection card stacks three preview layers, each looked up by its own key. */
+    /** Four keys serve feed, showcase, and fullscreen views; six more serve the stacked layers of a collection card. */
     WallpaperPreview(
         setOf(
             SizedImage.Showcase,

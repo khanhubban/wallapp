@@ -681,7 +681,17 @@ git commit -m "feat(config): add catalog_version_staging Remote Config parameter
 - Consumes: `applicationId` is irrelevant here; the bucket `stillscenes-content-prod` already exists and is empty.
 - Produces: `https://media.stillscenes.app` serving `stillscenes-content-prod`. Task 3's release binding already points at it. Task 11 publishes into it.
 
-- [ ] **Step 1: Connect the custom domain**
+- [ ] **Step 1: Check whether the custom domain is already connected — it probably is**
+
+```bash
+curl -sSI https://media.stillscenes.app/api/20260709-06/content-1a | grep -iE '^HTTP|^server|^cf-ray'
+```
+
+Observed on 2026-07-10: `HTTP/2 404`, `server: cloudflare`, a `cf-ray` header. A 404 *from Cloudflare* — as
+opposed to a DNS failure — means the hostname already resolves and routes to an R2 bucket that is empty.
+The custom domain was very likely attached during the 2026-07-07 infra work, alongside `media-staging`.
+
+If that is what you see, **skip to Step 3.** Only if DNS fails outright:
 
 Cloudflare dashboard → R2 → `stillscenes-content-prod` → Settings → Custom Domains → Connect Domain → `media.stillscenes.app`.
 
@@ -1445,6 +1455,16 @@ git commit -m "feat(pipeline): add --dry-run to build and validate without publi
 - Consumes: `--dry-run` (Task 10); `https://media.stillscenes.app` (Task 5); the in-app default `20260709-06` (Task 2).
 - Produces: a prod catalog. Nothing consumes it in code.
 
+> **Corrected after the final review.** This task originally said "publish with `run --args=prod-manifest.json`"
+> and listed no code change. `Main.kt` hardcoded `WranglerClient(bucket = "stillscenes-content-staging")`,
+> and `Publisher` PUTs every object *before* it verifies. Run as written, it would have written
+> prod-URL'd bytes over the live staging catalog `20260709-06`, then failed its read-back against the
+> empty prod host — corrupting staging, leaving prod empty, and reporting failure after the damage.
+>
+> Fixed in `155107d`: the bucket is now **derived from the manifest's `baseUrl`**. A prod manifest can
+> only reach `stillscenes-content-prod`; an unrecognised host publishes nowhere. There is deliberately
+> no `--bucket` flag — a second way to declare the environment is a second way to declare it wrong.
+
 - [ ] **Step 1: Prepare a prod manifest**
 
 Copy the staging manifest, changing exactly two fields:
@@ -1456,20 +1476,33 @@ Copy the staging manifest, changing exactly two fields:
 
 Everything else — artist, folder, wallpapers, rendition paths — stays identical. Prod and staging start on the same bytes.
 
+The `baseUrl` is now load-bearing twice over: it is both the host baked into every media-map URL **and**
+the selector for the R2 bucket. `bucketFor()` maps `media.stillscenes.app` → `stillscenes-content-prod`
+and `media-staging.stillscenes.app` → `stillscenes-content-staging`. Any other host is a hard error.
+
 - [ ] **Step 2: Dry-run against the prod manifest**
 
 ```bash
 ./gradlew :service:content-pipeline:run --args="/abs/path/to/prod-manifest.json --dry-run"
 ```
-Expected: `DRY RUN — validated 20260709-06, N media entries, nothing uploaded`, then the JSON.
+
+Expected first line: `DRY RUN — validated 20260709-06 for bucket stillscenes-content-prod, N media entries, nothing uploaded`
+
+**Read that bucket name before you go further.** If it says `stillscenes-content-staging`, the manifest's
+`baseUrl` is still pointing at staging and Step 3 would republish over the live staging catalog.
 
 If `CatalogValidator` throws here, the catalog is malformed. That is the whole point of the gate.
+
+Note that `parseArgs` now rejects any unrecognised `--` flag. A typo'd `--dryrun` errors out instead of
+silently performing a real publish.
 
 - [ ] **Step 3: Publish**
 
 ```bash
 ./gradlew :service:content-pipeline:run --args="/abs/path/to/prod-manifest.json"
 ```
+
+Expected final line: `Published version 20260709-06 to stillscenes-content-prod. Flip RC catalog_version to 20260709-06 to go live.`
 
 The auto-mode classifier gates R2 writes. It requires the specific action named — "publish catalog 20260709-06 to stillscenes-content-prod". A bare "go" does not clear it.
 

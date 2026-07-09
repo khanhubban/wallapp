@@ -286,24 +286,22 @@ and **overwrites the real `wfs` entry**, corrupting the feed image for every wal
 kept because it catches a hand-edited catalog, an older builder's output, and any regression in
 derivation.
 
-**(a1) is subsumed by (a2) ∧ (a3) for output of the current builder, but not in general.** For a
-builder-produced catalog: every map id is catalog-referenced (a3), every referenced id's key set
-exactly equals some `requiredKeyStrings` (a2), and every member of a `requiredKeyStrings` is a
-`SizedImage.key` by construction — so (a1) cannot fire.
+**(a1) is subsumed by (a2) ∧ (a3).** (a3) guarantees every media-map id is some wallpaper's hd/sd/preview
+id, some artist's profile id, or some folder's profile/banner id. (a2) shape-checks *every one of those
+categories* against a `requiredKeyStrings` drawn from `SizedImage` itself. So nothing surviving (a2) can
+carry a key (a1) would call unknown.
 
-It is *not* subsumed for an arbitrary bundle. (a2) checks `hdMediaId`'s **key shape** but only asserts
-`sdMediaId in keys` — **presence, not shape** (`CatalogValidator.kt:35`). `WallpaperDownloadMedia` lets
-the two ids differ. A hand-edited catalog whose `sdMediaId` points at a separate entry carrying an
-unknown key therefore passes (a2) and (a3) and is caught only by (a1).
+This became true only after the final review. (a2) originally shape-checked `hdMediaId` but merely
+asserted `sdMediaId in keys` — **presence, not shape** — and `WallpaperDownloadMedia` lets the two ids
+differ, so a hand-edited catalog could route `sdMediaId` at an unchecked entry. That hole is now closed
+(`CatalogValidator.kt:40-42`), which is what makes the subsumption unconditional rather than
+true-only-for-builder-output.
 
-(a1) runs **first** because `unknown SizedImage key 'wsc0'` diagnoses the fault far better than the
-set-inequality dump (a2) would emit, and because it is the check that still works if (a2) is weakened.
+(a1) runs **first** anyway, because `media id 123 carries unknown SizedImage key 'wsc0'` diagnoses the
+fault far better than the set-inequality dump (a2) would emit, and because it is the check that still
+works if (a2) is ever weakened.
 
-Two claims were made about this check and both were wrong before this one. See *Corrections*.
-
-**Open follow-up:** (a2) should shape-check `sdMediaId`'s entry, not merely assert its presence. One
-line, closes the hole, and would make the subsumption unconditional. Not done — out of scope for the
-task that found it.
+Three claims were made about this check before this one, and the first two were wrong. See *Corrections*.
 
 ### Verification
 
@@ -379,10 +377,24 @@ survives as a diagnostic and a backstop. The mistake was assuming a check phrase
 test something different.
 
 *Second error, in the fix:* the correction then asserted flatly that **no** bundle passes the other two
-and fails the scan. Also wrong. (a2) shape-checks `hdMediaId` but only presence-checks `sdMediaId`, and
-those ids can differ, so a hand-edited bundle can slip an unknown key past (a2) and (a3). The scan
-catches it. The mistake was generalizing from the one code path the builder exercises — the same
-mistake as the first, one level up.
+and fails the scan. Also wrong at the time. (a2) shape-checked `hdMediaId` but only presence-checked
+`sdMediaId`, and those ids can differ, so a hand-edited bundle could slip an unknown key past (a2) and
+(a3). The mistake was generalizing from the one code path the builder exercises — the same mistake as
+the first, one level up.
+
+*Resolution:* the final review found the `sdMediaId` hole independently. Adding the missing shape check
+(`CatalogValidator.kt:40-42`) made the second claim true rather than merely restating it. The lesson is
+not that the claim was salvaged — it is that two rounds of careful reasoning both concluded something
+about "every bundle" from a single traversal of the builder's happy path.
+
+**3. "Publish a catalog to `stillscenes-content-prod`."**
+The pipeline could not address that bucket. `Main.kt` hardcoded `WranglerClient(bucket = "stillscenes-content-staging")`,
+and `Publisher` PUTs every object *before* verifying. Running the documented prod publish would have
+overwritten the live staging catalog with prod-URL'd bytes, then failed its read-back against an empty
+prod host. Nine task-scoped reviews missed it because the offending line was never in any diff — the
+plan changed the world around it by adding a second bucket. The bucket is now derived from the
+manifest's `baseUrl`, so a prod manifest can only reach the prod bucket and an unknown host publishes
+nowhere.
 
 **2. "The tests assert the required key sets."**
 The Task 6 tests compared `Set`s with `assertEquals`. `Set.equals()` is order-insensitive by contract,

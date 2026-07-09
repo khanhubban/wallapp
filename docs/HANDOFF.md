@@ -137,13 +137,27 @@ pipeline should emit, diff against it.
 ## Publishing a new catalog
 
 ```bash
+# Always dry-run first. It builds and validates, and constructs no R2 or HTTP client.
+./gradlew :service:content-pipeline:run --args="/abs/path/to/manifest.json --dry-run"
+# Read the bucket name it prints. Then:
 ./gradlew :service:content-pipeline:run --args="/abs/path/to/manifest.json"
-# then bump catalog_version in firebase-backend/remoteconfig.template.json
+# then bump the catalog version key it names in firebase-backend/remoteconfig.template.json
 firebase deploy --only remoteconfig -P stillscenes-prod
 ```
 
-The Publisher PUTs renditions → media/search/spec → **catalog last**, then verifies. Versions are
-write-once; an aborted verify leaves the bucket in a complete, unreferenced state. Safe.
+**The bucket is derived from the manifest's `baseUrl`**, not passed as a flag —
+`media.stillscenes.app` → `stillscenes-content-prod`, `media-staging.stillscenes.app` →
+`stillscenes-content-staging`, anything else is a hard error. This is deliberate: `baseUrl` already
+declares the environment, and a second way to declare it is a second way to declare it wrong.
+Before `155107d` the bucket was hardcoded to staging, and publishing a prod manifest would have
+overwritten the live staging catalog with prod-URL'd bytes before failing its read-back.
+
+`--dry-run` prints the target bucket. **Read it.** `parseArgs` rejects unknown `--` flags, so a
+typo'd `--dryrun` errors instead of quietly performing a real publish.
+
+The Publisher PUTs renditions → media/search/spec → **catalog last**, then verifies. Note the writes
+all happen *before* the verify: an aborted read-back means the objects landed anyway. Versions are
+write-once by convention, not by enforcement — a re-PUT of the same version overwrites it.
 
 If an older build aborts with `read-back byte mismatch for media/artist/…`, **the objects did land** —
 that was the edge answering from `immutable` cache with the object we just overwrote. Fixed in

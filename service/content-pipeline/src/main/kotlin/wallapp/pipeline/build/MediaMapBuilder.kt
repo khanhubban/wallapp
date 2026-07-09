@@ -29,7 +29,9 @@ object MediaMapBuilder {
         val ap = url(m.artist.profileImagePath)
         data[mediaId("${m.artist.id}:profile")] = mapOf("am" to ap, "as" to ap, "e" to ap)
         data[mediaId("${m.folder.id}:profile")] = mapOf("wfs" to url(m.folder.profileImagePath))
-        data[mediaId("${m.folder.id}:banner")] = mapOf("wfs" to url(m.folder.featureBannerImagePath))
+        // The folder's carousel highlight reads SizedImage.Exhibit ("e"); a feed key here leaves
+        // the "Just Added" card with no background image.
+        data[mediaId("${m.folder.id}:banner")] = mapOf("e" to url(m.folder.featureBannerImagePath))
 
         return NetworkMediaData(version = 1, mediaMap = data)
     }

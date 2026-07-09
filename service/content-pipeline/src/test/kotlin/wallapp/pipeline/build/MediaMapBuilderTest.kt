@@ -50,11 +50,20 @@ class MediaMapBuilderTest {
         assertEquals(setOf("am", "as", "e"), ar.keys)
     }
 
-    @Test fun folderProfileAndBannerIdsCarryWfsKey() {
+    @Test fun folderProfileCarriesWfsKey() {
         val data = MediaMapBuilder.build(manifest())
         val profile = data.mediaMap[mediaId("f~justadded:profile")]!!
-        val banner = data.mediaMap[mediaId("f~justadded:banner")]!!
         assertEquals(setOf("wfs"), profile.keys)
-        assertEquals(setOf("wfs"), banner.keys)
+    }
+
+    @Test fun folderBannerCarriesExhibitKey() {
+        val data = MediaMapBuilder.build(manifest())
+        val banner = data.mediaMap[mediaId("f~justadded:banner")]!!
+
+        // The folder's carousel highlight asks for SizedImage.Exhibit ("e"), not the feed key.
+        // With only "wfs" the card renders on a blank background. The demo catalog's
+        // f~justadded banner carries exactly ["e"].
+        assertEquals(setOf("e"), banner.keys)
+        assertTrue(banner["e"]!!.endsWith("/media/folder/justadded/banner.webp"))
     }
 }

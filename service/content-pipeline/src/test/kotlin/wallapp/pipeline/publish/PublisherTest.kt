@@ -55,6 +55,60 @@ class PublisherTest {
         }
     }
 
+    /**
+     * Shared chrome keys (media/artist/..., media/folder/...) are reused across catalog versions and
+     * served `immutable`, so the edge can answer a read-back with a stale copy of an object we just
+     * overwrote. Retry past the cache before declaring the upload corrupt.
+     */
+    @Test fun staleEdgeCopyIsRetriedPastTheCacheRatherThanFailing() {
+        val store = FakeStore()
+        val edge = object : ObjectPutter by store, ObjectFetcher {
+            val urls = mutableListOf<String>()
+            override fun fetch(url: String): ByteArray? {
+                urls += url
+                // The cached edge answers the bare URL with yesterday's bytes; a cache-busted
+                // request revalidates against origin, which holds what we just put.
+                return if ("?" in url) store.fetch(url.substringBefore("?")) else "STALE".toByteArray()
+            }
+        }
+        val renditions = mapOf("media/a/p.webp" to "/tmp/ap")
+
+        Publisher(store, edge, "https://media-staging.stillscenes.app")
+            .publish(bundle(), renditions, "20260708-01") // no throw
+
+        assertTrue(edge.urls.any { "?" in it }, "expected a cache-busted retry")
+    }
+
+    @Test fun originThatGenuinelyDiffersStillAborts() {
+        val store = FakeStore()
+        // Every request, cache-busted or not, returns the wrong bytes: a real corruption.
+        val corrupt = object : ObjectPutter by store, ObjectFetcher {
+            override fun fetch(url: String) = "TAMPERED".toByteArray()
+        }
+        val renditions = mapOf("media/a/p.webp" to "/tmp/ap")
+
+        val e = assertFailsWith<IllegalStateException> {
+            Publisher(store, corrupt, "https://media-staging.stillscenes.app")
+                .publish(bundle(), renditions, "20260708-01")
+        }
+        assertTrue(e.message!!.contains("byte mismatch"), "got: ${e.message}")
+    }
+
+    @Test fun aTransientlyUnreachableObjectIsRetriedBeforeFailing() {
+        val store = FakeStore()
+        val flaky = object : ObjectPutter by store, ObjectFetcher {
+            var calls = 0
+            override fun fetch(url: String): ByteArray? {
+                calls++
+                return if (calls == 1) null else store.fetch(url.substringBefore("?"))
+            }
+        }
+        val renditions = mapOf("media/a/p.webp" to "/tmp/ap")
+
+        Publisher(store, flaky, "https://media-staging.stillscenes.app")
+            .publish(bundle(), renditions, "20260708-01") // no throw
+    }
+
     // Real-run branch: when a rendition path names an actual file, the read-back basis must be the
     // FILE's bytes, not the path string. Content here differs from the path, so the OLD code (which
     // recorded local.toByteArray()) would mismatch the fake's real-file bytes and throw.

@@ -10,6 +10,11 @@ class Publisher(
     private val platforms = listOf("i", "c")
     private val classes = listOf("p~s","p~five0","p~a~n","p~a~xl","p~uhd","f~fo","t~s","t~m","t~l")
 
+    private companion object {
+        /** Extra read-back attempts, each with a distinct cache-busting query. */
+        const val CacheBustRetries = 2
+    }
+
     /** renditionFiles: remoteKey (e.g. "media/x/download.webp") → local file path. */
     fun publish(bundle: WireBundle, renditionFiles: Map<String, String>, version: String) {
         // 1. renditions first
@@ -36,9 +41,30 @@ class Publisher(
 
         // 4. read-back verify every object (200 + byte-hash)
         for ((key, expected) in putBytes) {
-            val got = fetcher.fetch("$baseUrl/$key") ?: error("read-back 200 failed for $key")
-            check(got.contentEquals(expected)) { "read-back byte mismatch for $key" }
+            verifyReadBack(key, expected)
         }
+    }
+
+    /**
+     * Shared chrome keys (media/artist/…, media/folder/…) are reused across catalog versions and
+     * served `immutable`, so a PUT does not invalidate the edge. A read-back straight after the
+     * upload can therefore be answered from cache with the previous object, and a transient edge
+     * error can answer with nothing at all. Neither means the upload was corrupt.
+     *
+     * Retry past the cache with a busting query before failing. Only a response that still differs
+     * once origin has been consulted is a real mismatch.
+     */
+    private fun verifyReadBack(key: String, expected: ByteArray) {
+        val url = "$baseUrl/$key"
+        var sawResponse = false
+        for (attempt in 0..CacheBustRetries) {
+            val target = if (attempt == 0) url else "$url?cacheBust=$attempt"
+            val got = fetcher.fetch(target) ?: continue
+            sawResponse = true
+            if (got.contentEquals(expected)) return
+        }
+        check(sawResponse) { "read-back 200 failed for $key" }
+        error("read-back byte mismatch for $key")
     }
 
     private val tmp = kotlin.io.path.createTempDirectory("pipeline").toFile()

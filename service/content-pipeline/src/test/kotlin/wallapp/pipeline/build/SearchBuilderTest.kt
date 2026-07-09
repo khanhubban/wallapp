@@ -25,6 +25,13 @@ class SearchBuilderTest {
         assertEquals("stillscenes_1a2b3c4d", r.remixId)
         assertTrue(r.titleSuggestions.isNotEmpty())   // required, non-empty
         assertTrue(r.tags.any { it.term == "dark" })
+        assertTrue(r.tags.any { it.term == "minimal" })
+        assertTrue(r.styles.any { it.term == "amoled" })
+        assertTrue(r.colors.any { it.term == "dark" })
+        // searchTerms = (tags + styles).distinct() per SearchBuilder
+        assertTrue(r.searchTerms.any { it.term == "dark" })
+        assertTrue(r.searchTerms.any { it.term == "minimal" })
+        assertTrue(r.searchTerms.any { it.term == "amoled" })
     }
 
     @Test fun roundTripsThroughClientModel() {

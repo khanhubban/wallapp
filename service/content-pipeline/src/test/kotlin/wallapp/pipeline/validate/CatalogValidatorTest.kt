@@ -1,5 +1,6 @@
 package wallapp.pipeline.validate
 
+import wallapp.pipeline.IMGIX_HOST_PREFIX
 import wallapp.pipeline.build.*
 import wallapp.pipeline.manifest.*
 import kotlin.test.Test
@@ -19,7 +20,7 @@ class CatalogValidatorTest {
         search = SearchBuilder.build(manifest()),
         media = MediaMapBuilder.build(manifest().copy(baseUrl = base)),
         baseUrl = base,
-        imgixHostPrefix = "https://stillscenes.imgix.net",
+        imgixHostPrefix = IMGIX_HOST_PREFIX,
     )
 
     @Test fun passesForACoherentBundle() {

@@ -1,5 +1,6 @@
 package wallapp.pipeline.publish
 
+import wallapp.pipeline.IMGIX_HOST_PREFIX
 import wallapp.pipeline.build.*
 import wallapp.pipeline.manifest.*
 import kotlin.test.Test
@@ -14,7 +15,7 @@ class PublisherTest {
             listOf(ManifestWallpaper("stillscenes_1a2b3c4d","Aurora 01",true,1440,3120,
                 "media/x/download.webp","media/x/preview.webp", tags = listOf("dark"))))
         return WireBundle(CatalogBuilder.build(m), SearchBuilder.build(m), MediaMapBuilder.build(m),
-            m.baseUrl, "https://stillscenes.imgix.net")
+            m.baseUrl, IMGIX_HOST_PREFIX)
     }
 
     // Fake stores puts; fetcher returns exactly what was put (byte-identical) → read-back passes.

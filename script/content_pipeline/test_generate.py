@@ -21,6 +21,7 @@ class TestBuildManifest(unittest.TestCase):
 
         self.assertEqual(m["version"], "20260708-01")
         w = m["wallpapers"][0]
+        self.assertIs(w["isDark"], True)
         self.assertEqual(w["downloadRenditionPath"], "media/stillscenes_1a2b3c4d/download.webp")
         self.assertEqual(w["previewRenditionPath"], "media/stillscenes_1a2b3c4d/preview.webp")
         self.assertEqual(m["artist"]["id"], "stillscenes")

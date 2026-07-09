@@ -5,8 +5,6 @@ import wallapp.pipeline.manifest.PipelineManifest
 import wallapp.pipeline.publish.*
 import wallapp.pipeline.validate.CatalogValidator
 
-private const val IMGIX_PREFIX = "https://stillscenes.imgix.net"
-
 fun runPipeline(manifestText: String, putter: ObjectPutter, fetcher: ObjectFetcher, renditionFiles: Map<String, String>) {
     val m = PipelineManifest.parse(manifestText)
     val bundle = WireBundle(
@@ -14,7 +12,7 @@ fun runPipeline(manifestText: String, putter: ObjectPutter, fetcher: ObjectFetch
         search = SearchBuilder.build(m),
         media = MediaMapBuilder.build(m),
         baseUrl = m.baseUrl,
-        imgixHostPrefix = IMGIX_PREFIX,
+        imgixHostPrefix = IMGIX_HOST_PREFIX,
     )
     CatalogValidator.validate(bundle)                       // fail-fast BEFORE any upload
     Publisher(putter, fetcher, m.baseUrl).publish(bundle, renditionFiles, m.version)

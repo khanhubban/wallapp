@@ -23,7 +23,9 @@ class CatalogBuilderTest {
         assertEquals("stillscenes", w.artistId)
         assertEquals(c.categories[0].id, w.categoryId)          // categoryId resolves
         assertEquals(mediaId("stillscenes_1a2b3c4d:download"), w.wallpaperDownloadMedia.hdMediaId)
+        assertEquals(mediaId("stillscenes_1a2b3c4d:download"), w.wallpaperDownloadMedia.sdMediaId)
         assertEquals(mediaId("stillscenes_1a2b3c4d:preview"), w.previews.standard[0].id)
+        assertTrue(w.isDark)                                    // isDark flows through from manifest
         assertTrue(c.categories[0].remixIds.contains(w.id))      // category lists the remix
     }
 

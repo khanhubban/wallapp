@@ -32,4 +32,12 @@ class MediaMapBuilderTest {
         val ar = data.mediaMap[mediaId("stillscenes:profile")]!!
         assertEquals(setOf("am", "as", "e"), ar.keys)
     }
+
+    @Test fun folderProfileAndBannerIdsCarryWfsKey() {
+        val data = MediaMapBuilder.build(manifest())
+        val profile = data.mediaMap[mediaId("f~justadded:profile")]!!
+        val banner = data.mediaMap[mediaId("f~justadded:banner")]!!
+        assertEquals(setOf("wfs"), profile.keys)
+        assertEquals(setOf("wfs"), banner.keys)
+    }
 }

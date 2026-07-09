@@ -7,11 +7,11 @@ class Publisher(
     private val fetcher: ObjectFetcher,
     private val baseUrl: String,
 ) {
+    private val platforms = listOf("i", "c")
+    private val classes = listOf("p~s","p~five0","p~a~n","p~a~xl","p~uhd","f~fo","t~s","t~m","t~l")
+
     /** renditionFiles: remoteKey (e.g. "media/x/download.webp") → local file path. */
     fun publish(bundle: WireBundle, renditionFiles: Map<String, String>, version: String) {
-        val platforms = listOf("i", "c")
-        val classes = listOf("p~s","p~five0","p~a~n","p~a~xl","p~uhd","f~fo","t~s","t~m","t~l")
-
         // 1. renditions first
         val putBytes = LinkedHashMap<String, ByteArray>()
         for ((key, local) in renditionFiles) {
@@ -49,6 +49,9 @@ class Publisher(
         putter.put(f.absolutePath, remoteKey)
         sink[remoteKey] = content.toByteArray()
     }
-    private fun specJson(version: String) =
-        """{"content":"api/$version/content-1a","search":"api/$version/content-metadata-1a","media":{"root":"api/$version/media-1a","p":["i","c"],"b":["p~s","p~five0","p~a~n","p~a~xl","p~uhd","f~fo","t~s","t~m","t~l"]}}"""
+    private fun specJson(version: String): String {
+        val p = platforms.joinToString(",") { "\"$it\"" }
+        val b = classes.joinToString(",") { "\"$it\"" }
+        return """{"content":"api/$version/content-1a","search":"api/$version/content-metadata-1a","media":{"root":"api/$version/media-1a","p":[$p],"b":[$b]}}"""
+    }
 }

@@ -24,6 +24,12 @@ kotlin {
                 api(project(":shared:core:setting"))
             }
         }
+
+        commonTest {
+            dependencies {
+                implementation(kotlin("test"))
+            }
+        }
     }
 }
 

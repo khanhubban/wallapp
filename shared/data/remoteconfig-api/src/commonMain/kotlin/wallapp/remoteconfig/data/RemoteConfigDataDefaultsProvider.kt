@@ -17,16 +17,20 @@ open class RemoteConfigDataDefaultsProvider {
         get() = true
     open val feedAdsEnabled: Boolean
         get() = true
+    // Highlight IDs are resolved against the active catalog with no existence check
+    // (ShowcaseRepositoryHighlightsConfigDefault wraps them in ArtistId/CategoryId/RemixId).
+    // An ID absent from the catalog yields an empty showcase row, not an error, so these
+    // defaults must name content that exists in the shipped catalog.
     open val highlightArtist: String
-        get() = "a~indigo"
+        get() = "stillscenes"
     open val highlightCollectionOfTheWeek: String
-        get() = "red~stripes"
+        get() = "stillscenes~singles"
     open val highlightJustAdded: String
         get() = highlightCollectionOfTheWeek
     open val highlightMostPopular: String
         get() = highlightCollectionOfTheWeek
     open val highlightWallpaperOfTheWeek: String
-        get() = "a~red_e63c4f79"
+        get() = "stillscenes_0e59bd05"
     open val imageHostName: String
         get() = "example"
     open val rewardAdsEnableConsecutivePlays: Boolean

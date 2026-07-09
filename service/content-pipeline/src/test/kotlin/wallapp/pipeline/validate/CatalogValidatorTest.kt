@@ -1,10 +1,12 @@
 package wallapp.pipeline.validate
 
+import wallapp.media.network.model.NetworkMediaData
 import wallapp.pipeline.IMGIX_HOST_PREFIX
 import wallapp.pipeline.build.*
 import wallapp.pipeline.manifest.*
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
+import kotlin.test.assertTrue
 
 class CatalogValidatorTest {
     private fun manifest() = PipelineManifest(
@@ -37,5 +39,54 @@ class CatalogValidatorTest {
         assertFailsWith<IllegalStateException> {
             CatalogValidator.validate(bundle(base = "https://stillscenes.imgix.net"))
         }
+    }
+
+    // NetworkMediaData is a plain class (no `copy`), so corruptions build a fresh instance from
+    // its `version` and a mutated `mediaMap` rather than `.copy(mediaMap = ...)`.
+
+    @Test fun rejectsAFolderBannerCarryingTheFeedKeyInsteadOfExhibit() {
+        val b = bundle()
+        val bannerId = b.content.folders.first().featureBannerImage.id
+        val broken = b.copy(
+            media = NetworkMediaData(
+                version = b.media.version,
+                mediaMap = b.media.mediaMap.toMutableMap().apply {
+                    put(bannerId, mapOf("wfs" to "https://cdn/banner.webp"))
+                },
+            ),
+        )
+        val e = assertFailsWith<IllegalStateException> { CatalogValidator.validate(broken) }
+        assertTrue(e.message!!.contains("folder banner"))
+    }
+
+    @Test fun rejectsAnUnknownSizedImageKey() {
+        val b = bundle()
+        val previewId = b.content.wallpapers.first().previews.standard.first().id
+        val broken = b.copy(
+            media = NetworkMediaData(
+                version = b.media.version,
+                mediaMap = b.media.mediaMap.toMutableMap().apply {
+                    put(previewId, b.media.mediaMap[previewId]!! + ("wsc0" to "https://cdn/typo.webp"))
+                },
+            ),
+        )
+        val e = assertFailsWith<IllegalStateException> { CatalogValidator.validate(broken) }
+        assertTrue(e.message!!.contains("wsc0"))
+    }
+
+    @Test fun rejectsAnOrphanMediaMapEntry() {
+        val b = bundle()
+        val broken = b.copy(
+            media = NetworkMediaData(
+                version = b.media.version,
+                mediaMap = b.media.mediaMap + (999_999_999L to mapOf("wfs" to "https://cdn/x.webp")),
+            ),
+        )
+        val e = assertFailsWith<IllegalStateException> { CatalogValidator.validate(broken) }
+        assertTrue(e.message!!.contains("orphan"))
+    }
+
+    @Test fun acceptsAWellFormedBundle() {
+        CatalogValidator.validate(bundle())
     }
 }

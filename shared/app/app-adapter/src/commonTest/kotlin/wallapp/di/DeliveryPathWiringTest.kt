@@ -13,7 +13,10 @@ import kotlin.test.assertIs
 
 class DeliveryPathWiringTest : WaeTest {
 
-    @Test fun contentDeliveryConfigPointsAtStagingCdn() = waeTest {
+    // Desktop links di-buildconfig-debug (see di-base.gradle.kts). This asserts the graph resolves
+    // to staging rather than prod; the prod binding is asserted in di-buildconfig-release's own test,
+    // which is the only place it is reachable.
+    @Test fun debugGraphResolvesToTheStagingCdn() = waeTest {
         val config: ContentDeliveryConfig = resolveDependency()
         assertEquals("https://media-staging.stillscenes.app", config.baseUrl)
     }

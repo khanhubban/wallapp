@@ -8,6 +8,7 @@ object NamedScope {
     val ApplicationId = named("ApplicationId")
     val BillingManagerFallback = named("Sparkle") // Don't use an accurate name here. We don't need to help APK snoopers.
     val CacheFileMediaMap = named("CacheFileMediaMap")
+    val CatalogVersion = named("CatalogVersion")
     val CoroutineScopeIo = named("CoroutineScopeIo")
     val CoroutineScopeMain = named("CoroutineScopeMain")
     val CoroutineScopeMainImmediate = named("CoroutineScopeMainImmediate")

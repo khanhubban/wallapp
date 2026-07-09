@@ -70,6 +70,15 @@ kotlin {
                 implementation(project(":shared:system:common"))
             }
         }
+
+        commonTest {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(libs.koin.core)
+                implementation(project(":shared:data:remoteconfig-api"))
+                implementation(project(":shared:data:remoteendpoint"))
+            }
+        }
     }
 }
 

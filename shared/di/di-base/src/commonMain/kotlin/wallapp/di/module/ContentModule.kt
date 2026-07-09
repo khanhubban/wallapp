@@ -83,8 +83,6 @@ import wallapp.purchase.PurchaseUiManager
 import wallapp.purchase.PurchaseUiManagerDefault
 import wallapp.remoteapi.RemoteEndpointsSpecRepository
 import wallapp.remoteapi.RemoteEndpointsSpecRepositoryDefault
-import wallapp.remoteconfig.data.RemoteConfigData
-import wallapp.remoteendpoint.ContentDeliveryConfig
 import wallapp.remoteendpoint.RemoteApiEndpointRepository
 import wallapp.remoteendpoint.RemoteApiEndpointRepositoryConfig
 import wallapp.remoteendpoint.RemoteApiEndpointRepositoryConfigDefault
@@ -126,8 +124,6 @@ val ContentModule: Module = module {
     single<CollectionRepository> { CollectionRepositoryDefault(get()) }
     single<ContentCategoryFactory> { ContentCategoryFactory(get()) }
     single<ContentColorManager> { ContentColorManagerDefault(get(), get(NamedScope.CoroutineScopeMain)) }
-    // TODO(release plan): staging-only base URL; prod/staging split lands with per-buildtype config.
-    single<ContentDeliveryConfig> { ContentDeliveryConfig(baseUrl = "https://media-staging.stillscenes.app") }
     single<ContentMediaRepository> { ContentMediaRepositoryDefault(get(), get(), get()) }
     single<ContentRepository> { ContentRepositoryDefault(get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(NamedScope.LazyPurchasableRepository), get(NamedScope.CoroutineScopeMain), get(NamedScope.CoroutineScopeIo)) }
     single<ContentStateMapper> { ContentStateMapperDefault(get(), get()) }
@@ -167,7 +163,7 @@ val ContentModule: Module = module {
     single<RemoteApiEndpointRepository> { Factory.remoteApiEndpointRepository(this) }
     single<RemoteApiEndpointRepositoryDefault> { RemoteApiEndpointRepositoryDefault(get(), get(), get(), get(), get(), get(NamedScope.CoroutineScopeIo)) }
     single<RemoteApiEndpointRepositoryConfig> { RemoteApiEndpointRepositoryConfigDefault(get()) }
-    single<RemoteEndpointsRepositoryNetwork> { RemoteEndpointsRepositoryRemoteConfig(catalogVersion = get<RemoteConfigData>().catalogVersion, config = get()) }
+    single<RemoteEndpointsRepositoryNetwork> { RemoteEndpointsRepositoryRemoteConfig(catalogVersion = get(NamedScope.CatalogVersion), config = get()) }
     single<RemoteEndpointsRepositoryPreset> { RemoteEndpointsRepositoryPresetDefault() }
     single<RemoteEndpointsSpecRepository> { Factory.remoteEndpointsSpecRepository(this) }
     single<RemoteEndpointsSpecRepositoryDefault> { RemoteEndpointsSpecRepositoryDefault() }

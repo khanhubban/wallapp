@@ -35,13 +35,19 @@ def render_webp(src_path: str, out_path: str, max_w: int, max_h: int, quality: i
     im.save(out_path, "WEBP", quality=quality, method=6)
 
 def generate_candidates(prompts: list, out_dir: str) -> list:
-    """Real BFL FLUX.2 [klein] async calls. Isolated so unit tests don't hit the network. Note: the BFL endpoint path and response shape are best-effort and MUST be verified against the live BFL API on the first real call."""
+    """Real BFL FLUX.2 [klein] async calls. Isolated so unit tests don't hit the network.
+    Endpoint verified 2026-07-09: api.bfl.ai/v1/flux-2-klein-4b + x-key auth + {prompt,width,height}
+    body are valid (a live call returned 402 credits-only, so the request shape passed). The
+    submit -> polling_url -> poll -> result.sample flow follows BFL docs; confirm on the first
+    *credited* run."""
     import requests
     key = os.environ["BFL_API_KEY"]
     results = []
     for i, prompt in enumerate(prompts):
-        r = requests.post("https://api.bfl.ml/v1/flux-2-klein",
-                          headers={"x-key": key}, json={"prompt": prompt}).json()
+        # 768x1344 portrait is verified-valid (tune toward the phone aspect / BFL max as needed).
+        r = requests.post("https://api.bfl.ai/v1/flux-2-klein-4b",
+                          headers={"x-key": key},
+                          json={"prompt": prompt, "width": 768, "height": 1344}).json()
         poll = r["polling_url"]
         for _ in range(120):                            # ~60s; sample URL expires in 10 min
             time.sleep(0.5)

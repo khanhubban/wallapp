@@ -14,6 +14,7 @@ import wallapp.content.model.Id.CategoryId
 import wallapp.content.model.Id.RemixId
 import wallapp.content.model.Wallpaper
 import wallapp.content.model.WallpaperCategory
+import wallapp.content.model.WallpaperCategoryType
 import wallapp.content.model.WallpaperRemix
 import wallapp.coroutine.CoroutineScopeMain
 import wallapp.data.artist.ArtistRepository
@@ -108,7 +109,10 @@ class ShowcaseRepositoryDefault(
         id: Id,
         label: String,
     ): Highlight? {
-        return find { it.id == id }
+        // [id] comes from Remote Config and may name a category of any type, or none at all.
+        // CollectionHighlight requires a Collection, so filter on the type here: a mismatched
+        // id must degrade to no highlight rather than tripping that require() and crashing.
+        return find { it.id == id && it.categoryType == WallpaperCategoryType.Collection }
             ?.let {
                 CollectionHighlight(
                     category = it,

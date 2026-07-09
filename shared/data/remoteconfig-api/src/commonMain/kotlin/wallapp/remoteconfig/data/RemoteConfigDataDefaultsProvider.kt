@@ -24,7 +24,7 @@ open class RemoteConfigDataDefaultsProvider {
     open val highlightArtist: String
         get() = "stillscenes"
     open val highlightCollectionOfTheWeek: String
-        get() = "stillscenes~singles"
+        get() = "stillscenes~featured"
     open val highlightJustAdded: String
         get() = highlightCollectionOfTheWeek
     open val highlightMostPopular: String

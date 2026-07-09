@@ -16,9 +16,9 @@
     },
     "highlight_collection_of_the_week": {
       "defaultValue": {
-        "value": "stillscenes~singles"
+        "value": "stillscenes~featured"
       },
-      "description": "Showcase: collection of the week (CategoryId). Must name a Collection-type category; a Singles category is ignored and the highlight is omitted. Catalog 20260709-03 has no Collection, so this currently resolves to nothing.",
+      "description": "Showcase: collection of the week (CategoryId). Must name a Collection-type category; a Singles category is ignored and the highlight is omitted. stillscenes~featured exists from catalog 20260709-04 onward.",
       "valueType": "STRING"
     },
     "highlight_just_added": {

@@ -392,6 +392,7 @@ class ContentRepositoryDefault(
                 collectionId = id,
                 hasPlus = licenseState.isPlus(),
                 purchaseRecord = purchaseRecord,
+                isFree = collection.isFree,
             )
             val showAdFreeCollectionLockedInfo = licenseState is LicenseStateType.AdFree
                     && !connectionState.isUnlocked
@@ -433,11 +434,12 @@ class ContentRepositoryDefault(
         }
     }
 
+    // Free collections have no store product, so CollectionPurchasable.orNull drops them here.
     override val collectionPurchasables: Flow<List<CollectionPurchasable>> =
         categories.map { categories ->
             categories.mapNotNull { category ->
                 if (category.categoryType != WallpaperCategoryType.Singles) {
-                    CollectionPurchasable(category)
+                    CollectionPurchasable.orNull(category)
                 } else {
                     null
                 }
@@ -448,7 +450,7 @@ class ContentRepositoryDefault(
         wallpaperRepository.getCategory(collectionId.categoryId)
             .map {
             if (it != null && it.categoryType != WallpaperCategoryType.Singles) {
-                CollectionPurchasable(it)
+                CollectionPurchasable.orNull(it)
             } else {
                 null
             }
@@ -458,11 +460,13 @@ class ContentRepositoryDefault(
         collectionId: CollectionId,
         hasPlus: Boolean,
         purchaseRecord: PurchaseRecord,
+        isFree: Boolean,
     ): CollectionConnectionState {
         return CollectionConnectionState(
             id = collectionId,
             isPurchased = purchaseRecord.isPurchased,
             isUnlockedViaSubscription = hasPlus,
+            isFree = isFree,
         )
     }
 

@@ -4,7 +4,6 @@ import wallapp.content.model.Id.ArtistId
 import wallapp.content.model.Id.CategoryId
 import wallapp.content.model.Id.RemixId
 import wallapp.media.model.MediaHolder
-import wallapp.string.quote
 
 /**
  *
@@ -21,13 +20,13 @@ data class WallpaperCategory(
     val purchasableProductIds: PurchasableProductIds? = null,
 ) : WallpaperGroup {
 
-    init {
-        if (categoryType == WallpaperCategoryType.Collection) {
-            requireNotNull(purchasableProductIds) {
-                "Collection category ${id.name.quote()} must have purchasableProductIds"
-            }
-        }
-    }
+    /**
+     * A Collection with no [purchasableProductIds] carries no store product: there is nothing to
+     * buy, so it is free and always unlocked. Catalogs from the content pipeline publish such
+     * collections. Meaningless for [WallpaperCategoryType.Singles], which are free regardless.
+     */
+    val isFree: Boolean
+        get() = purchasableProductIds == null
 
     override fun equals(other: Any?): Boolean {
         if (other !is WallpaperCategory) return false

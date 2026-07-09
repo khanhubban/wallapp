@@ -12,7 +12,8 @@
 
 ## Global Constraints
 
-- **Tests: use `:desktopTest`, never `:test`.** `:shared:app:app-adapter:testDebugUnitTest` fails on a clean tree (`Method myPid in android.os.Process not mocked`, via `ConfigValueRepositoryFirebase`). It is pre-existing and unrelated. `:test` runs both, so it always looks red.
+- **Tests, KMP modules under `shared/`: use `:desktopTest`, never `:test`.** `:shared:app:app-adapter:testDebugUnitTest` fails on a clean tree (`Method myPid in android.os.Process not mocked`, via `ConfigValueRepositoryFirebase`). It is pre-existing and unrelated. `:test` runs both, so it always looks red.
+- **Tests, `service/content-pipeline`: use `:test`.** It is a plain `kotlin("jvm")` module with `tasks.test { useJUnitPlatform() }` and **no desktop target**, so `:service:content-pipeline:desktopTest` does not exist. The rule above does not apply to it.
 - **Never `git add -A`.** `node_modules/`, `.wrangler/`, and `learn/` are untracked and unignored. Always `git add <explicit paths>`.
 - **Gradle is pinned to JDK 17** in `~/.gradle/gradle.properties`. `/usr/libexec/java_home -v 17` does **not** resolve the Homebrew keg; the path is `/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home`.
 - **Launch the app with the explicit activity.** `adb shell monkey -c LAUNCHER` starts **LeakCanary's** launcher activity, not the app.
@@ -1340,7 +1341,7 @@ orphan/collision checks."
 
 - [ ] **Step 1: Write the failing test**
 
-Add to `service/content-pipeline/src/test/kotlin/wallapp/pipeline/MainTest.kt` (create the file if it does not exist):
+Create `service/content-pipeline/src/test/kotlin/wallapp/pipeline/MainArgsTest.kt`:
 
 ```kotlin
 package wallapp.pipeline
@@ -1425,7 +1426,7 @@ If the diff is non-empty, **stop.** Either the refactor changed the wire format 
 
 ```bash
 git add service/content-pipeline/src/main/kotlin/wallapp/pipeline/Main.kt \
-        service/content-pipeline/src/test/kotlin/wallapp/pipeline/MainTest.kt
+        service/content-pipeline/src/test/kotlin/wallapp/pipeline/MainArgsTest.kt
 git commit -m "feat(pipeline): add --dry-run to build and validate without publishing"
 ```
 

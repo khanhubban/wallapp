@@ -66,4 +66,28 @@ class MediaMapBuilderTest {
         assertEquals(setOf("e"), banner.keys)
         assertTrue(banner["e"]!!.endsWith("/media/folder/justadded/banner.webp"))
     }
+
+    /**
+     * JSON key order follows map iteration order, so a reordering here changes published bytes.
+     * Pinned so the MediaEntityKind refactor is provably byte-identical.
+     */
+    @Test fun previewEntryPreservesWireKeyOrder() {
+        val pv = MediaMapBuilder.build(manifest()).mediaMap[mediaId("stillscenes_1a2b3c4d:preview")]!!
+        assertEquals(
+            listOf("s", "wfs", "wft", "fs", "wcs0", "wcs1", "wcs2", "wcl0", "wcl1", "wcl2"),
+            pv.keys.toList(),
+        )
+    }
+
+    @Test fun downloadAndArtistEntriesPreserveWireKeyOrder() {
+        val data = MediaMapBuilder.build(manifest())
+        assertEquals(
+            listOf("dhd", "dsd"),
+            data.mediaMap[mediaId("stillscenes_1a2b3c4d:download")]!!.keys.toList(),
+        )
+        assertEquals(
+            listOf("am", "as", "e"),
+            data.mediaMap[mediaId("stillscenes:profile")]!!.keys.toList(),
+        )
+    }
 }

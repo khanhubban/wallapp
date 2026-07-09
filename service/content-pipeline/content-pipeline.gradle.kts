@@ -17,6 +17,7 @@ dependencies {
     api(libs.ktor.client.okhttp)
     implementation(libs.kotlinx.serialization.json)
     implementation(project(":shared:core:common"))
+    implementation(project(":shared:data:base"))
     implementation(project(":shared:data:content-network"))
     implementation(project(":shared:data:mediamap-network"))
     implementation(project(":shared:data:search-model"))

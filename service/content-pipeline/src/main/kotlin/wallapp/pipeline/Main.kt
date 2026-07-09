@@ -31,7 +31,7 @@ fun main(args: Array<String>) {
         put(m.folder.profileImagePath, java.io.File(dir, m.folder.profileImagePath).absolutePath)
         put(m.folder.featureBannerImagePath, java.io.File(dir, m.folder.featureBannerImagePath).absolutePath)
     }
-    runPipeline(text, RcloneClient(remote = "r2staging", bucket = "stillscenes-content-staging"),
+    runPipeline(text, WranglerClient(bucket = "stillscenes-content-staging"),
                 CdnReadBackVerifier(), renditions)
     println("Published version ${m.version}. Flip RC catalog_version to ${m.version} to go live.")
 }

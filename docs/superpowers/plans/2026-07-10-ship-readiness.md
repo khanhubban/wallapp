@@ -1169,7 +1169,9 @@ The builder no longer contains a single SizedImage string literal."
 
 `CatalogValidator:19` and `:23` hardcode `listOf("dhd","dsd")` and `listOf("s","wfs")`. That list is the *third* copy of the contract, and it is incomplete — which is exactly why the validator caught neither `c2db6cf` nor `fa8453e`.
 
-Note on honesty: once the builder derives from `MediaEntityKind`, the validator's per-kind key check is a **tripwire**, not an independent verification — it confirms the enum equals itself under the current builder. It still earns its place: it catches a hand-edited catalog, an older builder's output, and any future regression in derivation. The genuinely independent checks are the unknown-key scan and the orphan/collision check.
+Note on honesty: once the builder derives from `MediaEntityKind`, the validator's per-kind key check is a **tripwire**, not an independent verification — it confirms the enum equals itself under the current builder. It still earns its place: it catches a hand-edited catalog, an older builder's output, and any future regression in derivation.
+
+**Corrected after review:** this step originally claimed the unknown-key scan and the orphan/collision check were both "genuinely independent." Only the orphan/collision check is. The unknown-key scan is subsumed — a bundle that passes the per-kind and orphan checks cannot fail it, because every member of a `requiredKeyStrings` is a `SizedImage.key` by construction. It runs **first** regardless, because `unknown SizedImage key 'wsc0'` diagnoses the fault far better than a set-inequality dump, and it is the check that still works if the per-kind check is ever weakened. Order in the shipped code is: (a1) unknown-key scan, (a2) per-kind sets, (a3) orphan/collision.
 
 **Files:**
 - Modify: `service/content-pipeline/src/main/kotlin/wallapp/pipeline/validate/CatalogValidator.kt`

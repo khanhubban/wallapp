@@ -270,15 +270,30 @@ and **overwrites the real `wfs` entry**, corrupting the feed image for every wal
 
 ### Validator scope
 
-`CatalogValidator` gains a media-map pass that recomputes expected `mediaId`s from the manifest and checks:
+> **Corrected during implementation.** This section originally claimed `CatalogValidator` would not
+> re-check required-key sets, and that the unknown-key scan was independent coverage. Both claims were
+> wrong. What follows is what was built and why. See *Corrections* at the end of this document.
 
-- every emitted key parses to a known `SizedImage`
-- every manifest entity has a map entry
-- no orphan entries
-- no `mediaId` collisions
+`CatalogValidator` runs three media-map checks, in this order:
 
-It does **not** re-check required-key sets. The builder derives those from the enum, so re-deriving
-them in the validator would only confirm the enum equals itself.
+1. **(a1) unknown-key scan** — every emitted key resolves via `SizedImage.fromOrNull`.
+2. **(a2) per-kind key sets** — every catalog-referenced id carries exactly its `MediaEntityKind.requiredKeyStrings`.
+3. **(a3) orphan / collision** — `mediaMap.keys == referenced`, so the map holds exactly the ids the
+   catalog names, and no two `mediaId` seeds have collided onto one entry.
+
+**Only (a3) is independent of the builder.** (a2) is a tripwire: once `MediaMapBuilder` derives from
+`MediaEntityKind`, checking its output against that same enum confirms the enum equals itself. It is
+kept because it catches a hand-edited catalog, an older builder's output, and any regression in
+derivation.
+
+**(a1) is subsumed by (a2) ∧ (a3)** and rejects nothing they would not. If every map id is
+catalog-referenced (a3) and every referenced id's key set exactly equals some `requiredKeyStrings`
+(a2), then every key in the map is a `SizedImage.key` by construction. No bundle passes (a2) and (a3)
+while failing (a1). It runs **first** anyway, because `unknown SizedImage key 'wsc0'` is a far more
+useful diagnosis than the set-inequality dump (a2) would emit, and because it is the check that still
+works if (a2) is ever weakened.
+
+The earlier claim that (a1) and (a3) were "the genuinely independent checks" was disproved by review.
 
 ### Verification
 
@@ -336,6 +351,27 @@ adb shell am start -n app.stillscenes/wallapp.activity.MainActivity
   Manager, and is used in `GoogleAuthManager.android.kt`, `AccountPlatformModule.android.kt`, and
   `MainActivity.kt`. Phase 1 does not touch it and does not need to. Noted because a future migration
   will revisit the same client ids.
+
+---
+
+## Corrections found during implementation
+
+Two of this document's claims were wrong. Both were caught by adversarial review of the code, not by
+re-reading the design. Recorded here rather than silently edited, because the reasoning that produced
+them is the reasoning most likely to produce the next mistake.
+
+**1. "The genuinely independent checks are the unknown-key scan and the orphan/collision check."**
+False. The unknown-key scan is fully subsumed by the other two. If every map id is catalog-referenced,
+and every referenced id's key set exactly equals some `requiredKeyStrings`, then every key in the map
+is a `SizedImage.key` by construction — there is no bundle that passes those two and fails the scan.
+The scan survives as a *diagnostic* (it names the offending key) and as a backstop, not as coverage.
+The error was assuming that a check phrased differently must test something different.
+
+**2. "The tests assert the required key sets."**
+The Task 6 tests compared `Set`s with `assertEquals`. `Set.equals()` is order-insensitive by contract,
+so although `MediaEntityKind`'s declaration order determines the published wire-key order — and the
+enum's own KDoc says so — no test could observe a reordering. Fixed by comparing `.toList()`. The
+error was letting a type that models *membership* stand guard over a property about *sequence*.
 
 ---
 

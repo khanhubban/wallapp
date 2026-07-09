@@ -18,14 +18,14 @@
       "defaultValue": {
         "value": "stillscenes~singles"
       },
-      "description": "Showcase: collection of the week (CategoryId). Must exist in the active catalog.",
+      "description": "Showcase: collection of the week (CategoryId). Must name a Collection-type category; a Singles category is ignored and the highlight is omitted. Catalog 20260709-03 has no Collection, so this currently resolves to nothing.",
       "valueType": "STRING"
     },
     "highlight_just_added": {
       "defaultValue": {
         "value": "stillscenes~singles"
       },
-      "description": "Showcase: just-added row (CategoryId). Must exist in the active catalog.",
+      "description": "Showcase: just-added row (CategoryId). Currently unread by the client: the Just Added row resolves FolderDefinitions.FolderIdJustAdded directly.",
       "valueType": "STRING"
     },
     "highlight_most_popular": {

@@ -21,10 +21,27 @@ class MediaMapBuilderTest {
         assertTrue(dl["dhd"]!!.endsWith("/media/stillscenes_1a2b3c4d/download.webp"))
     }
 
-    @Test fun previewIdCarriesFeedAndFullscreenKeys() {
+    @Test fun previewIdCarriesFeedFullscreenAndCollectionLayerKeys() {
         val data = MediaMapBuilder.build(manifest())
         val pv = data.mediaMap[mediaId("stillscenes_1a2b3c4d:preview")]!!
-        assertEquals(setOf("s", "wfs", "wft", "fs"), pv.keys)
+
+        // A collection card stacks three preview layers and looks each up by its own SizedImage
+        // key (SizedImage.kt: wcs0..2 small, wcl0..2 large). Without them the card renders as a
+        // broken image. The demo catalog carries the same shape for collection members.
+        assertEquals(
+            setOf("s", "wfs", "wft", "fs", "wcs0", "wcs1", "wcs2", "wcl0", "wcl1", "wcl2"),
+            pv.keys,
+        )
+    }
+
+    @Test fun everyCollectionLayerKeyResolvesToThatWallpapersPreview() {
+        val data = MediaMapBuilder.build(manifest())
+        val pv = data.mediaMap[mediaId("stillscenes_1a2b3c4d:preview")]!!
+
+        val expected = "https://media-staging.stillscenes.app/media/stillscenes_1a2b3c4d/preview.webp"
+        for (key in listOf("wcs0", "wcs1", "wcs2", "wcl0", "wcl1", "wcl2")) {
+            assertEquals(expected, pv[key], "layer key $key")
+        }
     }
 
     @Test fun artistProfileIdCarriesArtistKeys() {

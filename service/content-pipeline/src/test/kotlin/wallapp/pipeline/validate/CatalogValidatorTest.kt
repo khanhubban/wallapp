@@ -75,6 +75,18 @@ class CatalogValidatorTest {
         assertTrue(e.message!!.contains("wsc0"), "actual: ${e.message}")
     }
 
+    // No isolated test for an sd-only wrong-key-shape rejection: CatalogBuilder always sets
+    // sdMediaId == hdMediaId (CatalogBuilder.kt: "hdMediaId = hd, sdMediaId = hd"), so against this
+    // fixture the hd and sd checks in CatalogValidator inspect the exact same media map entry
+    // against the exact same required-key set. Verified empirically: pointing sdMediaId's entry at
+    // mapOf("wfs" to url) and asserting the failure message mentions "sd media id" fails instead
+    // with the PRE-EXISTING hd check's message ("download id ... keys [wfs] != [dhd, dsd]"), because
+    // the hd check runs first and throws before the sd check (added for finding I1) is ever reached
+    // — identically whether or not the sd check exists. Decoupling hd from sd to isolate the new
+    // check would mean hand-building a NetworkWallpaper the real manifest→CatalogBuilder path can
+    // never produce, i.e. testing a bundle no manifest can create. The sd check is still exercised
+    // (non-isolated) by every test in this file that reaches (a2) — see passesForACoherentBundle.
+
     @Test fun rejectsAnOrphanMediaMapEntry() {
         val b = bundle()
         val broken = b.copy(

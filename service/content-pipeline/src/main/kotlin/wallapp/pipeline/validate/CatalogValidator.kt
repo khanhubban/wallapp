@@ -14,11 +14,15 @@ object CatalogValidator {
     fun validate(b: WireBundle) {
         val keys = b.media.mediaMap.keys
 
-        // (a1) Every emitted wire key must be one this build knows. Runs first because "unknown key
-        // 'wsc0'" is a far more useful diagnosis than the set-inequality dump the per-kind check
-        // below would otherwise produce. Note this does not widen what we reject: a bundle passing
-        // (a2) and (a3) cannot fail this check. It is a precise diagnostic, and a backstop if the
-        // per-kind check is ever weakened.
+        // (a1) Every emitted wire key must be one this build knows. Runs first because "media id 123
+        // carries unknown SizedImage key 'wsc0'" is a far more useful diagnosis than the
+        // set-inequality dump the per-kind check below would otherwise produce. Note this does not
+        // widen what we reject: a bundle passing (a2) and (a3) cannot fail this check. (a3) guarantees
+        // every media map id is some wallpaper's hd/sd/preview id, some artist's profile id, or some
+        // folder's profile/banner id; (a2) shape-checks every one of those id categories against a
+        // required-key set drawn from SizedImage itself, so nothing that survives (a2) can carry a key
+        // (a1) would call unknown. It is a precise diagnostic, and a backstop if the per-kind check is
+        // ever weakened.
         for ((id, map) in b.media.mediaMap) for (k in map.keys) {
             check(SizedImage.fromOrNull(k) != null) { "media id $id carries unknown SizedImage key '$k'" }
         }
@@ -33,6 +37,10 @@ object CatalogValidator {
                 "download id $dl keys ${b.media.mediaMap[dl]!!.keys} != ${MediaEntityKind.WallpaperDownload.requiredKeyStrings}"
             }
             check(w.wallpaperDownloadMedia.sdMediaId in keys) { "sd media id missing for ${w.id}" }
+            val sd = w.wallpaperDownloadMedia.sdMediaId
+            check(b.media.mediaMap[sd]!!.keys == MediaEntityKind.WallpaperDownload.requiredKeyStrings) {
+                "sd media id $sd keys ${b.media.mediaMap[sd]!!.keys} != ${MediaEntityKind.WallpaperDownload.requiredKeyStrings}"
+            }
             for (p in w.previews.standard) {
                 check(p.id in keys) { "preview media id ${p.id} (${w.id}) missing from media map" }
                 check(b.media.mediaMap[p.id]!!.keys == MediaEntityKind.WallpaperPreview.requiredKeyStrings) {

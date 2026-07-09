@@ -14,7 +14,16 @@ object CatalogValidator {
     fun validate(b: WireBundle) {
         val keys = b.media.mediaMap.keys
 
-        // (a) per-kind key sets, derived from the one shared contract rather than a local copy.
+        // (a1) Every emitted wire key must be one this build knows. Runs first because "unknown key
+        // 'wsc0'" is a far more useful diagnosis than the set-inequality dump the per-kind check
+        // below would otherwise produce. Note this does not widen what we reject: a bundle passing
+        // (a2) and (a3) cannot fail this check. It is a precise diagnostic, and a backstop if the
+        // per-kind check is ever weakened.
+        for ((id, map) in b.media.mediaMap) for (k in map.keys) {
+            check(SizedImage.fromOrNull(k) != null) { "media id $id carries unknown SizedImage key '$k'" }
+        }
+
+        // (a2) per-kind key sets, derived from the one shared contract rather than a local copy.
         // Tripwire: under the current builder this confirms the enum equals itself. It still
         // catches a hand-edited catalog, an older builder's output, or a derivation regression.
         for (w in b.content.wallpapers) {
@@ -46,12 +55,6 @@ object CatalogValidator {
             check(b.media.mediaMap[f.featureBannerImage.id]!!.keys == MediaEntityKind.FolderBanner.requiredKeyStrings) {
                 "folder banner ${f.id} keys ${b.media.mediaMap[f.featureBannerImage.id]!!.keys} != ${MediaEntityKind.FolderBanner.requiredKeyStrings}"
             }
-        }
-
-        // (a2) every emitted wire key must be one this build knows. Independent of the builder:
-        // catches a typo that MediaMapMapper would otherwise silently drop on the client.
-        for ((id, map) in b.media.mediaMap) for (k in map.keys) {
-            check(SizedImage.fromOrNull(k) != null) { "media id $id carries unknown SizedImage key '$k'" }
         }
 
         // (a3) the media map must contain exactly the ids the catalog references. Catches orphans

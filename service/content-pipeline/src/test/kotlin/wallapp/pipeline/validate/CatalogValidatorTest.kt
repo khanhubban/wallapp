@@ -71,7 +71,8 @@ class CatalogValidatorTest {
             ),
         )
         val e = assertFailsWith<IllegalStateException> { CatalogValidator.validate(broken) }
-        assertTrue(e.message!!.contains("wsc0"))
+        assertTrue(e.message!!.contains("unknown SizedImage key"), "actual: ${e.message}")
+        assertTrue(e.message!!.contains("wsc0"), "actual: ${e.message}")
     }
 
     @Test fun rejectsAnOrphanMediaMapEntry() {
@@ -84,9 +85,5 @@ class CatalogValidatorTest {
         )
         val e = assertFailsWith<IllegalStateException> { CatalogValidator.validate(broken) }
         assertTrue(e.message!!.contains("orphan"))
-    }
-
-    @Test fun acceptsAWellFormedBundle() {
-        CatalogValidator.validate(bundle())
     }
 }

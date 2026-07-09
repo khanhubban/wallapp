@@ -100,9 +100,15 @@ class ShowcaseRepositoryDefault(
                 label = strings.collectionOfTheWeek.splitIntoLines(2),
             )
 
-            listOfNotNull(
-                collectionOfTheWeekHighlight,
-            ).ifEmpty { null }
+            // null means "categories have not loaded yet" and holds exploreHighlights back until
+            // they do. Once they have, a catalog with no Collection legitimately yields no
+            // highlight, and that must read as an empty list -- collapsing it to null again would
+            // stall exploreHighlights forever.
+            if (wallpaperCategories.isEmpty()) {
+                null
+            } else {
+                listOfNotNull(collectionOfTheWeekHighlight)
+            }
         }.stateIn(coroutineScopeMain, SharingStarted.WhileSubscribed(), null)
 
     private fun List<WallpaperCategory>.findHighlight(

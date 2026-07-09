@@ -286,14 +286,24 @@ and **overwrites the real `wfs` entry**, corrupting the feed image for every wal
 kept because it catches a hand-edited catalog, an older builder's output, and any regression in
 derivation.
 
-**(a1) is subsumed by (a2) ∧ (a3)** and rejects nothing they would not. If every map id is
-catalog-referenced (a3) and every referenced id's key set exactly equals some `requiredKeyStrings`
-(a2), then every key in the map is a `SizedImage.key` by construction. No bundle passes (a2) and (a3)
-while failing (a1). It runs **first** anyway, because `unknown SizedImage key 'wsc0'` is a far more
-useful diagnosis than the set-inequality dump (a2) would emit, and because it is the check that still
-works if (a2) is ever weakened.
+**(a1) is subsumed by (a2) ∧ (a3) for output of the current builder, but not in general.** For a
+builder-produced catalog: every map id is catalog-referenced (a3), every referenced id's key set
+exactly equals some `requiredKeyStrings` (a2), and every member of a `requiredKeyStrings` is a
+`SizedImage.key` by construction — so (a1) cannot fire.
 
-The earlier claim that (a1) and (a3) were "the genuinely independent checks" was disproved by review.
+It is *not* subsumed for an arbitrary bundle. (a2) checks `hdMediaId`'s **key shape** but only asserts
+`sdMediaId in keys` — **presence, not shape** (`CatalogValidator.kt:35`). `WallpaperDownloadMedia` lets
+the two ids differ. A hand-edited catalog whose `sdMediaId` points at a separate entry carrying an
+unknown key therefore passes (a2) and (a3) and is caught only by (a1).
+
+(a1) runs **first** because `unknown SizedImage key 'wsc0'` diagnoses the fault far better than the
+set-inequality dump (a2) would emit, and because it is the check that still works if (a2) is weakened.
+
+Two claims were made about this check and both were wrong before this one. See *Corrections*.
+
+**Open follow-up:** (a2) should shape-check `sdMediaId`'s entry, not merely assert its presence. One
+line, closes the hole, and would make the subsumption unconditional. Not done — out of scope for the
+task that found it.
 
 ### Verification
 
@@ -361,11 +371,18 @@ re-reading the design. Recorded here rather than silently edited, because the re
 them is the reasoning most likely to produce the next mistake.
 
 **1. "The genuinely independent checks are the unknown-key scan and the orphan/collision check."**
-False. The unknown-key scan is fully subsumed by the other two. If every map id is catalog-referenced,
-and every referenced id's key set exactly equals some `requiredKeyStrings`, then every key in the map
-is a `SizedImage.key` by construction — there is no bundle that passes those two and fails the scan.
-The scan survives as a *diagnostic* (it names the offending key) and as a backstop, not as coverage.
-The error was assuming that a check phrased differently must test something different.
+False, and then the correction was false too — worth reading as a pair.
+
+*First error:* the unknown-key scan is not independent coverage. For any catalog the builder produces,
+the per-kind and orphan checks together already guarantee every key is a `SizedImage.key`. The scan
+survives as a diagnostic and a backstop. The mistake was assuming a check phrased differently must
+test something different.
+
+*Second error, in the fix:* the correction then asserted flatly that **no** bundle passes the other two
+and fails the scan. Also wrong. (a2) shape-checks `hdMediaId` but only presence-checks `sdMediaId`, and
+those ids can differ, so a hand-edited bundle can slip an unknown key past (a2) and (a3). The scan
+catches it. The mistake was generalizing from the one code path the builder exercises — the same
+mistake as the first, one level up.
 
 **2. "The tests assert the required key sets."**
 The Task 6 tests compared `Set`s with `assertEquals`. `Set.equals()` is order-insensitive by contract,

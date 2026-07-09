@@ -23,7 +23,7 @@ class DeliveryPathWiringTest : WaeTest {
         assertIs<RemoteEndpointsRepositoryRemoteConfig>(repository)
         repository.getRemoteEndpoints(RemoteEndpointTrack.Production).test {
             val endpoints = awaitItem()!!
-            assertEquals("https://media-staging.stillscenes.app/api/99999999/content-1a", endpoints.content)
+            assertEquals("https://media-staging.stillscenes.app/api/20260709-06/content-1a", endpoints.content)
             cancelAndIgnoreRemainingEvents()
         }
     }

@@ -8,6 +8,7 @@ enum class RemoteConfigKey(val key: String) {
     AccountSignInGoogleEnabled("account_sign_in_google_enabled"),
     AppUpdateMinimumAllowedAppVersion("app_update_minimum_allowed_app_version${remoteConfigKeyPlatformSuffix()}"),
     CatalogVersion("catalog_version"),
+    CatalogVersionStaging("catalog_version_staging"),
     ContentShowSingles("content_show_singles"),
     FeedAdsEnabled("feed_ads_enabled"),
     HighlightArtist("highlight_artist"),

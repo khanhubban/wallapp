@@ -18,6 +18,8 @@ class RemoteConfigDataMock(
         MutableStateFlow(null)
     override val catalogVersion: StateFlow<String> =
         MutableStateFlow(provider.catalogVersion)
+    override val catalogVersionStaging: StateFlow<String> =
+        MutableStateFlow(provider.catalogVersionStaging)
     override val contentShowSingles: StateFlow<Boolean> =
         MutableStateFlow(provider.contentShowSingles)
     override val feedAdsEnabled: StateFlow<Boolean> =

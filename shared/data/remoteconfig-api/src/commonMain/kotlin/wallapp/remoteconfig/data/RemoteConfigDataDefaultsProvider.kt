@@ -11,8 +11,13 @@ open class RemoteConfigDataDefaultsProvider {
         get() = true
     open val appUpdateMinimumAllowedAppVersion_platformSpecific: String
         get() = ""
+    // Both environments start on the same catalog: the first prod publish writes the same bytes
+    // staging already serves. Pointing this at the 99999999 demo catalog made every cold start
+    // fetch 219 items it then discarded — the source of the MediaMap-entry-missing warning spam.
     open val catalogVersion: String
-        get() = "99999999"
+        get() = "20260709-06"
+    open val catalogVersionStaging: String
+        get() = "20260709-06"
     open val contentShowSingles: Boolean
         get() = true
     open val feedAdsEnabled: Boolean

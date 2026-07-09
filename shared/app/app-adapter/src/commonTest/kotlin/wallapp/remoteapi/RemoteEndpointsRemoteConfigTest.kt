@@ -11,19 +11,34 @@ import wallapp.remoteendpoint.RemoteEndpointTrack
 import wallapp.remoteendpoint.RemoteEndpointsRepositoryRemoteConfig
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class CatalogVersionConfigTest {
 
     @Test
     fun catalogVersionEntry_hasStableKeyAndDefault() {
         assertEquals("catalog_version", RemoteConfigEntry.CatalogVersion.key)
-        assertEquals("99999999", RemoteConfigEntry.CatalogVersion.default)
+        assertEquals("20260709-06", RemoteConfigEntry.CatalogVersion.default)
     }
 
     @Test
-    fun mockData_exposesCatalogVersionDefault() {
+    fun catalogVersionStagingEntry_hasStableKeyAndDefault() {
+        assertEquals("catalog_version_staging", RemoteConfigEntry.CatalogVersionStaging.key)
+        assertEquals("20260709-06", RemoteConfigEntry.CatalogVersionStaging.default)
+    }
+
+    @Test
+    fun mockData_exposesBothCatalogVersionDefaults() {
         val data = RemoteConfigDataMock(RemoteConfigDataDefaultsProviderDefault)
-        assertEquals("99999999", data.catalogVersion.value)
+        assertEquals("20260709-06", data.catalogVersion.value)
+        assertEquals("20260709-06", data.catalogVersionStaging.value)
+    }
+
+    @Test
+    fun defaultsArray_registersBothCatalogKeys() {
+        val keys = RemoteConfigEntry.asDefaultsArray().map { it.first }
+        assertTrue("catalog_version" in keys)
+        assertTrue("catalog_version_staging" in keys)
     }
 }
 

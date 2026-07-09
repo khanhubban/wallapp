@@ -54,4 +54,21 @@ class PublisherTest {
             Publisher(store, corrupt, "https://media-staging.stillscenes.app").publish(bundle(), renditions, "20260708-01")
         }
     }
+
+    // Real-run branch: when a rendition path names an actual file, the read-back basis must be the
+    // FILE's bytes, not the path string. Content here differs from the path, so the OLD code (which
+    // recorded local.toByteArray()) would mismatch the fake's real-file bytes and throw.
+    @Test fun readBackUsesRealRenditionFileBytesNotPathString() {
+        val store = FakeStore()
+        val tmp = kotlin.io.path.createTempDirectory("pubtest").toFile()
+        val real = java.io.File(tmp, "download.webp").apply { writeBytes(byteArrayOf(0x52, 0x49, 0x46, 0x46, 1, 2, 3, 4)) }
+        val renditions = mapOf(
+            "media/x/download.webp" to real.absolutePath, "media/x/preview.webp" to real.absolutePath,
+            "media/a/p.webp" to real.absolutePath, "media/f/p.webp" to real.absolutePath, "media/f/b.webp" to real.absolutePath,
+        )
+        Publisher(store, store, "https://media-staging.stillscenes.app").publish(bundle(), renditions, "20260708-01") // no throw
+        val stored = store.objects["media/x/download.webp"]!!
+        assertTrue(stored.contentEquals(real.readBytes()))                    // file bytes...
+        assertTrue(!stored.contentEquals(real.absolutePath.toByteArray()))    // ...not the path string
+    }
 }

@@ -16,15 +16,13 @@ class Publisher(
         val putBytes = LinkedHashMap<String, ByteArray>()
         for ((key, local) in renditionFiles) {
             putter.put(local, key)
-            // TODO(real-run): `local.toByteArray()` hashes the LOCAL PATH STRING, not the file's
-            // actual contents. This only round-trips because FakeStore (test) mirrors the same
-            // shortcut (`objects[remoteKey] = localPath.toByteArray()`). For real runs, RcloneClient
-            // uploads the real file bytes at `local` and CdnReadBackVerifier fetches real bytes back
-            // from the CDN, so this comparison basis must be swapped for the actual local file's
-            // bytes/hash (e.g. java.io.File(local).readBytes()) before this read-back check means
-            // anything outside the fake. The JSON objects below are already compared against their
-            // real serialized content (content.toByteArray()), so that half is real-run-correct.
-            putBytes[key] = local.toByteArray()
+            // Read-back basis = the ACTUAL uploaded bytes: read the real file when it exists (real
+            // runs upload the file's contents and the CDN returns them), else fall back to the path
+            // string (unit tests use placeholder rendition paths that aren't real files, and the test
+            // fakes mirror that fallback so the round-trip still matches). JSON objects below are
+            // compared against their real serialized content via putStr — already real-run-correct.
+            val f = java.io.File(local)
+            putBytes[key] = if (f.isFile) f.readBytes() else local.toByteArray()
         }
 
         // 2. media + search + spec

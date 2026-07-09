@@ -28,6 +28,12 @@ class RemoteApiEncryptionConfigDefault(
     private val encryptionKeyFilename: String
         get() = "key1"
 
+    // key1 lives in Firebase Storage, which the R2 delivery path never provisions. The catalog is
+    // served as plaintext, so no key is required and callers must not wait on [key] to become
+    // non-blank -- it never will.
+    override val requiresEncryptionKey: Boolean
+        get() = false
+
     private val _key = MutableStateFlow("")
     override val key: StateFlow<String>
         get() = _key.asStateFlow()
@@ -47,10 +53,8 @@ class RemoteApiEncryptionConfigDefault(
         }.onEach { downloadState ->
             when (downloadState) {
                 is DownloadState.Error -> {
-                    // key1 (legacy API-encryption key) is fetched from Firebase Storage, which the
-                    // R2/plaintext delivery path never provisions. A missing key1 must NOT block
-                    // startup: the catalog is plaintext, so no decryption key is required. Log and
-                    // continue with an empty key rather than reporting a fatal network error.
+                    // Only reachable when something still requests a Key refresh. Leaving [key]
+                    // blank is safe on the plaintext path; see [requiresEncryptionKey].
                     Log.d("[NRW-F] rAEC, key1 unavailable -> continuing with empty key (plaintext R2 path)")
                 }
                 is DownloadState.Success -> {

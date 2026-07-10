@@ -209,15 +209,48 @@ BFL API key. Task 5 is blocked until the new Cloudflare token exists.
    changes nothing. `firebase deploy --only remoteconfig` replaces the *entire* template; check the live
    parameter set is a subset of your local one before deploying, or you silently delete parameters.
 
-3. **Task 5 — prod cache rule.** The custom domain is already attached. **Do not read the rule; test it.**
-   The prod host's current `404` proves nothing either way — Cloudflare does not cache 404s. The moment
-   Task 11 puts the first object in the prod bucket, fetch it twice and watch `cf-cache-status` go
-   `MISS` → `HIT`. If the 2026-07-07 rule matched `media[-staging].stillscenes.app`, Task 5 is already
-   done and needs no rotated token. If the second fetch still says `MISS`, add the extensionless-`/api/`
-   cache rule. It is **required, not an optimization**: our catalog objects are extensionless and
-   Cloudflare does not cache JSON/HTML by default, so without it every request bills an R2 Class B op.
+3. **Task 5 — prod cache rule. NOT DONE. Tested behaviorally 2026-07-10, after Task 11 gave us real
+   objects to fetch.** The custom domain is attached, but the cache rule is **scoped to the staging
+   hostname only**:
 
-4. **Task 11 — the first prod publish.** **Staged and dry-run clean; only the R2 write remains.**
+   | host | `api/…/content-1a` | `media/artist/…/profile.webp` |
+   |---|---|---|
+   | `media-staging.stillscenes.app` | `HIT` | `HIT` |
+   | `media.stillscenes.app` | **`DYNAMIC`** | **`DYNAMIC`** |
+
+   `DYNAMIC` means *not eligible for caching at all* — stronger than `MISS`. Note even the `.webp` is
+   `DYNAMIC`, so this is not merely the extensionless-JSON problem. **Every prod request currently bills
+   an R2 Class B operation.** It is required, not an optimization.
+
+   The earlier guess that the 2026-07-07 rule matched `media[-staging].stillscenes.app` and thus already
+   covered prod was **wrong**. Reading the rule would have taken a token; testing it took two `curl -I`s.
+   Fixing it **does** need the rotated Cloudflare token (Cache Rules: Edit) — replicate the staging rule's
+   `http_request_cache_settings` entrypoint onto the prod hostname.
+
+4. **Task 11 — PUBLISHED 2026-07-10. Prod is live, with one wrong object.**
+
+   `content-1a`, `spec.json`, all 18 media-map copies and all 11 renditions are correct and verified
+   against the CDN. **`content-metadata-1a` is degraded**: empty `styles`/`tags`/`colors`/`searchTerms`
+   where staging has `landscape`/`nature`/`alpine`, `amoled`/`dark`/`aurora`, etc. Search by tag returns
+   nothing on prod; title suggestions still work. No user is affected — no release build has shipped.
+
+   **Cause, and the lesson.** A manifest produces *three* wire objects. `styles`/`tags`/`colors` reach
+   only `content-metadata-1a`, via `SearchBuilder`. A manifest that drops them still yields a
+   byte-identical media map *and* a byte-identical `content-1a` — so the Task 10 Step 5 byte-identity
+   proof, which diffs only the media map, cannot see the loss. `stage_prod_publish.py` now recovers the
+   three lists from the source catalog's `content-metadata-1a` and refuses to run if any are missing.
+
+   **To repair:** re-stage and re-publish the same version. Re-PUT overwrites (write-once is convention,
+   not enforcement), and `Publisher` retries read-back past the `immutable` edge cache with `?cacheBust=N`.
+   Verify all three objects afterwards, not one:
+
+   ```bash
+   for k in content-1a content-metadata-1a spec.json; do
+     cmp <(curl -sS "$PROD/api/$V/$k") <(curl -sS "$STAGING/api/$V/$k") && echo "identical $k"
+   done   # media-1a-c-p~s should differ from staging ONLY by the host substring
+   ```
+
+   Original staging procedure, still correct:
 
    ```bash
    python3 service/content-pipeline/tools/stage_prod_publish.py /tmp/task11

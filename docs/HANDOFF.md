@@ -157,7 +157,15 @@ sign-in, and the app browses content fine without it. `GoogleSignInFactory` uses
 `requestIdToken(webClientId)`, which validates `(package, SHA-1)` against a registered Android OAuth client
 and throws `ApiException` status 10 `DEVELOPER_ERROR` on a mismatch. The web client id is fine; only the
 certificate hash is wrong. Task 1 Step 4 fixes this by accident — as long as you register the *repo*
-keystore's hash. Add it to the old app too, or your "rollback" is a build that cannot sign in.
+keystore's hash. **The old `com.example.wallapp` app cannot be repaired**, and it is not a sign-in-capable
+rollback. Its SHA-1 registers fine, but Firebase refuses to mint the OAuth client:
+`409 ALREADY_EXISTS — "Oauth client already exists in a different project"`. An Android OAuth client is
+globally unique on `(package, certificate)`, `app/android/debug.keystore` is **committed** (so its SHA-1 is
+public), and `com.example.wallapp` is the stock template package — whoever registered that pair first, almost
+certainly the upstream template's project, owns it permanently. That is *why* the earlier developer used
+`~/.android/debug.keystore`: the repo keystore's pair was already taken. Not a mistake — the only pair left.
+`app.stillscenes` had no conflict because a fresh package frees the pair. Deleting the duplicate
+`stillscenes-pr` project does not release it (verified: that project had no SHA hashes and no type-1 client).
 
 **Task-scoped review is blind to code that didn't change.** Nine per-task reviews missed that `Main.kt`
 hardcoded the staging bucket, because that line was never in a diff. The plan changed the world around

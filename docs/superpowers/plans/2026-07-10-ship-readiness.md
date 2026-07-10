@@ -142,7 +142,7 @@ Or, via the console: project `stillscenes-prod` (`809386236419`) → Project set
 
 Either way the SHA-1 must be `65:35:5E:DC:27:99:1A:B4:81:2F:C8:61:36:71:A4:AC:DB:10:97:51` — see the warning above.
 
-Leave the old `com.example.wallapp` app registered. It costs nothing and it is your rollback — but note the rollback target has **broken Google Sign-In** for the reason above. While you are in the console, add `65:35:5E:DC:…` as a second SHA-1 on the old app too, so the rollback is actually equivalent. Firebase allows multiple certificate hashes per app.
+Leave the old `com.example.wallapp` app registered. It costs nothing and it is your rollback for *content*, but **it is not a sign-in-capable rollback and cannot be made one.** Adding `65:35:5E:DC:…` to it registers the SHA-1 but fails to mint the OAuth client with `409 ALREADY_EXISTS — "Oauth client already exists in a different project"`. Android OAuth clients are globally unique on `(package, certificate)`; the committed `debug.keystore` plus the stock `com.example.wallapp` package means that pair was claimed long ago by someone else — almost certainly the upstream template's project. Do not chase it. Ship `app.stillscenes`.
 
 - [ ] **Step 5: Verify the new file carries the package AND the certificate the APK is actually signed with**
 

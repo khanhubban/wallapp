@@ -59,10 +59,38 @@ staging and are write-once, so any is a rollback target.
 ./gradlew :service:content-pipeline:test
 ```
 
+**Green as of 2026-07-10, forced rerun: 383 KMP tests (28 skipped), 0 failures; 42 pipeline tests, 0
+failures.** Not "419" — that figure appeared in earlier notes and this command does not produce it.
+Four of the nine modules report `NO-SOURCE` (`content-state`, `data/content`, `remoteconfig-api`,
+`remoteapi` have no `commonTest` at all): for those, `desktopTest` is a compile check, not a test run.
+
+**A passing run may not have run anything.** Gradle reports `BUILD SUCCESSFUL` when test tasks are
+`UP-TO-DATE`. `--rerun` is a *per-task* option: trailing it once applies it only to the **last** task.
+To genuinely re-execute, repeat it after every task, and confirm with the JUnit XML `mtime` rather than
+Gradle's summary:
+
+```bash
+find shared service -path '*/build/test-results/*' -name '*.xml' -newermt '-5 minutes' \
+  | xargs grep -l '<failure\|<error'      # empty = nothing failed in THIS run
+```
+
+**Two modules with test sources are deliberately absent from the command above, and both are broken.**
+Verified pre-existing at the initial commit `80b667c` — untouched by this branch:
+
+- `:shared:system:common:desktopTest` — **does not compile.** `PlatformTest.desktop.kt:10` references
+  `PlatformDesktop()`, a symbol that exists nowhere in the tree (only `ViewModelFactoryPlatformDesktop`).
+- `:shared:di:di-app:desktopTest` — `ModulesMvpTestDesktop.checkAllModules` fails. `checkModules()`
+  resolves the whole Koin graph, and building `CoroutineScope(CoroutineScopeMainImmediate)` throws
+  `IllegalArgumentException: Use TestScope for testing` (`ImageSizeMapper → ImageScaler →
+  ImageBucketManager → CoroutineScope`). `Dispatchers.Main` does not exist in a plain JVM test.
+
+That second one is the only test that would catch a whole-graph DI regression, and it has never run.
+Task 3 restructured that graph. Nothing verified it end to end.
+
 `:shared:app:app-adapter:testDebugUnitTest` **fails on a clean tree** (`Method myPid in
 android.os.Process not mocked`, via `ConfigValueRepositoryFirebase`). Pre-existing, unrelated. `:test`
 runs it, so `:test` always looks red. If you find a failing JUnit XML, check its `mtime` — stale
-`testDebugUnitTest` results linger in `build/`.
+`testDebugUnitTest` results linger in `build/` (72 of them right now).
 
 Launch with the explicit activity; `adb shell monkey -c LAUNCHER` starts **LeakCanary's** activity:
 

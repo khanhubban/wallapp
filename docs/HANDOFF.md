@@ -224,8 +224,33 @@ BFL API key. Task 5 is blocked until the new Cloudflare token exists.
 
    The earlier guess that the 2026-07-07 rule matched `media[-staging].stillscenes.app` and thus already
    covered prod was **wrong**. Reading the rule would have taken a token; testing it took two `curl -I`s.
-   Fixing it **does** need the rotated Cloudflare token (Cache Rules: Edit) — replicate the staging rule's
-   `http_request_cache_settings` entrypoint onto the prod hostname.
+   Fixing it **does** need the rotated Cloudflare token (Cache Rules: Edit).
+
+   > **`PUT …/entrypoint` REPLACES the whole ruleset — it does not append.** A token-holder who PUTs a
+   > prod-only rule will silently delete the staging rule and take `media-staging` from `HIT` to
+   > `DYNAMIC`. This is the same shape as the `Main.kt:59` bucket bug: the fix for the second environment
+   > destroys the first. **`GET` the entrypoint first, append, then `PUT` the union**, and re-test *both*
+   > hosts afterwards, not just the one you changed.
+
+   ```bash
+   ZONE=a810a8b3ded793501d036363001758b1
+   AUTH="Authorization: Bearer $CF_TOKEN"
+   API=https://api.cloudflare.com/client/v4/zones/$ZONE/rulesets/phases/http_request_cache_settings/entrypoint
+
+   curl -sS -H "$AUTH" "$API" | tee /tmp/cache-ruleset.json | python3 -m json.tool   # READ IT FIRST
+   # then PUT back {"rules": [ <existing rules>, <new prod rule> ]}
+
+   # afterwards, verify BOTH hosts:
+   for h in media-staging.stillscenes.app media.stillscenes.app; do
+     curl -s -o /dev/null "https://$h/api/20260709-06/content-1a"
+     curl -sI "https://$h/api/20260709-06/content-1a" | grep -i cf-cache-status
+   done   # both must be HIT
+   ```
+
+   Simplest correct rule: one expression matching **both** hostnames, e.g.
+   `(http.host in {"media.stillscenes.app" "media-staging.stillscenes.app"} and starts_with(http.request.uri.path, "/api/"))`,
+   action `set_cache_settings` with `cache: true` / respect-origin TTL. One rule, two hosts, no drift —
+   the same reasoning that made the pipeline derive its bucket from `baseUrl` instead of a second flag.
 
 4. **Task 11 — PUBLISHED 2026-07-10. Prod is live, with one wrong object.**
 

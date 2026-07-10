@@ -151,7 +151,18 @@ The auto-mode classifier gates R2 writes and prod RC deploys. It requires the *s
 
 ---
 
-## Remaining work — all four items need a human
+## Remaining work — three items, all needing a human
+
+**Task 10 Step 5 is done (2026-07-10): the rebuilt media map is `BYTE-IDENTICAL` to live staging, 4820
+bytes, raw bytes, no normalization.** Phase 3's refactor changes zero published bytes; Task 11's proof
+gate is cleared. It needed no manifest and no secrets — the manifest is reconstructible from the live
+catalog, because `mediaId(seed) = SHA-256(seed)[0:7]` over ids that `content-1a` already publishes. See
+`service/content-pipeline/tools/reconstruct_staging_manifest.py`.
+
+Two traps that cost real time, now fixed in the plan: the old Step 5 diffed
+`python3 -m json.tool --sort-keys` on both sides, which **cannot see key order** — the one regression the
+step exists to catch (verified: swap `dhd`/`dsd` in one entry and the sorted diff still says identical).
+And `sed -n '/^{/,$p'` is wrong because Gradle prints banner lines even under `-q`; use `grep '^{'`.
 
 ### Do this first
 
@@ -170,15 +181,19 @@ BFL API key. Task 5 is blocked until the new Cloudflare token exists.
 2. **Task 4 — deploy `catalog_version_staging`.** Add it to `firebase-backend/remoteconfig.template.json`
    (value `20260709-06`), then `firebase deploy --only remoteconfig -P stillscenes-prod`.
 
-3. **Task 5 — prod cache rule.** The custom domain is probably already attached (check first). Replicate
-   the extensionless-`/api/` cache rule from the staging hostname. It is **required, not an
-   optimization**: Cloudflare does not cache JSON/HTML by default and our catalog objects are
-   extensionless, so without it every request is a cache miss billing an R2 Class B operation.
+3. **Task 5 — prod cache rule.** The custom domain is already attached. **Do not read the rule; test it.**
+   The prod host's current `404` proves nothing either way — Cloudflare does not cache 404s. The moment
+   Task 11 puts the first object in the prod bucket, fetch it twice and watch `cf-cache-status` go
+   `MISS` → `HIT`. If the 2026-07-07 rule matched `media[-staging].stillscenes.app`, Task 5 is already
+   done and needs no rotated token. If the second fetch still says `MISS`, add the extensionless-`/api/`
+   cache rule. It is **required, not an optimization**: our catalog objects are extensionless and
+   Cloudflare does not cache JSON/HTML by default, so without it every request bills an R2 Class B op.
 
-4. **Task 10 Step 5, then Task 11 — the first prod publish.** Needs the **staging manifest path**.
-   Rebuild `20260709-06` with `--dry-run` and diff its media map against the live staging one; it must be
-   byte-identical (this is the proof the Phase 3 refactor changed nothing). Then publish a prod manifest
-   (`baseUrl: https://media.stillscenes.app`) and verify a release build renders.
+4. **Task 11 — the first prod publish.** Needs the real manifest **directory** — the `.webp` renditions
+   must sit on disk beside the manifest, because `Main.kt:90-96` resolves each rendition as
+   `File(manifestDir, renditionPath)` and the prod bucket is empty, so this uploads the images too. A
+   reconstructed manifest cannot publish. Publish with `baseUrl: https://media.stillscenes.app` (which is
+   what selects the prod bucket), then verify a release build renders.
 
 **Until Task 11 lands, release builds are non-functional** — their in-app default names `20260709-06`,
 which the empty prod bucket cannot serve. Safe only because nothing is in anyone's hands. **Do not cut a

@@ -1414,25 +1414,32 @@ Change `fun main` to use it, and skip the `Publisher(...).publish(...)` call whe
 Run: `./gradlew :service:content-pipeline:test`
 Expected: `BUILD SUCCESSFUL`
 
-- [ ] **Step 5: Prove the refactor is byte-identical against the live staging catalog**
+- [x] **Step 5: Prove the refactor is byte-identical against the live staging catalog** — DONE 2026-07-10, `BYTE-IDENTICAL` (4820 bytes)
 
-The staging catalog `20260709-06` was published by the *old* builder. Rebuild it with the new one and diff. Nothing is written.
+The staging catalog `20260709-06` was published by the *old* builder. Rebuild it with the new one and diff. Nothing is written: `main()` returns inside the `dryRun` branch before `WranglerClient` or `CdnReadBackVerifier` is constructed.
+
+**Do not normalize the JSON before diffing.** `MediaEntityKind`'s declaration order *is* the wire key order, so key order is precisely what this step exists to protect. `python3 -m json.tool --sort-keys` sorts keys and makes the comparison blind to a reorder — verified: swapping `dhd`/`dsd` inside one entry passes a `--sort-keys` diff and fails a byte compare. Compare raw bytes.
 
 ```bash
 ./gradlew :service:content-pipeline:run --args="/abs/path/to/staging-manifest.json --dry-run" -q \
-  | sed -n '/^{/,$p' > /tmp/rebuilt-media.json
+  | grep '^{' > /tmp/rebuilt-media.json          # grep, not sed: Gradle prints banner lines even under -q
 
 curl -sS "https://media-staging.stillscenes.app/api/20260709-06/media-1a-c-p~s" > /tmp/live-media.json
 
-diff <(python3 -m json.tool --sort-keys /tmp/rebuilt-media.json) \
-     <(python3 -m json.tool --sort-keys /tmp/live-media.json) && echo "IDENTICAL"
+# strip only the trailing newline println() adds; compare everything else byte for byte
+cmp <(printf '%s' "$(cat /tmp/rebuilt-media.json)") \
+    <(printf '%s' "$(cat /tmp/live-media.json)") && echo "BYTE-IDENTICAL"
 ```
 
-Expected: `IDENTICAL`.
+Expected: `BYTE-IDENTICAL`.
 
-The manifest lives outside the repo — `find . -name '*manifest*.json'` returns nothing. Ask the user for its path.
+**The manifest is not needed from the user for this step.** Everything the media map depends on is recoverable from the live catalog: `MediaMapBuilder` keys every entry by `mediaId("<id>:<role>")`, a pure `SHA-256(seed)[0:7]` of the artist id, folder id, and wallpaper ids — all of which `content-1a` publishes. Only the three chrome paths (artist profile, folder profile, folder banner) must be read back out of the live media map, because `media/folder/justadded/…` is not derivable from folder id `f~justadded`. Reconstruct with `service/content-pipeline/tools/reconstruct_staging_manifest.py` (resolves each path by *recomputed* `mediaId`, so a wrong seed raises `KeyError` rather than silently picking a neighbour's path; it also asserts the rebuilt entry order matches the live map before you ever reach the diff).
 
-If the diff is non-empty, **stop.** Either the refactor changed the wire format (check `MediaEntityKind` declaration order against Task 8 Step 3) or the live catalog was never what the builder produces. Do not proceed to Task 11 until this prints `IDENTICAL`.
+This proves the refactor preserves key set, key order, and mediaId coverage — the entire surface Phase 3 touched. It does **not** prove the reconstructed manifest is the one that originally produced the catalog; fields that never reach the media map (`label`, `tags`, `colors`, `isDark`, `width`, `height`) are unconstrained by it.
+
+If the compare is non-empty, **stop.** Either the refactor changed the wire format (check `MediaEntityKind` declaration order against Task 8 Step 3) or the live catalog was never what the builder produces. Do not proceed to Task 11 until this prints `BYTE-IDENTICAL`.
+
+> **Task 11 still needs the real manifest *directory* from the user.** A reconstructed manifest cannot publish: the non-dry-run path in `Main.kt:90-96` builds its rendition map from `File(manifestDir, renditionPath)`, so the actual `.webp` files must sit on disk beside the manifest. The prod bucket is empty, so Task 11 uploads the images, not just the catalog JSON.
 
 - [ ] **Step 6: Commit**
 

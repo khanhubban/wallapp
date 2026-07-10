@@ -134,8 +134,16 @@ adb -s emulator-5556 shell am start -n app.stillscenes/wallapp.activity.MainActi
 sign-in never invoked. The real signal is **`ApiException: 10`** thrown from
 `GoogleSignIn.getSignedInAccountFromIntent` (`SignInProviderControllerDefault.kt:58`).
 
-Until someone taps sign-in there, the SHA-1 fix below is verified **statically only** (`apksigner`'s signer
-digest is carried by an `app.stillscenes` `oauth_client` in `google-services.json`) and **never at runtime**.
+**Step 10 PASSED 2026-07-10 on `emulator-5556`.** Google Sign-In completed with `app.stillscenes`: zero
+`ApiException` and zero `Google sign in failed` lines (both fired within milliseconds on the AOSP device);
+a real `com.google` account on the device; and a persisted `DefaultFirebaseUser` carrying the `google.com`
+provider under `com.google.firebase.auth.api.Store.…android:3283d740c69333ecc54c36.xml` — the app ID created
+today. A wrong SHA-1 throws `ApiException: 10` **before** any Firebase user can exist, so this is a runtime
+proof of the certificate, not just the static `apksigner`-signer-∈-`google-services.json` check.
+
+Do **not** cat that Store file to check. It holds a live refresh token, and masking it is a claim about a
+regex rather than a property of the file. `dumpsys account`, the filename, and `grep -c google.com` prove
+the same thing without reading a secret.
 
 **There are two debug keystores, and Firebase trusts the wrong one.** Found 2026-07-10.
 `app/android/debug.keystore` (checked in) is what Gradle signs with — `configureSigningConfigDebug` at

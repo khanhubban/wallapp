@@ -7,6 +7,50 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:809386236419:android:3283d740c69333ecc54c36",
+        "android_client_info": {
+          "package_name": "app.stillscenes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "809386236419-vja7b2u9k8qpcver3lb3r73urtkc8kbp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.stillscenes",
+            "certificate_hash": "65355edc27991ab4812fc8613671a4acdb109751"
+          }
+        },
+        {
+          "client_id": "809386236419-d40uel00p899t7sfk5p8gtj4l0sam6ku.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCn_gRNHiQzYeUMwOMEITHcL2Gduk1-Ng0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "809386236419-d40uel00p899t7sfk5p8gtj4l0sam6ku.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "809386236419-9s0tuj6dft86cpu3072falreivuql6gg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.development.Wallapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:809386236419:android:9f8c2b92e16afbacc54c36",
         "android_client_info": {
           "package_name": "com.example.wallapp"

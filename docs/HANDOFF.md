@@ -34,7 +34,7 @@ belong to *different, completed* plans — do not read them as current.
 | `catalog_version_staging` | `20260709-06` — deployed (Task 4). Debug builds read this. |
 | CDN, debug builds | `media-staging.stillscenes.app` → R2 `stillscenes-content-staging` — healthy, `HTTP 200` |
 | CDN, release builds | `media.stillscenes.app` → R2 `stillscenes-content-prod` — **bucket empty**, `HTTP 404` |
-| `applicationId` | still `com.example.wallapp` (Task 1) |
+| `applicationId` | `app.stillscenes` (Task 1 done 2026-07-10) |
 
 `media.stillscenes.app` already answers *through Cloudflare* (`server: cloudflare`, a `cf-ray` header,
 `404` rather than a DNS failure). The R2 custom domain appears already attached from the 2026-07-07
@@ -67,7 +67,7 @@ runs it, so `:test` always looks red. If you find a failing JUnit XML, check its
 Launch with the explicit activity; `adb shell monkey -c LAUNCHER` starts **LeakCanary's** activity:
 
 ```bash
-adb shell am start -n com.example.wallapp/wallapp.activity.MainActivity   # becomes app.stillscenes after Task 1
+adb shell am start -n app.stillscenes/wallapp.activity.MainActivity
 ```
 
 ---

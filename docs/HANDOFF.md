@@ -117,6 +117,13 @@ showing the right value proves nothing. Check with `firebase remoteconfig:get -P
 **The collection id must not end in `~singles`.** `splitByCategoryType()` classifies by
 `id.endsWith("~singles")`, *independently* of the declared `categoryType`.
 
+**The emulator cannot test Google Sign-In, so Task 1 Step 10 has never actually run.** The attached AVD is
+`sdk_phone64_arm64-userdebug` — a **plain AOSP image with zero Google packages**: no Play Services, no Play
+Store, no Google account. Tapping sign-in yields `ApiException: 12500 SIGN_IN_FAILED` (seen 2026-07-10),
+which is GMS being absent, **not** a certificate problem — a wrong SHA-1 presents as `10 / DEVELOPER_ERROR`.
+Step 10 needs a **Google APIs / Play Store** system image. Until then the SHA-1 fix below is verified
+statically (`apksigner` signer ∈ `google-services.json`) but **never at runtime**.
+
 **There are two debug keystores, and Firebase trusts the wrong one.** Found 2026-07-10.
 `app/android/debug.keystore` (checked in) is what Gradle signs with — `configureSigningConfigDebug` at
 `android.gradle.kts:206` calls `project.file("debug.keystore")`, which resolves under `app/android/`.
@@ -210,11 +217,31 @@ BFL API key. Task 5 is blocked until the new Cloudflare token exists.
    cache rule. It is **required, not an optimization**: our catalog objects are extensionless and
    Cloudflare does not cache JSON/HTML by default, so without it every request bills an R2 Class B op.
 
-4. **Task 11 — the first prod publish.** Needs the real manifest **directory** — the `.webp` renditions
-   must sit on disk beside the manifest, because `Main.kt:90-96` resolves each rendition as
-   `File(manifestDir, renditionPath)` and the prod bucket is empty, so this uploads the images too. A
-   reconstructed manifest cannot publish. Publish with `baseUrl: https://media.stillscenes.app` (which is
-   what selects the prod bucket), then verify a release build renders.
+4. **Task 11 — the first prod publish.** **Staged and dry-run clean; only the R2 write remains.**
+
+   ```bash
+   python3 service/content-pipeline/tools/stage_prod_publish.py /tmp/task11
+   ./gradlew :service:content-pipeline:run --args="/tmp/task11/manifest.json --dry-run"   # READ THE BUCKET LINE
+   ./gradlew :service:content-pipeline:run --args="/tmp/task11/manifest.json"             # <- the R2 write
+   ```
+
+   The staging script rebuilds the manifest from the live staging catalog, points `baseUrl` at
+   `https://media.stillscenes.app` (which is what selects the prod bucket), and re-downloads the 11
+   `.webp` renditions from staging — `Main.kt:90-96` resolves each as `File(manifestDir, renditionPath)`
+   and the prod bucket is empty, so the publish uploads images, not just JSON.
+
+   Verified 2026-07-10, nothing written: dry run reports `bucket stillscenes-content-prod`, 11 media
+   entries; the emitted media map is **byte-identical to live staging modulo the host**, with zero
+   `media-staging` occurrences; all 5 target keys currently `404`, so the publish creates and never
+   overwrites; `wrangler` is OAuth-authed (so this needs **no** rotated Cloudflare token) and
+   `media.stillscenes.app` is attached to the prod bucket with active SSL.
+
+   The write is **32 objects**: 11 renditions, 18 media-map copies (2 platforms × 9 size classes),
+   `content-metadata-1a`, `spec.json`, and `content-1a` **last** — so a partial upload never activates a
+   half-published catalog.
+
+   **`catalog_version` is already `20260709-06`.** The instant `content-1a` lands in prod, release builds
+   serve it. No RC flip is needed afterwards, despite what `Main.kt:99`'s success message says.
 
 **Until Task 11 lands, release builds are non-functional** — their in-app default names `20260709-06`,
 which the empty prod bucket cannot serve. Safe only because nothing is in anyone's hands. **Do not cut a

@@ -117,6 +117,20 @@ showing the right value proves nothing. Check with `firebase remoteconfig:get -P
 **The collection id must not end in `~singles`.** `splitByCategoryType()` classifies by
 `id.endsWith("~singles")`, *independently* of the declared `categoryType`.
 
+**There are two debug keystores, and Firebase trusts the wrong one.** Found 2026-07-10.
+`app/android/debug.keystore` (checked in) is what Gradle signs with — `configureSigningConfigDebug` at
+`android.gradle.kts:206` calls `project.file("debug.keystore")`, which resolves under `app/android/`.
+Confirmed against the artifact: `apksigner verify --print-certs` on the built debug APK reports
+`65355edc27991ab4812fc8613671a4acdb109751`. But `google-services.json` registers
+`66c9cc786c5dabd4ef6bd0f1d9ebfbcc734abcd2`, which is `~/.android/debug.keystore` — the user-global one an
+earlier plan doc (`2026-07-02-foundation-delivery-path.md:78`) told the operator to read.
+**So Google Sign-In on `com.example.wallapp` has never worked**, and nothing catches it: no test exercises
+sign-in, and the app browses content fine without it. `GoogleSignInFactory` uses legacy
+`requestIdToken(webClientId)`, which validates `(package, SHA-1)` against a registered Android OAuth client
+and throws `ApiException` status 10 `DEVELOPER_ERROR` on a mismatch. The web client id is fine; only the
+certificate hash is wrong. Task 1 Step 4 fixes this by accident — as long as you register the *repo*
+keystore's hash. Add it to the old app too, or your "rollback" is a build that cannot sign in.
+
 **Task-scoped review is blind to code that didn't change.** Nine per-task reviews missed that `Main.kt`
 hardcoded the staging bucket, because that line was never in a diff. The plan changed the world around
 it. When a change adds a *thing* (a second bucket, a second environment), grep for code that assumed
@@ -172,11 +186,13 @@ BFL API key. Task 5 is blocked until the new Cloudflare token exists.
 ### Then, in order
 
 1. **Task 1 — `applicationId` → `app.stillscenes`.** Steps 1-3 and 7-11 are automatable; **Step 4 needs
-   the Firebase console**: register the app, add the debug keystore's SHA-1 (`app/android/debug.keystore`,
-   alias `androiddebugkey`, password `android`), download the new `google-services.json`.
-   `namespace` is already `wallapp.app.android`, so **no Kotlin source moves.**
-   `GoogleSignInFactory.kt:13` holds a project-scoped **web** OAuth client id (`client_type: 3`) — do
-   **not** change it. A `DEVELOPER_ERROR` / status 10 means the SHA-1 is wrong, not the client id.
+   the Firebase console**: register the app, add the debug keystore's SHA-1, download the new
+   `google-services.json`. `namespace` is already `wallapp.app.android`, so **no Kotlin source moves.**
+   `GoogleSignInFactory.kt:13` holds a project-scoped **web** OAuth client id (`client_type: 3`) — it is
+   **correct** (verified against `google-services.json`); do not change it.
+
+   **The SHA-1 to register is `65:35:5E:DC:27:99:1A:B4:81:2F:C8:61:36:71:A4:AC:DB:10:97:51`.** Do not
+   copy the one the console already shows on `com.example.wallapp` — that one is wrong. See the trap below.
 
 2. **Task 4 — deploy `catalog_version_staging`.** Add it to `firebase-backend/remoteconfig.template.json`
    (value `20260709-06`), then `firebase deploy --only remoteconfig -P stillscenes-prod`.

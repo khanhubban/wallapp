@@ -108,24 +108,63 @@ If it *succeeds*, stop — it means `google-services.json` already contains the 
 
 - [ ] **Step 4: Register the new Android app in Firebase**
 
+> **There are two debug keystores on this machine, and Firebase currently trusts the wrong one.**
+> Verified 2026-07-10 with `apksigner verify --print-certs` on the built debug APK:
+>
+> | Keystore | SHA-1 | |
+> |---|---|---|
+> | `app/android/debug.keystore` (in repo) | `65:35:5E:DC:27:99:1A:B4:81:2F:C8:61:36:71:A4:AC:DB:10:97:51` | **what Gradle signs with** (`configureSigningConfigDebug`, `android.gradle.kts:206`, resolves relative to `app/android/`) |
+> | `~/.android/debug.keystore` (user-global) | `66:C9:CC:78:6C:5D:AB:D4:EF:6B:D0:F1:D9:EB:FB:CC:73:4A:BC:D2` | what `com.example.wallapp` is registered with — **wrong** |
+>
+> Google Sign-In on `com.example.wallapp` therefore cannot work today: `GoogleSignInFactory` uses the
+> legacy `requestIdToken(webClientId)` flow, which validates the caller's `(package, SHA-1)` against a
+> registered Android OAuth client and throws `ApiException` status 10 `DEVELOPER_ERROR` on a mismatch.
+> Nothing catches it — no test exercises sign-in. The web client id itself is correct (verified against
+> `google-services.json`'s `client_type: 3`); the certificate hash is the only defect.
+>
+> Register the **in-repo** keystore's SHA-1 (`65:35:5E:DC:…`). The repo keystore is checked in, so that
+> hash is identical on every machine. Do **not** copy the SHA-1 already shown on the old app.
+
 In project `stillscenes-prod` (`809386236419`), console → Project settings → Your apps → Add app → Android:
 - Package name: `app.stillscenes`
-- Debug signing certificate SHA-1: the value from Step 1
+- Debug signing certificate SHA-1: the value from Step 1 — it must be `65:35:5E:DC:27:99:1A:B4:81:2F:C8:61:36:71:A4:AC:DB:10:97:51`
 
 Then download the regenerated `google-services.json` and replace `app/android/google-services.json` wholesale. Do **not** hand-merge it.
 
-Leave the old `com.example.wallapp` app registered. It costs nothing and it is your rollback.
+Leave the old `com.example.wallapp` app registered. It costs nothing and it is your rollback — but note the rollback target has **broken Google Sign-In** for the reason above. While you are in the console, add `65:35:5E:DC:…` as a second SHA-1 on the old app too, so the rollback is actually equivalent. Firebase allows multiple certificate hashes per app.
 
-- [ ] **Step 5: Verify the new file carries both the package and an Android OAuth client**
+- [ ] **Step 5: Verify the new file carries the package AND the certificate the APK is actually signed with**
+
+The old check only asked whether *an* Android OAuth client existed. It passes with the **wrong** certificate registered — which is exactly the state `com.example.wallapp` has been in all along. Assert the hash, and assert it against the APK's real signer rather than against a constant:
 
 ```bash
-grep -c '"package_name": "app.stillscenes"' app/android/google-services.json
-grep -A2 '"client_type": 1' app/android/google-services.json | grep -c 'app.stillscenes'
+# 1. What does Gradle actually sign with? Ask the artifact, not the build script.
+APK=app/android/build/outputs/apk/wallApp/debug/android-wallApp-debug.apk
+SDK=${ANDROID_HOME:-$HOME/Library/Android/sdk}
+SIGNER=$("$(ls -1 $SDK/build-tools/*/apksigner | sort -V | tail -1)" verify --print-certs "$APK" \
+         | sed -n 's/.*certificate SHA-1 digest: //p' | head -1)
+
+# 2. Does google-services.json trust that exact certificate for app.stillscenes?
+python3 - "$SIGNER" <<'PY'
+import json, sys
+signer = sys.argv[1].lower()
+g = json.load(open("app/android/google-services.json"))
+ok = any(
+    o["client_type"] == 1
+    and o["android_info"]["package_name"] == "app.stillscenes"
+    and o["android_info"]["certificate_hash"].lower() == signer
+    for c in g["client"] for o in c.get("oauth_client", [])
+)
+print(f"apk signer: {signer}")
+print("PASS: google-services.json trusts the signing cert for app.stillscenes" if ok else
+      "FAIL: no android oauth_client for app.stillscenes carries this certificate_hash")
+sys.exit(0 if ok else 1)
+PY
 ```
 
-Expected: first command prints `2` (the `android_client_info` and the `oauth_client` entry). Second prints at least `1`.
+Expected: `PASS`.
 
-If the second prints `0`, the SHA-1 did not register, and Google Sign-In will fail at runtime with `DEVELOPER_ERROR` (status 10). Fix it now, not later.
+On `FAIL`, the SHA-1 you registered is not the one the APK is signed with, and Google Sign-In will throw `ApiException` status 10 (`DEVELOPER_ERROR`) at runtime. Fix it now, not later. Nothing else will catch it — no test exercises sign-in, and the app browses content fine without it.
 
 - [ ] **Step 6: Run the build to verify it passes**
 

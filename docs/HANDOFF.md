@@ -185,9 +185,10 @@ BFL API key. Task 5 is blocked until the new Cloudflare token exists.
 
 ### Then, in order
 
-1. **Task 1 — `applicationId` → `app.stillscenes`.** Steps 1-3 and 7-11 are automatable; **Step 4 needs
-   the Firebase console**: register the app, add the debug keystore's SHA-1, download the new
-   `google-services.json`. `namespace` is already `wallapp.app.android`, so **no Kotlin source moves.**
+1. **Task 1 — `applicationId` → `app.stillscenes`.** Fully automatable — **it does not need the console.**
+   The `firebase` CLI is authed and has `apps:create`, `apps:android:sha:create`, and `apps:sdkconfig`
+   (verified 2026-07-10); it mutates the Firebase project, so it needs named approval, not a browser.
+   `namespace` is already `wallapp.app.android`, so **no Kotlin source moves.**
    `GoogleSignInFactory.kt:13` holds a project-scoped **web** OAuth client id (`client_type: 3`) — it is
    **correct** (verified against `google-services.json`); do not change it.
 

@@ -125,11 +125,22 @@ If it *succeeds*, stop — it means `google-services.json` already contains the 
 > Register the **in-repo** keystore's SHA-1 (`65:35:5E:DC:…`). The repo keystore is checked in, so that
 > hash is identical on every machine. Do **not** copy the SHA-1 already shown on the old app.
 
-In project `stillscenes-prod` (`809386236419`), console → Project settings → Your apps → Add app → Android:
-- Package name: `app.stillscenes`
-- Debug signing certificate SHA-1: the value from Step 1 — it must be `65:35:5E:DC:27:99:1A:B4:81:2F:C8:61:36:71:A4:AC:DB:10:97:51`
+**This does not need the console.** The `firebase` CLI is authenticated and carries every subcommand required (verified 2026-07-10). It mutates the Firebase project, so it needs named approval, but no browser:
 
-Then download the regenerated `google-services.json` and replace `app/android/google-services.json` wholesale. Do **not** hand-merge it.
+```bash
+APP=$(firebase apps:create ANDROID "StillScenes" \
+        --package-name app.stillscenes -P stillscenes-prod \
+      | sed -n 's/.*App ID: *//p')
+
+firebase apps:android:sha:create "$APP" \
+  65:35:5E:DC:27:99:1A:B4:81:2F:C8:61:36:71:A4:AC:DB:10:97:51 -P stillscenes-prod
+
+firebase apps:sdkconfig ANDROID "$APP" -o app/android/google-services.json -P stillscenes-prod
+```
+
+Or, via the console: project `stillscenes-prod` (`809386236419`) → Project settings → Your apps → Add app → Android, package `app.stillscenes`, SHA-1 as above; then download the regenerated `google-services.json` and replace `app/android/google-services.json` wholesale. Do **not** hand-merge it.
+
+Either way the SHA-1 must be `65:35:5E:DC:27:99:1A:B4:81:2F:C8:61:36:71:A4:AC:DB:10:97:51` — see the warning above.
 
 Leave the old `com.example.wallapp` app registered. It costs nothing and it is your rollback — but note the rollback target has **broken Google Sign-In** for the reason above. While you are in the console, add `65:35:5E:DC:…` as a second SHA-1 on the old app too, so the rollback is actually equivalent. Firebase allows multiple certificate hashes per app.
 

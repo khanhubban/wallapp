@@ -252,30 +252,36 @@ BFL API key. Task 5 is blocked until the new Cloudflare token exists.
    action `set_cache_settings` with `cache: true` / respect-origin TTL. One rule, two hosts, no drift —
    the same reasoning that made the pipeline derive its bucket from `baseUrl` instead of a second flag.
 
-4. **Task 11 — PUBLISHED 2026-07-10. Prod is live, with one wrong object.**
+4. **Task 11 — DONE 2026-07-10. Prod is live and fully verified.**
 
-   `content-1a`, `spec.json`, all 18 media-map copies and all 11 renditions are correct and verified
-   against the CDN. **`content-metadata-1a` is degraded**: empty `styles`/`tags`/`colors`/`searchTerms`
-   where staging has `landscape`/`nature`/`alpine`, `amoled`/`dark`/`aurora`, etc. Search by tag returns
-   nothing on prod; title suggestions still work. No user is affected — no release build has shipped.
+   Published, then republished after a defect (below). All **32 objects** checked individually against
+   the CDN: `content-1a`, `content-metadata-1a`, and `spec.json` are **byte-identical to staging**; all
+   18 media-map copies are byte-identical to each other and to staging **modulo the host**, with zero
+   `media-staging` occurrences; all 11 renditions match the uploaded bytes. Staging untouched.
 
-   **Cause, and the lesson.** A manifest produces *three* wire objects. `styles`/`tags`/`colors` reach
-   only `content-metadata-1a`, via `SearchBuilder`. A manifest that drops them still yields a
-   byte-identical media map *and* a byte-identical `content-1a` — so the Task 10 Step 5 byte-identity
-   proof, which diffs only the media map, cannot see the loss. `stage_prod_publish.py` now recovers the
-   three lists from the source catalog's `content-metadata-1a` and refuses to run if any are missing.
+   **The defect, and the lesson — worth reading before you publish anything.** The first publish shipped
+   an empty search index: `content-metadata-1a` had empty `styles`/`tags`/`colors`/`searchTerms`. A
+   manifest produces **three** wire objects, and `styles`/`tags`/`colors` reach only
+   `content-metadata-1a`, via `SearchBuilder`. A manifest that drops them still yields a byte-identical
+   media map *and* a byte-identical `content-1a` — so the Task 10 Step 5 byte-identity proof, the very
+   gate on this task, is structurally blind to the loss. `stage_prod_publish.py` now recovers the three
+   lists from the source catalog's `content-metadata-1a` (`SearchBuilder.entries()` assigns relevance by
+   position, so the ordered `t` values *are* the manifest lists) and exits non-zero if any are missing.
 
-   **To repair:** re-stage and re-publish the same version. Re-PUT overwrites (write-once is convention,
-   not enforcement), and `Publisher` retries read-back past the `immutable` edge cache with `?cacheBust=N`.
-   Verify all three objects afterwards, not one:
+   **After any publish, diff all three objects, not one:**
 
    ```bash
+   P=https://media.stillscenes.app; S=https://media-staging.stillscenes.app; V=20260709-06
    for k in content-1a content-metadata-1a spec.json; do
-     cmp <(curl -sS "$PROD/api/$V/$k") <(curl -sS "$STAGING/api/$V/$k") && echo "identical $k"
-   done   # media-1a-c-p~s should differ from staging ONLY by the host substring
+     cmp <(curl -sS "$P/api/$V/$k?cb=$$") <(curl -sS "$S/api/$V/$k") && echo "identical $k"
+   done   # media-1a-c-p~s must differ from staging ONLY by the host substring
    ```
 
-   Original staging procedure, still correct:
+   Re-publishing the same version is safe and how you repair: re-PUT overwrites (write-once is
+   convention, not enforcement) and `Publisher` retries read-back past the `immutable` edge cache with
+   `?cacheBust=N`. Add `?cb=…` to your own verification fetches too, or you will read the old bytes.
+
+   Staging procedure, for the next catalog:
 
    ```bash
    python3 service/content-pipeline/tools/stage_prod_publish.py /tmp/task11

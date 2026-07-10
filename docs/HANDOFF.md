@@ -29,9 +29,9 @@ belong to *different, completed* plans — do not read them as current.
 | What | Value |
 |---|---|
 | Firebase project | `stillscenes-prod` (809386236419) |
-| Remote Config | version 4 |
+| Remote Config | version 5 (deployed 2026-07-10; version 4 is the rollback target) |
 | `catalog_version` | `20260709-06` — **release builds read this** |
-| `catalog_version_staging` | **not yet deployed** (Task 4). Clients fall back to the compiled-in default, which is correct. |
+| `catalog_version_staging` | `20260709-06` — deployed (Task 4). Debug builds read this. |
 | CDN, debug builds | `media-staging.stillscenes.app` → R2 `stillscenes-content-staging` — healthy, `HTTP 200` |
 | CDN, release builds | `media.stillscenes.app` → R2 `stillscenes-content-prod` — **bucket empty**, `HTTP 404` |
 | `applicationId` | still `com.example.wallapp` (Task 1) |
@@ -194,8 +194,12 @@ BFL API key. Task 5 is blocked until the new Cloudflare token exists.
    **The SHA-1 to register is `65:35:5E:DC:27:99:1A:B4:81:2F:C8:61:36:71:A4:AC:DB:10:97:51`.** Do not
    copy the one the console already shows on `com.example.wallapp` — that one is wrong. See the trap below.
 
-2. **Task 4 — deploy `catalog_version_staging`.** Add it to `firebase-backend/remoteconfig.template.json`
-   (value `20260709-06`), then `firebase deploy --only remoteconfig -P stillscenes-prod`.
+2. ~~**Task 4 — deploy `catalog_version_staging`.**~~ **Done 2026-07-10.** RC is at version 5 with
+   `catalog_version_staging = 20260709-06`, verified by reading it back from the API, not from the CLI's
+   "Deploy complete". **Trap:** RC caps a parameter `description` at **256 characters** and rejects the
+   whole deploy with `DESCRIPTION_EXCEEDS_MAXIMUM_SIZE` — a pre-write validation, so a rejected deploy
+   changes nothing. `firebase deploy --only remoteconfig` replaces the *entire* template; check the live
+   parameter set is a subset of your local one before deploying, or you silently delete parameters.
 
 3. **Task 5 — prod cache rule.** The custom domain is already attached. **Do not read the rule; test it.**
    The prod host's current `404` proves nothing either way — Cloudflare does not cache 404s. The moment

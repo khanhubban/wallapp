@@ -11,7 +11,7 @@
       "defaultValue": {
         "value": "20260709-06"
       },
-      "description": "Content catalog version pointer for DEBUG builds, served from media-staging.stillscenes.app. Read via NamedScope.CatalogVersion in di-buildconfig-debug. Independent of catalog_version: the two diverge the moment staging is ahead of prod. Do not alias one to the other.",
+      "description": "Catalog version pointer for DEBUG builds, served from media-staging.stillscenes.app. Bound via NamedScope.CatalogVersion in di-buildconfig-debug. Independent of catalog_version; the two diverge once staging leads prod. Do not alias one to the other.",
       "valueType": "STRING"
     },
     "highlight_artist": {

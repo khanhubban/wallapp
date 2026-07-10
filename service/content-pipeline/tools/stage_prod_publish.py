@@ -28,6 +28,16 @@ content-1a LAST -- so a partial upload never activates a half-published catalog.
 Note: `catalog_version` in Remote Config is ALREADY 20260709-06. The moment content-1a lands in the prod
 bucket, release builds serve it. No RC flip is required afterwards, despite what Main.kt's success
 message says.
+
+A manifest produces THREE wire objects, not one. Verifying the media map is byte-identical says nothing
+about the other two. `styles`/`tags`/`colors` reach only `content-metadata-1a`, via SearchBuilder; a
+reconstruction that drops them still yields a byte-identical media map AND a byte-identical content-1a,
+and quietly publishes an empty search index. That happened once. Always diff all three:
+
+    for k in content-1a content-metadata-1a spec.json; do
+      cmp <(curl -sS "$PROD/api/$V/$k") <(curl -sS "$STAGING/api/$V/$k") && echo "identical $k"
+    done
+    # media-1a-c-p~s differs from staging ONLY by the host substring
 """
 import argparse
 import hashlib
@@ -69,6 +79,16 @@ def main() -> None:
     root = f"{args.source_base}/api/{args.version}"
     content = json.loads(fetch(f"{root}/content-1a"))
     media = json.loads(fetch(f"{root}/{MEDIA_MAP_KEY}"))["data"]
+    # styles/tags/colors reach content-metadata-1a via SearchBuilder and NOTHING else -- not content-1a,
+    # not the media map. Omitting them still yields a byte-identical media map and a byte-identical
+    # content-1a, and silently publishes an empty search index. Recover them from the search object.
+    # SearchBuilder.entries() assigns relevance BY POSITION (1.0 - i*0.05, floored at 0.5), so the ordered
+    # `t` values are exactly the manifest's lists. searchTerms is derived and regenerates itself.
+    search = json.loads(fetch(f"{root}/content-metadata-1a"))
+    terms = {
+        r["remixId"]: {k: [e["t"] for e in r.get(k, [])] for k in ("styles", "tags", "colors")}
+        for r in search["remixMetadata"]
+    }
 
     def path_for(seed: str) -> str:
         """Resolve a rendition path by RECOMPUTED mediaId, never by position."""
@@ -106,10 +126,17 @@ def main() -> None:
                 "height": w["dlm"]["h"],
                 "downloadRenditionPath": path_for(f"{w['id']}:download"),
                 "previewRenditionPath": path_for(f"{w['id']}:preview"),
+                "styles": terms[w["id"]]["styles"],
+                "tags": terms[w["id"]]["tags"],
+                "colors": terms[w["id"]]["colors"],
             }
             for w in content["wallpapers"]
         ],
     }
+
+    missing_terms = [w["id"] for w in content["wallpapers"] if w["id"] not in terms]
+    if missing_terms:
+        sys.exit(f"no search metadata for {missing_terms}; would publish an empty search index")
 
     os.makedirs(args.stagedir, exist_ok=True)
     with open(os.path.join(args.stagedir, "manifest.json"), "w") as f:

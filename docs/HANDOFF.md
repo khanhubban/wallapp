@@ -117,12 +117,25 @@ showing the right value proves nothing. Check with `firebase remoteconfig:get -P
 **The collection id must not end in `~singles`.** `splitByCategoryType()` classifies by
 `id.endsWith("~singles")`, *independently* of the declared `categoryType`.
 
-**The emulator cannot test Google Sign-In, so Task 1 Step 10 has never actually run.** The attached AVD is
-`sdk_phone64_arm64-userdebug` — a **plain AOSP image with zero Google packages**: no Play Services, no Play
-Store, no Google account. Tapping sign-in yields `ApiException: 12500 SIGN_IN_FAILED` (seen 2026-07-10),
-which is GMS being absent, **not** a certificate problem — a wrong SHA-1 presents as `10 / DEVELOPER_ERROR`.
-Step 10 needs a **Google APIs / Play Store** system image. Until then the SHA-1 fix below is verified
-statically (`apksigner` signer ∈ `google-services.json`) but **never at runtime**.
+**Google Sign-In needs a Play Store AVD. Use `Pixel_7a_Play_36`, not `Pixel_9a`.**
+`Pixel_9a` is `sdk_phone64_arm64-userdebug` — plain AOSP, **zero Google packages**, no Play Services, no
+account. Sign-in there fails with `ApiException: 12500 SIGN_IN_FAILED`, which is GMS being absent, **not**
+a certificate problem. `Pixel_7a_Play_36` (created 2026-07-10, `system-images;android-36;google_apis_playstore;arm64-v8a`)
+is `sdk_gphone64_arm64-user` with 85 Google packages and GMS `25.08.34`.
+
+```bash
+$ANDROID_HOME/emulator/emulator -avd Pixel_7a_Play_36 -no-boot-anim &
+ANDROID_SERIAL=emulator-5556 ./gradlew :app:android:installWallAppDebug
+adb -s emulator-5556 shell am start -n app.stillscenes/wallapp.activity.MainActivity
+```
+
+**Do not grep logcat for `DEVELOPER_ERROR`.** GMS's `CondFlagRegistrar` logs
+`Phenotype.API is not available on this device … statusCode=DEVELOPER_ERROR` on every emulator boot, with
+sign-in never invoked. The real signal is **`ApiException: 10`** thrown from
+`GoogleSignIn.getSignedInAccountFromIntent` (`SignInProviderControllerDefault.kt:58`).
+
+Until someone taps sign-in there, the SHA-1 fix below is verified **statically only** (`apksigner`'s signer
+digest is carried by an `app.stillscenes` `oauth_client` in `google-services.json`) and **never at runtime**.
 
 **There are two debug keystores, and Firebase trusts the wrong one.** Found 2026-07-10.
 `app/android/debug.keystore` (checked in) is what Gradle signs with — `configureSigningConfigDebug` at

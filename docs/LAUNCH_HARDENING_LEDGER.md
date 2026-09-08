@@ -28,15 +28,13 @@ Authoritative context: `docs/HANDOFF.md`, `.superpowers/sdd/progress.md`, ship-r
 - Verification: installed release starts with zero FATAL, loads `api/20260709-06` from `media.stillscenes.app`, renders, sign-in succeeds. NOT DONE — blocked on AdMob IDs.
 - Remaining risk: release has never run past DI startup; catalog/render/sign-in on release all still unverified.
 
-## Blocker 4 — Minimal CI + merge PR #1
-- Evidence: PR #1 open, no CI; HANDOFF gate = 9× `desktopTest` + `:service:content-pipeline:test` with genuine rerun semantics (repeat `--rerun` per task, check JUnit `mtime`).
-- Action: add `.github/workflows/ci.yml` (JDK 17, HANDOFF tasks), quarantine the two known-broken modules explicitly, verify from clean checkout, merge PR #1.
-- Status: DRAFTED `.github/workflows/mvp-gate.yml` (ruby-YAML-validated); all 10 gate module paths confirmed in `settings.gradle.kts`; `--rerun-tasks` for genuine execution; 3 quarantined modules named in-file. NOT yet run (Gradle busy with release build), NOT merged.
-- Verification: CI green on branch; clean-checkout run observed. NOT DONE.
+## Blocker 4 — Minimal CI + merge PR #1: DONE
+- Evidence: PR #1 was open with no CI; HANDOFF gate = 9× `desktopTest` + `:service:content-pipeline:test`.
+- Action taken: `.github/workflows/mvp-gate.yml` (JDK 17 Zulu, `--rerun-tasks`, 3 quarantined modules named in-file).
+- Verification (all observed this session): local pipeline gate 82 executed / 0 fresh failures; local KMP gate 213 executed / 0 fresh failures; clean-clone (`/tmp/wallapp-clean`) full gate 217 executed / 0 fresh failures; GitHub `mvp-gate` success on push (34242333912) and PR (34242335323); PR #1 MERGED (`13ec034`).
+- Remaining risk: quarantined modules still broken (out of MVP gate by design); Node-20/actions deprecation warnings in CI logs (cosmetic).
 
-## Blocker 5 — RC rollback drill
-- Evidence: live RC versions 1–5 exist (`versions:list` observed this session); v5 current, v4 documented rollback target; both name `catalog_version=20260709-06`, so v5→v4 is behaviorally near-no-op (only drops `catalog_version_staging`, whose compiled-in default equals the value).
-- Action: fetch v4 template, diff vs live, `remoteconfig:rollback --version-number 4`, verify served values + app fetch, roll forward to v5 copy, verify again.
-- Status: PREPPED read-only — `/tmp/rc-v4.json` vs `/tmp/rc-live.json` differ ONLY by `catalog_version_staging` (absent in v4, `20260709-06` in live); all other defaults identical. Rollback is behaviorally near-no-op (debug falls back to compiled-in default = same value).
-- Verification: before/after `remoteconfig:get` snapshots + app fetch logs. NOT DONE (prod writes — run after Blockers 3–4 per order).
-- Remaining risk: full-template replace semantics; drill itself is the mitigation proof.
+## Blocker 5 — RC rollback drill: DONE (server + debug-consumption)
+- Procedure (all observed): snapshot live v5 → `rollback --version-number 4` → v6 live with `catalog_version_staging` absent and `catalog_version=20260709-06` intact → `rollback --version-number 5` → v7 live with params byte-identical to pre-drill snapshot. History append-only; v4/v5 never overwritten or destroyed.
+- App consumption: debug build installed post-drill, 0 FATAL, process stable, fetched `catalog_version_staging=20260709-06` from restored RC and loaded `content-1a` + `content-metadata-1a` + media maps from `media-staging` end to end. Mid-drill live-app run not done; equivalence argued (compiled-in default `RemoteConfigDataDefaultsProvider.kt:20` equals the value, release key invariant across all versions).
+- Remaining risk: full-template replace semantics on every deploy (unchanged); drill is the mitigation proof and it passed.

@@ -14,6 +14,7 @@ import wallapp.content.model.Id.CategoryId
 import wallapp.content.model.Id.RemixId
 import wallapp.content.model.Wallpaper
 import wallapp.content.model.WallpaperCategory
+import wallapp.content.model.WallpaperCategoryType
 import wallapp.content.model.WallpaperRemix
 import wallapp.coroutine.CoroutineScopeMain
 import wallapp.data.artist.ArtistRepository
@@ -99,16 +100,25 @@ class ShowcaseRepositoryDefault(
                 label = strings.collectionOfTheWeek.splitIntoLines(2),
             )
 
-            listOfNotNull(
-                collectionOfTheWeekHighlight,
-            ).ifEmpty { null }
+            // null means "categories have not loaded yet" and holds exploreHighlights back until
+            // they do. Once they have, a catalog with no Collection legitimately yields no
+            // highlight, and that must read as an empty list -- collapsing it to null again would
+            // stall exploreHighlights forever.
+            if (wallpaperCategories.isEmpty()) {
+                null
+            } else {
+                listOfNotNull(collectionOfTheWeekHighlight)
+            }
         }.stateIn(coroutineScopeMain, SharingStarted.WhileSubscribed(), null)
 
     private fun List<WallpaperCategory>.findHighlight(
         id: Id,
         label: String,
     ): Highlight? {
-        return find { it.id == id }
+        // [id] comes from Remote Config and may name a category of any type, or none at all.
+        // CollectionHighlight requires a Collection, so filter on the type here: a mismatched
+        // id must degrade to no highlight rather than tripping that require() and crashing.
+        return find { it.id == id && it.categoryType == WallpaperCategoryType.Collection }
             ?.let {
                 CollectionHighlight(
                     category = it,

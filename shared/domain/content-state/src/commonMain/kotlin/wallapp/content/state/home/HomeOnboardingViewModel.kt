@@ -35,10 +35,26 @@ class HomeOnboardingViewModel(
 
     private var followToggledAtLeastOnce = false
 
+    /**
+     * The follow target can never exceed the number of artists the catalog actually offers, or the
+     * "select N artists" step dead-ends with nothing left to select.
+     *
+     * When no artists have loaded yet the configured target is returned unchanged: clamping to zero
+     * would make the [followCount] check below trivially true and finish onboarding before the user
+     * has seen it.
+     */
+    private fun requiredFollowCount(availableArtists: Int): Int =
+        if (availableArtists > 0) {
+            minOf(onboardingManager.artistFollowOnboardingCount, availableArtists)
+        } else {
+            onboardingManager.artistFollowOnboardingCount
+        }
+
     private val artistContentFlow = contentRepository.artistsContent.onEach { contentResult ->
         val followCount = contentResult.artists?.filter { it.followState?.isFollowing == true }?.size ?: 0
-        Log.d("followCount: $followCount, homeOnboardingFinished: ${onboardingManager.homeOnboardingFinished.value}")
-        if (followCount >= onboardingManager.artistFollowOnboardingCount && !onboardingManager.homeOnboardingFinished.value) {
+        val requiredCount = requiredFollowCount(contentResult.artists?.size ?: 0)
+        Log.d("followCount: $followCount, requiredCount: $requiredCount, homeOnboardingFinished: ${onboardingManager.homeOnboardingFinished.value}")
+        if (followCount >= requiredCount && !onboardingManager.homeOnboardingFinished.value) {
             if (followToggledAtLeastOnce) {
                 Log.d("Showing celebration overlay")
                 globalOverlayManager.show(viewStateFactory.createCelebrationGlobalOverlay(
@@ -75,7 +91,7 @@ class HomeOnboardingViewModel(
         if (!isUiReady) return HomeOnboardingViewState.Loading
         return viewStateFactory.createHomeOnboardingViewState(
             artists = data?.artists,
-            artistFollowOnboardingCount = onboardingManager.artistFollowOnboardingCount,
+            artistFollowOnboardingCount = requiredFollowCount(data?.artists?.size ?: 0),
             theme = oppositeTheme,
             scrollStateWrapper = feedScrollStateController.scrollStateWrapper,
             followToggleExtraAction = followToggleExtraAction,

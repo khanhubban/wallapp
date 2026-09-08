@@ -39,7 +39,7 @@ import wallapp.content.model.Id
 import wallapp.content.model.WallpaperDefaults
 import wallapp.content.network.repository.NetworkContentRepository
 import wallapp.content.network.repository.NetworkContentRepositoryDefault
-import wallapp.content.network.repository.NetworkContentRepositoryUrlDownloader
+import wallapp.content.network.repository.NetworkContentRepositoryKtor
 import wallapp.coroutine.CoroutineContexts
 import wallapp.coroutine.CoroutineScopes
 import wallapp.data.content.ContentCacheConfig
@@ -77,7 +77,7 @@ import wallapp.license.state.LicenseStateRepositoryAltProcess
 import wallapp.license.state.LicenseStateRepositoryDefault
 import wallapp.media.network.repository.NetworkMediaMapRepository
 import wallapp.media.network.repository.NetworkMediaMapRepositoryCombined
-import wallapp.media.network.repository.NetworkMediaMapRepositoryNetwork
+import wallapp.media.network.repository.NetworkMediaMapRepositoryKtor
 import wallapp.mediamap.MediaMapRepository
 import wallapp.mediamap.MediaMapRepositoryConfig
 import wallapp.mediamap.MediaMapRepositoryConfigDefault
@@ -122,6 +122,7 @@ import wallapp.runmode.isNotApp
 import wallapp.runmode.isTest
 import wallapp.search.network.repository.NetworkSearchContentRepository
 import wallapp.search.network.repository.NetworkSearchContentRepositoryDefault
+import wallapp.search.network.repository.NetworkSearchContentRepositoryKtor
 import wallapp.settings.AllSettings
 import wallapp.system.window.WindowFrameManager
 import wallapp.system.window.WindowFrameManagerDefault
@@ -409,19 +410,19 @@ abstract class FactoryCommon : FactoryBase {
 
     override fun networkContentRepository(scope: Scope): NetworkContentRepository {
         return NetworkContentRepositoryDefault(
-            repositoryNetwork = scope.get<NetworkContentRepositoryUrlDownloader>(),
+            repositoryNetwork = scope.get<NetworkContentRepositoryKtor>(),
         )
     }
 
     override fun networkMediaMapRepository(scope: Scope): NetworkMediaMapRepository {
         return NetworkMediaMapRepositoryCombined(
-            scope.get<NetworkMediaMapRepositoryNetwork>(),
+            scope.get<NetworkMediaMapRepositoryKtor>(),
         )
     }
 
     fun networkSearchContentRepository(scope: Scope): NetworkSearchContentRepository {
         return NetworkSearchContentRepositoryDefault(
-            repositoryNetwork = scope.get(),
+            repositoryNetwork = scope.get<NetworkSearchContentRepositoryKtor>(),
         )
     }
 

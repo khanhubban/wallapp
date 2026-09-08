@@ -18,14 +18,26 @@ kotlin {
 
         commonMain {
             dependencies {
+                implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.koin.core)
 
                 implementation(project(":shared:app:app-adapter"))
                 implementation(project(":shared:data:billing:api"))
+                implementation(project(":shared:data:remoteconfig-api"))
+                implementation(project(":shared:data:remoteendpoint"))
                 implementation(project(":shared:domain:content-state"))
                 implementation(project(":shared:domain:license-state"))
                 implementation(project(":shared:domain:licensing-billing"))
+            }
+        }
+
+        commonTest {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(libs.koin.core)
+                implementation(project(":shared:data:remoteconfig-api"))
+                implementation(project(":shared:data:remoteendpoint"))
             }
         }
     }

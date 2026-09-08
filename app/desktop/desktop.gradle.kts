@@ -50,9 +50,9 @@ compose.desktop {
         mainClass = "wallapp.DesktopKt"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "MyProject"
+            packageName = "StillScenes"
             macOS {
-                bundleID = "com.example.wallapp.desktop"
+                bundleID = "app.stillscenes.desktop"
             }
 
             println("Desktop build directory: ${project.buildDir}")

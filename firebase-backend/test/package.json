@@ -4,7 +4,7 @@
   "description": "Unit testing",
   "main": "test.js",
   "scripts": {
-    "test": "mocha --exit"
+    "test": "NODE_OPTIONS=--dns-result-order=ipv4first mocha --exit"
   },
   "author": "wallapp",
   "license": "ISC",

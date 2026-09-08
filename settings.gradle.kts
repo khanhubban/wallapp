@@ -22,6 +22,7 @@ if (!extra.has("excludeAndroidModule")) {
 }
 
 include(
+    ":service:content-pipeline",
     ":service:service-common",
     ":service:service-export-remoteapi",
     ":shared",

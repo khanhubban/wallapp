@@ -1,0 +1,53 @@
+{
+  "parameters": {
+    "catalog_version": {
+      "defaultValue": {
+        "value": "20260709-06"
+      },
+      "description": "Content catalog version pointer for RELEASE builds, served from media.stillscenes.app (delivery design \u00a77). Percentage conditions on this param provide canary rollout and rollback.",
+      "valueType": "STRING"
+    },
+    "catalog_version_staging": {
+      "defaultValue": {
+        "value": "20260709-06"
+      },
+      "description": "Catalog version pointer for DEBUG builds, served from media-staging.stillscenes.app. Bound via NamedScope.CatalogVersion in di-buildconfig-debug. Independent of catalog_version; the two diverge once staging leads prod. Do not alias one to the other.",
+      "valueType": "STRING"
+    },
+    "highlight_artist": {
+      "defaultValue": {
+        "value": "stillscenes"
+      },
+      "description": "Showcase: featured artist (ArtistId). Must exist in the active catalog.",
+      "valueType": "STRING"
+    },
+    "highlight_collection_of_the_week": {
+      "defaultValue": {
+        "value": "stillscenes~featured"
+      },
+      "description": "Showcase: collection of the week (CategoryId). Must name a Collection-type category; a Singles category is ignored and the highlight is omitted. stillscenes~featured exists from catalog 20260709-04 onward.",
+      "valueType": "STRING"
+    },
+    "highlight_just_added": {
+      "defaultValue": {
+        "value": "stillscenes~singles"
+      },
+      "description": "Showcase: just-added row (CategoryId). Currently unread by the client: the Just Added row resolves FolderDefinitions.FolderIdJustAdded directly.",
+      "valueType": "STRING"
+    },
+    "highlight_most_popular": {
+      "defaultValue": {
+        "value": "stillscenes~singles"
+      },
+      "description": "Showcase: most-popular row (CategoryId). Must exist in the active catalog.",
+      "valueType": "STRING"
+    },
+    "highlight_wallpaper_of_the_week": {
+      "defaultValue": {
+        "value": "stillscenes_0e59bd05"
+      },
+      "description": "Showcase: wallpaper of the week (RemixId). Alpine Dawn. Must exist in the active catalog.",
+      "valueType": "STRING"
+    }
+  }
+}

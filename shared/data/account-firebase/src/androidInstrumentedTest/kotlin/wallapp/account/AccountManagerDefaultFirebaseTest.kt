@@ -83,7 +83,7 @@ class AccountManagerDefaultFirebaseTest {
             FirebaseOptions(
                 applicationId = "...",
                 apiKey = "...",
-                projectId = "panels-oss",
+                projectId = "stillscenes-prod",
             )
         )
 

@@ -10,5 +10,8 @@
       "enabled": true
     },
     "singleProjectMode": true
+  },
+  "remoteconfig": {
+    "template": "firebase-backend/remoteconfig.template.json"
   }
 }

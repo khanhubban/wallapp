@@ -39,6 +39,12 @@ kotlin {
             }
         }
 
+        commonTest {
+            dependencies {
+                implementation(kotlin("test"))
+            }
+        }
+
         androidUnitTest {
             dependencies {
                 implementation(libs.junit)

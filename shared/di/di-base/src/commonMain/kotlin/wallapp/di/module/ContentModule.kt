@@ -73,6 +73,7 @@ import wallapp.entitlement.EntitlementRepositoryDefault
 import wallapp.media.network.repository.NetworkMediaMapRepository
 import wallapp.media.network.repository.NetworkMediaMapRepositoryConfig
 import wallapp.media.network.repository.NetworkMediaMapRepositoryConfigDefault
+import wallapp.media.network.repository.NetworkMediaMapRepositoryKtor
 import wallapp.media.network.repository.NetworkMediaMapRepositoryNetwork
 import wallapp.mediamap.NetworkMediaCacheManager
 import wallapp.mediamap.NetworkMediaCacheManagerDefault
@@ -87,9 +88,9 @@ import wallapp.remoteendpoint.RemoteApiEndpointRepositoryConfig
 import wallapp.remoteendpoint.RemoteApiEndpointRepositoryConfigDefault
 import wallapp.remoteendpoint.RemoteApiEndpointRepositoryDefault
 import wallapp.remoteendpoint.RemoteEndpointsRepositoryNetwork
-import wallapp.remoteendpoint.RemoteEndpointsRepositoryNetworkDefault
 import wallapp.remoteendpoint.RemoteEndpointsRepositoryPreset
 import wallapp.remoteendpoint.RemoteEndpointsRepositoryPresetDefault
+import wallapp.remoteendpoint.RemoteEndpointsRepositoryRemoteConfig
 import wallapp.wallpaper.cache.WallpaperImageCache
 import wallapp.wallpaper.download.ActiveWallpaperDownloadManager
 import wallapp.wallpaper.download.ActiveWallpaperDownloadManagerDefault
@@ -154,6 +155,7 @@ val ContentModule: Module = module {
     single<NetworkMediaCacheManager> { NetworkMediaCacheManagerDefault(get(NamedScope.CacheFileMediaMap)) }
     single<NetworkMediaMapRepository> { Factory.networkMediaMapRepository(this) }
     single<NetworkMediaMapRepositoryConfig> { NetworkMediaMapRepositoryConfigDefault(get()) }
+    single<NetworkMediaMapRepositoryKtor> { NetworkMediaMapRepositoryKtor(get(), get()) }
     single<NetworkMediaMapRepositoryNetwork> { NetworkMediaMapRepositoryNetwork(get(), get(), get()) }
     single<NetworkStateManager> { NetworkStateManagerDefault(get(), get(), get(NamedScope.CoroutineScopeMain)) }
     single<PurchaseRecordRepository> { PurchaseRecordRepositoryDefault(get(), get(), get(NamedScope.CoroutineScopeMain), get(NamedScope.CoroutineScopeIo)) }
@@ -161,7 +163,7 @@ val ContentModule: Module = module {
     single<RemoteApiEndpointRepository> { Factory.remoteApiEndpointRepository(this) }
     single<RemoteApiEndpointRepositoryDefault> { RemoteApiEndpointRepositoryDefault(get(), get(), get(), get(), get(), get(NamedScope.CoroutineScopeIo)) }
     single<RemoteApiEndpointRepositoryConfig> { RemoteApiEndpointRepositoryConfigDefault(get()) }
-    single<RemoteEndpointsRepositoryNetwork> { RemoteEndpointsRepositoryNetworkDefault(get(), get(), get()) }
+    single<RemoteEndpointsRepositoryNetwork> { RemoteEndpointsRepositoryRemoteConfig(catalogVersion = get(NamedScope.CatalogVersion), config = get()) }
     single<RemoteEndpointsRepositoryPreset> { RemoteEndpointsRepositoryPresetDefault() }
     single<RemoteEndpointsSpecRepository> { Factory.remoteEndpointsSpecRepository(this) }
     single<RemoteEndpointsSpecRepositoryDefault> { RemoteEndpointsSpecRepositoryDefault() }

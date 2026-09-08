@@ -14,7 +14,7 @@ data class NetworkSearchMetadata(
         get() = json.encodeToString(kotlinx.serialization.serializer(), this)
 
     companion object {
-        private val json = Json { ignoreUnknownKeys = false }
+        private val json = Json { ignoreUnknownKeys = true; coerceInputValues = true }
 
         fun fromExportString(exportString: String): NetworkSearchMetadata {
             return json.decodeFromString(kotlinx.serialization.serializer(), exportString)

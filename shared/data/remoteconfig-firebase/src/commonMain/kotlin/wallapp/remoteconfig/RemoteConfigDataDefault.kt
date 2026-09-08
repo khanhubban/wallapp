@@ -15,6 +15,8 @@ import wallapp.remoteconfig.data.RemoteConfigEntry.AccountBackendEnabled
 import wallapp.remoteconfig.data.RemoteConfigEntry.AccountGoogleSignInEnabled
 import wallapp.remoteconfig.data.RemoteConfigEntry.AccountSignInAppleEnabled
 import wallapp.remoteconfig.data.RemoteConfigEntry.AppUpdateMinimumAllowedAppVersion
+import wallapp.remoteconfig.data.RemoteConfigEntry.CatalogVersion
+import wallapp.remoteconfig.data.RemoteConfigEntry.CatalogVersionStaging
 import wallapp.remoteconfig.data.RemoteConfigEntry.ContentShowSingles
 import wallapp.remoteconfig.data.RemoteConfigEntry.FeedAdsEnabled
 import wallapp.remoteconfig.data.RemoteConfigEntry.HighlightArtist
@@ -52,6 +54,8 @@ class RemoteConfigDataDefault(
                 initialValue = null
             )
     }
+    override val catalogVersion: StateFlow<String> = CatalogVersion.toStateFlow()
+    override val catalogVersionStaging: StateFlow<String> = CatalogVersionStaging.toStateFlow()
     override val contentShowSingles: StateFlow<Boolean> = ContentShowSingles.toStateFlow()
     override val feedAdsEnabled: StateFlow<Boolean> = FeedAdsEnabled.toStateFlow()
     override val highlightArtist: StateFlow<String> =  HighlightArtist.toStateFlow()

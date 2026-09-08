@@ -2,8 +2,6 @@ package wallapp.search
 
 import kotlinx.coroutines.flow.first
 import wallapp.content.model.ContentCategory
-import wallapp.di.module.ContentModule
-import wallapp.di.module.SearchModule
 import wallapp.di.resolveDependency
 import wallapp.test.WaeTest
 import wallapp.test.waeTest
@@ -12,6 +10,15 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
+/**
+ * These tests are @Ignore-d pending a proper DI setup for [SearchSessionManagerDefault].
+ *
+ * They originally passed `SearchModule`/`ContentModule` (from `:shared:di:di-base`) to
+ * [waeTest]. Those references were removed because `:shared:di:di-base` depends on
+ * `:shared:app:app-adapter`, so they cannot be placed on app-adapter's test classpath without
+ * introducing a project dependency cycle. When these tests are revived they will need the
+ * required Koin modules wired in from a module that does not create such a cycle.
+ */
 class SearchSessionManagerDefaultTest : WaeTest {
 
     private fun createInstance(): SearchSessionManagerDefault {
@@ -20,14 +27,14 @@ class SearchSessionManagerDefaultTest : WaeTest {
 
     @Test
     @Ignore("Test requires complex DI setup with ContentRepository dependencies - needs to be fixed")
-    fun `selectedContentTypes default selections`() = waeTest(listOf(SearchModule, ContentModule)) {
+    fun `selectedContentTypes default selections`() = waeTest {
         val manager = createInstance()
         assertEquals(emptyList(), manager.selectedContentCategories.value)
     }
 
     @Test
     @Ignore("Test requires complex DI setup with ContentRepository dependencies - needs to be fixed")
-    fun `selectedContentTypes toggle multiple selections`() = waeTest(listOf(SearchModule, ContentModule)) {
+    fun `selectedContentTypes toggle multiple selections`() = waeTest {
         val manager = createInstance()
 
         assertEquals(emptyList(), manager.selectedContentCategories.value)

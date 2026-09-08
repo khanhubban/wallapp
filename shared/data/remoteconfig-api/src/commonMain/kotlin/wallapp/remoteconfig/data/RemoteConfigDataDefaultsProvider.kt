@@ -11,20 +11,31 @@ open class RemoteConfigDataDefaultsProvider {
         get() = true
     open val appUpdateMinimumAllowedAppVersion_platformSpecific: String
         get() = ""
+    // Both environments start on the same catalog: the first prod publish writes the same bytes
+    // staging already serves. Pointing this at the 99999999 demo catalog made every cold start
+    // fetch 219 items it then discarded — the source of the MediaMap-entry-missing warning spam.
+    open val catalogVersion: String
+        get() = "20260709-06"
+    open val catalogVersionStaging: String
+        get() = "20260709-06"
     open val contentShowSingles: Boolean
         get() = true
     open val feedAdsEnabled: Boolean
         get() = true
+    // Highlight IDs are resolved against the active catalog with no existence check
+    // (ShowcaseRepositoryHighlightsConfigDefault wraps them in ArtistId/CategoryId/RemixId).
+    // An ID absent from the catalog yields an empty showcase row, not an error, so these
+    // defaults must name content that exists in the shipped catalog.
     open val highlightArtist: String
-        get() = "a~indigo"
+        get() = "stillscenes"
     open val highlightCollectionOfTheWeek: String
-        get() = "red~stripes"
+        get() = "stillscenes~featured"
     open val highlightJustAdded: String
         get() = highlightCollectionOfTheWeek
     open val highlightMostPopular: String
         get() = highlightCollectionOfTheWeek
     open val highlightWallpaperOfTheWeek: String
-        get() = "a~red_e63c4f79"
+        get() = "stillscenes_0e59bd05"
     open val imageHostName: String
         get() = "example"
     open val rewardAdsEnableConsecutivePlays: Boolean

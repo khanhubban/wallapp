@@ -5,6 +5,8 @@ import kotlinx.coroutines.flow.StateFlow
 
 class RemoteApiEncryptionConfigPreset : RemoteApiEncryptionConfig {
 
+    override val requiresEncryptionKey: Boolean = true
+
     // Keep this aligned with RemoteApiEncryptionConfigDefault + the key stored in Firebase Storage.
     override val key: StateFlow<String> = MutableStateFlow("bd446249-1c66-4a67-b49b-c605f922b5cb")
 

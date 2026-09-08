@@ -13,11 +13,18 @@ data class CollectionPurchasable(
     val label: String,
 ) {
 
-    constructor(category: WallpaperCategory) : this(
-        id = category.id.collectionId,
-        purchasableProductIds = requireNotNull(category.purchasableProductIds) {
-            "Category $category does not have purchasable product ids - this should be set for WallpaperCategoryType.Collection (category.id=${category.id}, categoryType=${category.categoryType})"
-        },
-        label = category.label,
-    )
+    companion object {
+        /**
+         * Null when [category] has no store product, i.e. a free collection. Callers must not
+         * assume every Collection is purchasable.
+         */
+        fun orNull(category: WallpaperCategory): CollectionPurchasable? {
+            val productIds = category.purchasableProductIds ?: return null
+            return CollectionPurchasable(
+                id = category.id.collectionId,
+                purchasableProductIds = productIds,
+                label = category.label,
+            )
+        }
+    }
 }

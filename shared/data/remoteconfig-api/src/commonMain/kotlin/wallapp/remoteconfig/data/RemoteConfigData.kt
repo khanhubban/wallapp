@@ -10,6 +10,8 @@ interface RemoteConfigData {
     val accountSignInAppleEnabled: StateFlow<Boolean>
     val accountSignInGoogleEnabled: StateFlow<Boolean>
     val appUpdateMinimumAllowedAppVersion_platformSpecific: StateFlow<AppVersion?>
+    val catalogVersion: StateFlow<String>
+    val catalogVersionStaging: StateFlow<String>
     val contentShowSingles: StateFlow<Boolean>
     val feedAdsEnabled: StateFlow<Boolean>
     val highlightArtist: StateFlow<String>

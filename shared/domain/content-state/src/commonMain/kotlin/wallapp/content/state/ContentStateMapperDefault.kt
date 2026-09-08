@@ -66,26 +66,23 @@ class ContentStateMapperDefault(
             ?.map { ContentState.Highlights(it) }
             ?: emptyList()
 
-        // Early-exit until all content is available (#175)
-        if (wallpaperContent.isEmpty() || collectionContent.isEmpty() || highlightsContent.isEmpty()) {
+        // Wallpapers are the only requirement (#175 originally waited for collections and
+        // highlights too). A singles-only catalog has neither, and returning null here surfaces
+        // as a permanent ExploreViewState.Loading spinner rather than an empty feed.
+        if (wallpaperContent.isEmpty()) {
             return null
         }
 
-        val multipleCollections = if (collectionContent.isNotEmpty()) {
+        // processMultipleContentStateCollections divides by the receiver's size.
+        val culledCollections = if (collectionContent.isEmpty()) {
+            emptyList()
+        } else {
             collectionContent.processMultipleContentStateCollections(
                 wallpaperCount = wallpaperContent.size,
                 wallpaperToCollectionRatio = 1,
             )
-        } else {
-            collectionContent
-        }.shuffled(deterministicRandom)
-
-        val culledCollections = if (wallpaperContent.size != multipleCollections.size) {
-            // remove extra collections
-            val diff = wallpaperContent.size - multipleCollections.size
-            multipleCollections.subList(0, multipleCollections.size - diff)
-        } else {
-            multipleCollections
+                .shuffled(deterministicRandom)
+                .cullToWallpaperCount(wallpaperContent.size)
         }
 
         // interleave wallpaper and collection content
@@ -127,24 +124,26 @@ class ContentStateMapperDefault(
             ?.map { ContentState.Highlights(it) }
             ?: emptyList()
 
-        // Early-exit until all content is available (#175)
-        if (wallpaperContent.isEmpty() || collectionContent.isEmpty()) {
+        // See mapExploreForChunks: only wallpapers are required (#175).
+        if (wallpaperContent.isEmpty()) {
             return null
         }
 
-        val multipleCollections = if (collectionContent.isNotEmpty()) {
-            collectionContent.processMultipleContentStateCollections(
+        // interleaveCollectionsBetweenWallpapers only emits wallpapers it can pair against a
+        // collection boundary, so with no collections it would drop the feed entirely.
+        val contentStates: List<ContentState> = if (collectionContent.isEmpty()) {
+            wallpaperContent
+        } else {
+            val multipleCollections = collectionContent.processMultipleContentStateCollections(
                 wallpaperCount = wallpaperContent.size,
                 wallpaperToCollectionRatio = wallpaperToCollectionRatio,
-            )
-        } else {
-            collectionContent
-        }.shuffled(deterministicRandom)
+            ).shuffled(deterministicRandom)
 
-        val contentStates = interleaveCollectionsBetweenWallpapers(
-            wallpaperContent,
-            multipleCollections
-        )
+            interleaveCollectionsBetweenWallpapers(
+                wallpaperContent,
+                multipleCollections
+            )
+        }
 
         if (contentStates.isEmpty()) {
             return null
@@ -241,6 +240,18 @@ class ContentStateMapperDefault(
             } + this
     }
 }
+
+/**
+ * Drops collections that have no wallpaper to sit beside, since the explore feed pairs at most one
+ * collection per wallpaper.
+ *
+ * Total by construction: an empty receiver or a non-positive [wallpaperCount] yields an empty list.
+ * The arithmetic this replaced computed a `subList` bound of `size - (wallpaperCount - size)`, which
+ * goes negative whenever the two counts differ.
+ */
+fun List<ContentState.Collection>.cullToWallpaperCount(
+    wallpaperCount: Int,
+): List<ContentState.Collection> = take(wallpaperCount.coerceAtLeast(0))
 
 fun List<ContentState.Collection>.processMultipleContentStateCollections(
     wallpaperCount: Int,

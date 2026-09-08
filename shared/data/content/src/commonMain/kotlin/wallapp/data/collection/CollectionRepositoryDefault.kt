@@ -46,6 +46,7 @@ class CollectionRepositoryDefault(
                 id = Id.CollectionId(id.name),
                 wallpapers = remixes,
                 label = category.label,
+                isFree = category.isFree,
             )
         } else {
             null

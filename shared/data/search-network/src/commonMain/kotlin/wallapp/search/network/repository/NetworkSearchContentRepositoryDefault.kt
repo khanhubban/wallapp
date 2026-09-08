@@ -7,7 +7,7 @@ import wallapp.log.Logger
 import wallapp.search.model.NetworkSearchMetadata
 
 class NetworkSearchContentRepositoryDefault(
-    private val repositoryNetwork: NetworkSearchContentRepositoryNetwork,
+    private val repositoryNetwork: NetworkSearchContentRepository,
 ) : NetworkSearchContentRepository {
 
     companion object {

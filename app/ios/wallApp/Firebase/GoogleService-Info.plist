@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>550120118652-v5m1paaaervb9cq255cft5tr6s2ou2ht.apps.googleusercontent.com</string>
+	<string>809386236419-mhdg2ktid6kknsnl6c722mf10ph5orqm.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.550120118652-v5m1paaaervb9cq255cft5tr6s2ou2ht</string>
+	<string>com.googleusercontent.apps.809386236419-mhdg2ktid6kknsnl6c722mf10ph5orqm</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>550120118652-ta2hquu10npr1rpsekttu28sguka7tg3.apps.googleusercontent.com</string>
+	<string>809386236419-n72vsdrn2h53k3i7tm75hpdjureebd60.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCokDsa3LaZLBsXjfAhKtjnNE9TPz9vZRM</string>
+	<string>AIzaSyCa7rGOYpz7kI4fb59nKgN_deNa5dX_pR8</string>
 	<key>GCM_SENDER_ID</key>
-	<string>550120118652</string>
+	<string>809386236419</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.Wallapp</string>
 	<key>PROJECT_ID</key>
-	<string>panels-oss</string>
+	<string>stillscenes-prod</string>
 	<key>STORAGE_BUCKET</key>
-	<string>panels-oss.firebasestorage.app</string>
+	<string>stillscenes-prod.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:550120118652:ios:a7b230926bf85e2fdc2cf9</string>
+	<string>1:809386236419:ios:9e819707e2bf0f69c54c36</string>
 </dict>
 </plist>

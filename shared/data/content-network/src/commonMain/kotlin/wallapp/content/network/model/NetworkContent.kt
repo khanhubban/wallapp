@@ -15,7 +15,7 @@ data class NetworkContent(
         get() = json.encodeToString(kotlinx.serialization.serializer(), this)
 
     companion object {
-        private val json = Json { ignoreUnknownKeys = true }
+        private val json = Json { ignoreUnknownKeys = true; coerceInputValues = true }
 
         fun fromExportString(exportString: String): NetworkContent {
             return json.decodeFromString(kotlinx.serialization.serializer(), exportString)

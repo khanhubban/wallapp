@@ -7,12 +7,19 @@ import wallapp.media.network.model.NetworkMediaMap
 
 object MediaMapMapper {
 
+    private val Log = MediaMapLogger
+
     fun mapToMediaMap(networkMediaMaps: Map<Long, NetworkMediaMap>): Map<MediaId, MediaMap> {
         return mutableMapOf<MediaId, MutableMap<SizedImage, ImageModel>>().apply {
             networkMediaMaps.forEach { (mediaId, networkMediaMap) ->
                 val mediaMap = mutableMapOf<SizedImage, ImageModel>()
                 networkMediaMap.forEach { (sizedImage, url) ->
-                    mediaMap[SizedImage.from(sizedImage)] = ImageModel.from(url)
+                    val known = SizedImage.fromOrNull(sizedImage)
+                    if (known == null) {
+                        Log.w("Unknown SizedImage key $sizedImage on mediaId $mediaId; entry ignored")
+                    } else {
+                        mediaMap[known] = ImageModel.from(url)
+                    }
                 }
 
                 put(MediaId(mediaId), mediaMap)

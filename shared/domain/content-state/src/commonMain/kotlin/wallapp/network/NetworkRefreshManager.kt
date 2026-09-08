@@ -110,8 +110,12 @@ class NetworkRefreshManagerDefault(
                 || modelRepositoryRaw.networkContentFromCache.value == null
                 || mediaMapRepositoryDefault.mediaMapFromCache.value == null
 
+    private val encryptionKeyNotAvailable: Boolean
+        get() = remoteApiEncryptionConfig.requiresEncryptionKey
+                && remoteApiEncryptionConfig.key.value.isBlank()
+
     private val anyDataNotAvailable: Boolean
-        get() = (remoteApiEncryptionConfig.key.value.isBlank()
+        get() = (encryptionKeyNotAvailable
                 || remoteApiEndpointRepository.remoteEndpointsFromNetwork.value == null
                 || modelRepositoryRaw.networkContentFromNetwork.value == null)
             .also {
@@ -142,10 +146,12 @@ class NetworkRefreshManagerDefault(
                 networkRefreshTriggerBroadcaster.requestRefreshFor(NetworkDataType.UserSignIn)
             }
             networkUserManager.waitUntilReady()
-            if (remoteApiEncryptionConfig.key.value.isBlank()) {
-                networkRefreshTriggerBroadcaster.requestRefreshFor(NetworkDataType.Key)
+            if (remoteApiEncryptionConfig.requiresEncryptionKey) {
+                if (remoteApiEncryptionConfig.key.value.isBlank()) {
+                    networkRefreshTriggerBroadcaster.requestRefreshFor(NetworkDataType.Key)
+                }
+                remoteApiEncryptionConfig.key.first { it.isNotBlank() }
             }
-            remoteApiEncryptionConfig.key.first { it.isNotBlank() }
             networkRefreshTriggerBroadcaster.requestRefreshFor(NetworkDataType.RemoteEndpoints)
             networkRefreshTriggerBroadcaster.requestRefreshFor(NetworkDataType.NetworkContent)
             networkRefreshTriggerBroadcaster.requestRefreshFor(NetworkDataType.MediaMap)
@@ -173,7 +179,7 @@ class NetworkRefreshManagerDefault(
                 return@combine
             }
 
-            if (key.isBlank()) {
+            if (remoteApiEncryptionConfig.requiresEncryptionKey && key.isBlank()) {
                 networkRefreshTriggerBroadcaster.requestRefreshFor(NetworkDataType.Key)
                 return@combine
             }

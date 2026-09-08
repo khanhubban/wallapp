@@ -44,12 +44,11 @@ enum class SizedImage(
     companion object {
         val Preset = WallpaperFeedSingle
 
-        fun from(key: String): SizedImage {
-            require(entries.map { it.key }.distinct().size == entries.size) {
-                "Duplicate keys found in SizedImage"
-            }
-            
-            return entries.firstOrNull { it.key == key } ?: Preset
-        }
+        /**
+         * Returns null for a key this build does not know. Callers must decide what that means;
+         * silently substituting [Preset] once let a typo'd wire key overwrite a real entry.
+         * Key uniqueness is asserted in SizedImageTest, not re-checked on every call.
+         */
+        fun fromOrNull(key: String): SizedImage? = entries.firstOrNull { it.key == key }
     }
 }

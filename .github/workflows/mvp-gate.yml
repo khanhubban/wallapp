@@ -1,0 +1,57 @@
+# MVP launch gate — see docs/HANDOFF.md "Verifying you haven't broken anything".
+#
+# Intentionally NARROW. These are the only tasks that gate the limited Android MVP.
+# QUARANTINED (known-broken, pre-existing at 80b667c, NOT covered by this gate):
+#   :shared:system:common:desktopTest   — does not compile (missing PlatformDesktop)
+#   :shared:di:di-app:desktopTest       — checkAllModules needs TestScope
+#   :shared:app:app-adapter:testDebugUnitTest — android.os.Process not mocked
+# Do not add them here to make the badge green; fix them first, then widen the gate.
+#
+# --rerun-tasks (not trailing --rerun) so a green run means tests EXECUTED, not UP-TO-DATE.
+
+name: mvp-gate
+
+on:
+  pull_request:
+  push:
+    branches: [main, feat/foundation-delivery]
+
+jobs:
+  kmp-desktop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v4
+      - name: KMP desktopTest gate (authoritative, genuine rerun)
+        run: >
+          ./gradlew --rerun-tasks
+          :shared:app:app-adapter:desktopTest
+          :shared:domain:content-state:desktopTest
+          :shared:data:content:desktopTest
+          :shared:data:remoteconfig-api:desktopTest
+          :shared:data:remoteapi:desktopTest
+          :shared:data:base:desktopTest
+          :shared:data:mediamap:desktopTest
+          :shared:di:di-buildconfig-release:desktopTest
+          :shared:di:di-buildconfig-debug:desktopTest
+      - name: Fail on any fresh JUnit failure or error
+        if: always()
+        run: >
+          ! find shared -path '*/build/test-results/*' -name '*.xml' -newermt '-60 minutes'
+          | xargs grep -l '<failure\|<error' 2>/dev/null | grep .
+
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Content-pipeline tests (kotlin/jvm module — task IS test)
+        run: ./gradlew --rerun-tasks :service:content-pipeline:test

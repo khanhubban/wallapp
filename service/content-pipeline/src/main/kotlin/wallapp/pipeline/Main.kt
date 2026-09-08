@@ -96,5 +96,5 @@ fun main(args: Array<String>) {
     }
     val bucket = bucketFor(m.baseUrl)
     runPipeline(text, WranglerClient(bucket = bucket), CdnReadBackVerifier(), renditions)
-    println("Published version ${m.version} to $bucket. Flip RC ${catalogVersionKeyFor(m.baseUrl)} to ${m.version} to go live.")
+    println("Published version ${m.version} to $bucket. Ensure RC ${catalogVersionKeyFor(m.baseUrl)} is ${m.version} to go live (no flip needed if it already is).")
 }
